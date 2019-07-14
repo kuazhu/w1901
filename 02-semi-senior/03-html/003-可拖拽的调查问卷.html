@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>003-可拖拽的调查问卷.html</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .page{
+            width: 1000px;
+            margin: 50px auto;
+        }
+        .container{
+            width: 500px;
+            height: 800px;
+            box-sizing: border-box;
+            float: left;
+            padding: 10px;
+        }
+        .target-list{
+            width: 500px;
+            min-height: 600px;
+            box-sizing: border-box;
+            float: right;
+            margin-top: 50px;
+            border-left: 1px solid red;
+            padding: 10px;
+        }
+        .target{
+            width: 100%;
+            border: 1px dashed #ccc;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="container">
+            <h1>调查问卷</h1>
+        </div>
+        <div class="target-list">
+            <div class="target" draggable=true>
+                <label >姓名</label>
+                <input type="text">
+            </div>
+            <div class="target" draggable=true>
+                <label >年龄</label>
+                <input type="text">
+            </div>
+            <div class="target" draggable=true>
+                <label >爱好</label>
+                <input type="checkbox">打篮球
+                <input type="checkbox">踢足球
+            </div>                        
+        </div>
+    </div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        var dom = null;
+        $('.target-list')
+        .on('dragstart','.target',function(){
+            // console.log(this)
+            dom = this;
+        })
+        $('.container')
+        .on('drop',function(){
+            $(this).append($.clone(dom))
+        })
+        .on('dragover',function(ev){
+            ev.preventDefault()
+        })
+
+    })
+</script>
+</html>

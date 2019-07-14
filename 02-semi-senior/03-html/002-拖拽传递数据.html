@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>002-拖拽传递数据.html</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #container {
+        width: 300px;
+        height: 300px;
+        background-color: gray;
+    }
+
+    #target {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    .father{
+        width: 400px;
+        height: 400px;
+        background-color: blue;
+        border: 1px solid #000;
+    }
+    .son{
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+        margin: 100px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <div id="target" draggable=true></div>
+    <!--
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    -->
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+$(function() {
+    /*
+    $('.father')
+    .on('click',function(ev){
+        console.log(ev.target)
+        console.log(ev.currentTarget)
+    })
+    */
+
+    $('#target')
+    .on('dragstart',function(ev){
+        //当元素开始拖动时触发
+        //console.log('target::dragstart')
+        //console.log($(this).attr('id'))
+        //console.log(ev.target)
+        //console.log(ev.currentTarget)
+        var targetId = ev.target.id
+        ev.originalEvent.dataTransfer.setData('targetId',targetId)
+    })
+
+    $('#container')
+    .on('drop', function(ev) {
+        //当放置被拖动元素时触发
+        //console.log('container::drop')
+        var targetId = ev.originalEvent.dataTransfer.getData('targetId')
+        // console.log(targetId)
+        $(this).append($('#'+targetId))
+    })
+    .on('dragover', function(ev) {
+        //被拖动元素正在到放置到容器时触发,默认无法把元素放置到其他元素中,如果需要设置允许放置,我们必须阻止对元素的默认处理方式。
+        //console.log('container::dragover')
+        ev.preventDefault()
+    })            
+})
+</script>
+
+</html>
