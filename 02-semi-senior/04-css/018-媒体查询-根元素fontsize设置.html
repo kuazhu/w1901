@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>018-媒体查询-根元素fontsize设置.html</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        /*
+        正常开发时的步骤:
+
+        1. 确定设计稿以及对应的机型,比如说以Iphone6为例来做设计
+        2. 设计稿一般提供的单位是像素,比如图片width 150px font-size 24px
+        3. 在Iphone6的模拟器上根据计算后的根元素的fontsize大小把设计稿的值换算成rem
+        1rem = 37.5px
+        150/37.5 = 4 rem
+        24/37.5 = 0.64rem
+         */
+        @media screen and (min-width: 0px) {html{font-size:50px;}}
+        @media screen and (min-width: 360px) {html{font-size:56.25px;}}
+        @media screen and (min-width: 375px) {html{font-size:58.59375px;}}
+        @media screen and (min-width: 400px) {html{font-size:62.5px;}}
+        @media screen and (min-width: 414px) {html{font-size:64.6875px;}}
+        @media screen and (min-width: 440px) {html{font-size:68.75px;}}
+        @media screen and (min-width: 480px) {html{font-size:75px;}}
+        @media screen and (min-width: 520px) {html{font-size:81.25px;}}
+        @media screen and (min-width: 560px) {html{font-size:87.5px;}}
+        @media screen and (min-width: 600px) {html{font-size:93.75px;}}
+        @media screen and (min-width: 640px) {html{font-size:100px;}}
+        @media screen and (min-width: 680px) {html{font-size:106.25px;}}
+        @media screen and (min-width: 720px) {html{font-size:112.5px;}}
+        @media screen and (min-width: 760px) {html{font-size:118.75px;}}
+        @media screen and (min-width: 800px) {html{font-size:125px;}}
+        @media screen and (min-width: 960px) {html{font-size:150px;}}
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            float: left;
+            width: 3.2rem;
+        }
+        p{
+            font-size: 0.4rem;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/g.jpg" alt="">
+    <p>你好,美女</p>
+</body>
+</html>

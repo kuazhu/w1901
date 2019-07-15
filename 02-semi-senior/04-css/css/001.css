@@ -1,3 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 body {
+  padding-bottom: 100px;
+}
+div {
+  margin-bottom: 10px;
+}
+/*
+我是一个多行注释
+这是第二行注释
+ */
+.box1 {
+  width: 100px;
+  height: 60px;
   background-color: #ff6677;
 }
+.box2 {
+  width: 100px;
+  height: 60px;
+  background-color: #ff6677;
+  font-size: 16px;
+}
+/*
+.border-r{
+    -ms-border-radius:10px;
+    -webkit-border-radius:10px;
+    -o-border-radius:10px;
+    -moz-border-raidus:10px;
+    border-radius: 10px;
+}
+*/
+.box3 {
+  -ms-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -o-border-radius: 20px;
+  -moz-border-raidus: 20px;
+  border-radius: 20px;
+}
+/*
+.triangle{
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 20px;
+    border-color: transparent  transparent  transparent #f21;
+}
+*/
+/*
+.triangle(top){
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 20px;
+    border-color: #f21 transparent  transparent  transparent ;
+}
+.triangle(right){
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 20px;
+    border-color: transparent #f21  transparent  transparent ;
+}
+.triangle(bottom){
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 20px;
+    border-color: transparent transparent #f21   transparent ;
+}
+.triangle(left){
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 20px;
+    border-color: transparent transparent  transparent #f21   ;
+}
+.box4{
+    .triangle(left);    
+}
+*/
+.box4 {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 40px;
+  border-color: transparent transparent #ff00ff transparent;
+}
+ul {
+  width: 600px;
+  margin: 100px auto;
+  list-style: none;
+}
+ul li {
+  width: 100%;
+  line-height: 30px;
+  height: 30px;
+}
+ul li span {
+  float: left;
+}
+ul li a {
+  float: right;
+}
+ul li:hover {
+  background-color: #ccc;
+}
+.box5 {
+  font-size: 3px;
+}
+.box6 {
+  font-size: calc(10px + 30px);
+}
+.box7 {
+  width: 100px !important;
+  height: 60px !important;
+  background-color: #ff6677 !important;
+}
+.box8 {
+  width: 50px;
+}
+/*
+.box8{
+    width:20px;
+}
+ */

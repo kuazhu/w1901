@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>006-适配-像素.html</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        /*
+        正常开发时的步骤:
+
+        1. 确定设计稿以及对应的机型,比如说以Iphone6为例来做设计
+        2. 设计稿一般提供的单位是像素,比如图片width 150px font-size 24px
+        3. 在Iphone6的模拟器上根据计算后的根元素的fontsize大小把设计稿的值换算成rem
+        1rem = 37.5px
+        150/37.5 = 4 rem
+        24/37.5 = 0.64rem
+         */
+
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            float: left;
+            width: 4rem;
+        }
+        p{
+            font-size: 0.64rem;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/g.jpg" alt="">
+    <p>你好,美女</p>
+</body>
+<script src="js/rem.js"></script>
+</html>

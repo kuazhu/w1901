@@ -1,0 +1,39 @@
+/*
+正常开发时的步骤:
+
+1. 确定设计稿以及对应的机型,比如说以Iphone6为例来做设计
+2. 设计稿一般提供的单位是像素,比如图片width 150px font-size 24px
+3. 在Iphone6的模拟器上根据计算后的根元素的fontsize大小把设计稿的值换算成rem
+1rem = 37.5px
+150/37.5 = 4 rem
+24/37.5 = 0.64rem
+ */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+//定义设计稿对应的机型根元素的fontsize
+@rem:36;
+
+.rem(@attr,@px1){
+    @{attr}:unit(@px1/@rem,rem)
+}
+.rem(@attr,@px1,@px2){
+    @{attr}:unit(@px1/@rem,rem) unit(@px2/@rem,rem)
+}
+.rem(@attr,@px1,@px2,@px3){
+    @{attr}:unit(@px1/@rem,rem) unit(@px2/@rem,rem) unit(@px3/@rem,rem)
+}
+.rem(@attr,@px1,@px2,@px3,@px4){
+    @{attr}:unit(@px1/@rem,rem) unit(@px2/@rem,rem) unit(@px3/@rem,rem) unit(@px4/@rem,rem)
+}
+
+img{
+    float: left;
+    .rem(width,160);
+    .rem(margin,10,20,30,40);
+}
+p{
+    .rem(font-size,24);
+}

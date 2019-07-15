@@ -1,0 +1,22 @@
+/*
+正常开发时的步骤:
+
+1. 确定设计稿以及对应的机型,比如说以Iphone6为例来做设计
+2. 设计稿一般提供的单位是像素,比如图片width 150px font-size 24px
+3. 在Iphone6的模拟器上根据计算后的根元素的fontsize大小把设计稿的值换算成rem
+1rem = 37.5px
+150/37.5 = 4 rem
+24/37.5 = 0.64rem
+ */
+* {
+  margin: 0;
+  padding: 0;
+}
+img {
+  float: left;
+  width: 4.44444444rem;
+  margin: 0.27777778rem 0.55555556rem 0.83333333rem 1.11111111rem;
+}
+p {
+  font-size: 0.66666667rem;
+}

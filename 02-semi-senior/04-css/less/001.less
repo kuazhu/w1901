@@ -1,6 +1,194 @@
 
-@c:#f67;
-
+*{
+    margin: 0;
+    padding: 0;
+}
 body{
+    padding-bottom: 100px;
+}
+div{
+    margin-bottom: 10px;
+}
+/*
+我是一个多行注释
+这是第二行注释
+ */
+
+//我也注释
+
+//定义变量
+@c:#f67;
+@w:100px;
+@h:60px;
+
+//使用变量
+.box1{    
+    width: @w;
+    height: @h;
     background-color: @c;
 }
+//混合的基本使用
+.box2{
+    .box1;
+    font-size: 16px;
+}
+/*
+.border-r{
+    -ms-border-radius:10px;
+    -webkit-border-radius:10px;
+    -o-border-radius:10px;
+    -moz-border-raidus:10px;
+    border-radius: 10px;
+}
+*/
+//带参数的混合
+.border-r(@r){
+    -ms-border-radius:@r;
+    -webkit-border-radius:@r;
+    -o-border-radius:@r;
+    -moz-border-raidus:@r;
+    border-radius: @r;    
+}
+//带默认参数的混合
+.border-r-def(@r:10px){
+    -ms-border-radius:@r;
+    -webkit-border-radius:@r;
+    -o-border-radius:@r;
+    -moz-border-raidus:@r;
+    border-radius: @r;       
+}
+.box3{
+    .border-r-def(20px);
+}
+
+/*
+.triangle{
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 20px;
+    border-color: transparent  transparent  transparent #f21;
+}
+*/
+/*
+.triangle(top){
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 20px;
+    border-color: #f21 transparent  transparent  transparent ;
+}
+.triangle(right){
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 20px;
+    border-color: transparent #f21  transparent  transparent ;
+}
+.triangle(bottom){
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 20px;
+    border-color: transparent transparent #f21   transparent ;
+}
+.triangle(left){
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 20px;
+    border-color: transparent transparent  transparent #f21   ;
+}
+.box4{
+    .triangle(left);    
+}
+*/
+//匹配模式
+//@_代表任意匹配
+.triangle(@_,@w,@c){
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;    
+}
+.triangle(top,@w,@c){
+    border-width: @w;
+    border-color:  @c transparent transparent  transparent; 
+}
+.triangle(right,@w,@c){
+    border-width: @w;
+    border-color:  transparent @c transparent  transparent; 
+}
+.triangle(bottom,@w,@c){
+    border-width: @w;
+    border-color:  transparent  transparent @c  transparent; 
+}
+.triangle(left,@w,@c){
+    border-width: @w;
+    border-color: transparent transparent  transparent @c; 
+}
+
+.box4{
+    .triangle(bottom,40px,#f0f);    
+}
+
+ul{
+    width: 600px;
+    margin: 100px auto;
+    list-style: none;
+    li{
+        width: 100%;
+        line-height: 30px;
+        height: 30px;
+        span{
+            float: left;
+        }
+        a{
+            float: right;
+        }
+        &:hover{
+            background-color: #ccc;
+        }
+    }
+}
+
+.calc-fs(@f){
+    // font-size: @f + 10px;
+    // font-size: @f - 10px;
+    // font-size: @f * 10px; 
+    font-size: @f / 10px;
+}
+.box5{
+   .calc-fs(30px); 
+}
+.box6{
+    font-size: ~'calc(10px + 30px)';
+}
+.box7{
+    .box1 !important;
+}
+.set(@attr,@val){
+    @{attr}:unit(@val/2,px);
+}
+
+.box8{
+    .set(width,100);
+}
+/*
+.box8{
+    width:20px;
+}
+ */
+
+
+
+
+
+
+
+
