@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>003-布局容器.html</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"> -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            padding-right: 15px;
+            padding-left: 15px;            
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .container{
+            background-color: red;
+            height: 50px;
+        }
+
+        @media screen and (max-width: 768px){
+            .container {
+                width: 100%;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 992px){
+             .container {
+                width: 750px;
+            }           
+        }
+
+        @media screen and (min-width: 992px) and (max-width: 1200px){
+             .container {
+                width: 970px;
+            }           
+        }
+
+        @media screen and (min-width: 1200px){
+            .container {
+                width: 1170px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+    </div>
+</body>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</html>

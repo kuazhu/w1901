@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>002-熟悉常用功能.html</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<body>
+  <h1>h1. Bootstrap heading</h1>
+  <h2>h2. Bootstrap heading</h2>
+  <h3>h3. Bootstrap heading</h3>
+  <h4>h4. Bootstrap heading</h4>
+  <h5>h5. Bootstrap heading</h5>
+  <h6>h6. Bootstrap heading</h6>
+  <p class="text-left">Left aligned text.</p>
+<p class="text-center">Center aligned text.</p>
+<p class="text-right">Right aligned text.</p>
+<p class="text-justify">Justified text.</p>
+<p class="text-nowrap">No wrap text.</p> 
+<blockquote>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+  <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+</blockquote>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+<!-- Standard button -->
+<button type="button" class="btn btn-default">（默认样式）Default</button>
+
+<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+<button type="button" class="btn btn-primary">（首选项）Primary</button>
+
+<!-- Indicates a successful or positive action -->
+<button type="button" class="btn btn-success">（成功）Success</button>
+
+<!-- Contextual button for informational alert messages -->
+<button type="button" class="btn btn-info">（一般信息）Info</button>
+
+<!-- Indicates caution should be taken with this action -->
+<button type="button" class="btn btn-warning">（警告）Warning</button>
+
+<!-- Indicates a dangerous or potentially negative action -->
+<button type="button" class="btn btn-danger">（危险）Danger</button>
+
+<!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
+<button type="button" class="btn btn-link">（链接）Link</button>
+
+
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="img/ad2.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    <div class="item">
+      <img src="img/ad1.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    ...
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+</body>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</html>
