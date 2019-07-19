@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>024-异步任务处理.html</title>
+</head>
+<body>
+    
+</body>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script>
+    //1.Ajax >
+    $.get('https://api.github.com/users/kuazhu',(data)=>{
+        $.get(data.followers_url,(data)=>{
+            $.get(data[0].followers_url,(data)=>{
+                console.log(data)
+            })
+        })
+    })
+    console.log('after get ajax data')
+    //2.DOM事件
+    
+    const img = new Image()
+
+    img.onload = function(){
+        console.log('image loaded')
+    }
+    img.onerror = function(){
+        console.log('image error')
+    }
+
+    img.src = './img/1.jpg'
+
+    console.log('after get img')
+
+    //3.定时器
+    
+    setTimeout(()=>{
+        console.log('tmier...')
+    },0)
+
+    console.log('after timer...')
+
+
+    console.log('do something....')
+
+
+
+
+</script>
+</html>

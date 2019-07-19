@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>022-箭头函数中的this.html</title>
+</head>
+<body>
+    
+</body>
+<script>
+    console.log(window)
+
+    function Timer(id){
+        //this = Timer {}
+        console.log(this)
+
+        this.id = id
+        
+        console.log(this)
+        
+        setTimeout(function(){
+            console.log(this,this.id)
+        },100)
+
+        //return this
+    }
+    
+    var id = 33
+
+    //console.log(window)
+    // const t = Timer(55)
+    // console.log(t)
+
+    const t = new Timer(55)
+
+
+    // console.log(t)
+    
+    /*
+    function Timer(id){
+        this.id = id
+        setTimeout(()=>{
+            console.log(this,this.id)
+        },100)
+    }
+    
+    var id = 33
+
+    const t = new Timer(55)
+    */
+
+
+
+</script>
+</html>
