@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>005-对象的结构解析.html</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let options = {
+        interval:500,
+        mode:'js'
+    }
+    /*
+    let interval = options.interval
+    let mode = options.mode
+    
+    console.log(interval)
+    console.log(mode)
+    */
+    /*
+    console.log(options.interval)
+    console.log(options.mode)
+    */
+    /*
+    let {interval:interval1,mode:mode1} = options
+    console.log(interval1)
+    console.log(mode1)
+    */
+    /*
+    let {interval:interval,mode:mode} = options
+    console.log(interval)
+    console.log(mode)   
+    */
+    /*
+    let {interval=300,mode,age=18} = options
+    console.log(interval)
+    console.log(mode) 
+    console.log(age)
+    */
+    let {mode:mode1,interval:interval1=300,age:age1=18} = options
+    console.log(interval1)
+    console.log(mode1) 
+    console.log(age1)
+
+
+
+
+
+
+
+</script>
+</html>

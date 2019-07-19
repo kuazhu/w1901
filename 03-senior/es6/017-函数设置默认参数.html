@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>017-函数设置默认参数.html</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    function show(name,age){
+        
+        var name = name || 'Tom'
+        var age = age || 18
+
+        console.log(name,age)
+    }
+
+    show()
+    */
+   /*
+   function show(name='Tom',age=18){
+        console.log(name,age)
+   }
+   show('Amy',99)
+   */
+   /*
+   function show(age,name='Tom'){
+        console.log(name,age)
+   }
+   show(18)   
+   */
+  /*
+   let i = 1
+   function show(x = ++i){
+        console.log(x)
+   }
+   show()//2
+   i = 5
+   show()//6
+   */
+  function request(url,{method='get',data='id=000'}={}){
+    console.log(url,method,data)
+  }
+  request('http://api.kuazhu.com',{method:'post',data:'id=123'})
+  request('http://api.kuazhu.com')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

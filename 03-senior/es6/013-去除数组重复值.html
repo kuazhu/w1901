@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>013-去除数组重复值.html</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let arr = [11,22,11,33,22,66]
+
+    //方法一
+    function uniqueArray1(arr){
+        let result = []
+
+        for(let i = 0,len = arr.length;i<len;i++){
+            if(result.indexOf(arr[i]) == -1){
+                result.push(arr[i])
+            }
+        }
+
+        return result
+    }
+
+    //方法二
+    
+    function uniqueArray2(arr){
+        let result = []
+        let obj = {}
+
+        for(let i = 0,len = arr.length;i<len;i++){
+            obj[arr[i]] = ''
+        }
+
+        for(let key in obj){
+            result.push(key)
+        }
+
+
+        return result
+    }
+
+
+    //方法三
+    function uniqueArray3(arr){
+        const s = new Set(arr)
+        return [...s]
+    }
+
+    let arr1 = uniqueArray3(arr)
+    console.log('arr',arr)
+    console.log('arr1',arr1)
+
+
+
+
+
+</script>
+</html>

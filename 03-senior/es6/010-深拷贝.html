@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>010-深拷贝.html</title>
+</head>
+<body>
+    
+</body>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script>
+    const obj = {
+        name:'Tom',
+        age:18,
+        friend:{
+            name:'Leo'
+        },
+        pets:[
+            'Cat','Dog'
+        ]
+    }
+
+    //1.直接复制 浅拷贝
+    /*
+    const obj1 = obj
+
+    obj1.name = 'Peter'
+
+    console.log('obj',obj)
+    console.log('obj1',obj1)
+    */
+    //2.用扩展运算符 浅拷贝
+    /*
+    const obj1 = {...obj}
+
+    obj1.name = 'Peter'
+    obj1.friend.name = 'Mike'
+    obj1.pets.push('Tigger')
+    console.log('obj',obj)
+    console.log('obj1',obj1)
+    */
+   
+    //3.循环遍历对象 浅拷贝
+    /*
+    const obj1 = {}
+    for(let key in obj){
+        obj1[key] = obj[key]
+    }
+    obj1.name = 'Peter'
+    obj1.friend.name = 'Mike'
+    obj1.pets.push('Tigger')
+    
+    console.log('obj',obj)
+    console.log('obj1',obj1)
+    */
+   //4.写深拷贝的程序 深拷贝
+    function getDataType(data){
+        if(data instanceof Array){
+            return 'array'
+        }
+        else if(data instanceof Object){
+            return 'object'
+        }
+    }
+
+    function deepCopy(data){
+        const type = getDataType(data)
+
+        let result
+
+        if(type == 'array'){
+            result = []
+        }
+        else if(type == 'object'){
+            result = {}
+        }else{
+            return data
+        }
+
+        //循环遍历数组或者对象
+        for(let key in data){
+            let val = data[key]
+            let valType = getDataType(val)
+            if(valType == 'array' || valType == 'object'){
+                result[key] = deepCopy(val)
+            }else{
+                result[key] = val
+            }
+        }
+        return result
+    }
+
+    /*
+    const obj1 = deepCopy(obj)
+    obj1.name = 'Peter'
+    obj1.friend.name = 'Mike'
+    obj1.pets.push('Tigger')
+    
+    console.log('obj',obj)
+    console.log('obj1',obj1)
+    */
+    //5.利用JSON上的方法 深拷贝
+    //需要拷贝的对象->字符串->转换为对象
+    /*
+    const obj1 = JSON.parse(JSON.stringify(obj))
+    obj1.name = 'Peter'
+    obj1.friend.name = 'Mike'
+    obj1.pets.push('Tigger')
+    
+    console.log('obj',obj)
+    console.log('obj1',obj1)
+    */
+    //6.利用jquery上的方法 $.extend 
+    const obj1 = $.extend(true,{},obj)
+    obj1.name = 'Peter'
+    obj1.friend.name = 'Mike'
+    obj1.pets.push('Tigger')
+    
+    console.log('obj',obj)
+    console.log('obj1',obj1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

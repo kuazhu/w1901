@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>014-map的基本操作.html</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    let obj = {}
+    let obj1 = {id:1001}
+    let obj2 = {id:1002}
+    obj[obj2] = 'Tom'
+
+    console.log(obj)
+    */
+    
+    const m = new Map()
+    
+    let obj1 = {id:1001}
+    let obj2 = {id:1002}
+
+    m.set('name','Tom')
+    m.set('name','Amy')
+    m.set(obj1,'Hello')
+    m.set(obj2,'你好')
+    
+    m.clear()
+    
+    console.log(m.delete(obj2))
+
+    console.log(m.get(obj2))
+    console.log(m.has(obj1))
+    console.log(m.size)
+
+
+
+
+
+</script>
+</html>
