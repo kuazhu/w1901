@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>038-generator函数处理ajax.html</title>
+</head>
+<body>
+    
+</body>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script>
+
+    const getDataPromise = (url,type='get',data='')=>new Promise((resolve,reject)=>{
+        //处理异步请求(ajax)
+        $.ajax({
+            url:url,
+            type:type,
+            data:data,
+            success:(data)=>{
+                resolve(data)
+            },
+            error:(jqXhr,statusMsg)=>{
+                reject(statusMsg)
+            }
+        })
+    })    
+    
+    function * gen(url){
+
+        const data1 = yield getDataPromise(url)
+
+        const data2 = yield getDataPromise(data1)
+
+        const data3 = yield getDataPromise(data2)
+
+        console.log('use data:',data3)
+
+    }
+
+    const g = gen('https://api.github.com/users/kuazhu')
+
+    // console.log(g.next())
+    g.next().value
+    .then(data=>{
+        //console.log(data.followers_url)
+        return g.next(data.followers_url).value
+    })
+    .then(data=>{
+        // console.log(data)
+        return g.next(data[0].followers_url).value
+    })
+    .then(data=>{
+        // console.log(data)
+        g.next(data)
+    })
+
+
+
+
+
+
+</script>
+
+</html>

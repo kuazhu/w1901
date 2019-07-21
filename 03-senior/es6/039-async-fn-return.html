@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>039-async-fn-return.html</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    async function fn(){
+
+        return 'result data'
+    }
+
+    // console.log(fn())
+    fn()
+    .then(data=>{
+        console.log(data)
+    })
+    */
+   
+    let p1 = null
+    async function fn(){
+        p1 = Promise.resolve('ok data')
+        return p1
+    }
+    const p2 = fn()
+
+    console.log('p1',p1)
+    console.log('p2',p2)
+    console.log('p1==p2',p1==p2)
+
+    p2
+    .then(data=>{
+        console.log(data)
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>037-generator函数for-of遍历.html</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function * gen(){
+        yield 1
+        yield 2
+        yield 3
+        yield 4
+    }
+
+    const g = gen()
+
+/*
+    console.log(g.next())
+    console.log(g.next())
+    console.log(g.next())
+    console.log(g.next())
+    console.log(g.next())
+*/
+
+    for(let v of g){
+        console.log(v)
+    }
+
+
+</script>
+
+
+
+
+
+
+</html>

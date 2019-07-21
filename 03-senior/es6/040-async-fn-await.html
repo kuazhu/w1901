@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>040-async-fn-await.html</title>
+</head>
+<body>
+    
+</body>
+<script>
+/*
+    async function fn(){
+
+        const data1 = await 'data1'
+
+        console.log('get data1=',data1)
+
+        console.log('do something...')
+
+        return 'result data'
+    }
+    fn()
+    .then(data=>{
+        console.log(data)
+    })
+*/
+/*
+    function fn(){
+        const data1 = await 'data1'
+    }    
+*/
+/*
+    const promise = new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve('success data')
+        },200)
+    })
+
+    async function fn(){
+
+        const data1 = await promise
+
+        console.log('get data1=',data1)
+
+        console.log('do something...')
+
+        return 'result data'        
+    }
+    fn()
+    .then(data=>{
+        console.log(data)
+    })
+*/
+    const promise = new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            reject('reject data')
+        },200)
+    })
+
+    async function fn(){
+        try{
+            const data1 = await promise 
+            console.log('get data1=',data1)
+            console.log('do something...')
+        }catch(err){
+            console.log('handle err',err)
+        }
+        
+        return 'result data'        
+    }
+    fn()
+    .then(data=>{
+        console.log(data)
+    })
+
+
+
+
+
+
+
+
+</script>
+</html>
