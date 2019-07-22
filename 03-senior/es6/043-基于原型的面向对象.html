@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>043-基于原型的面向对象.html</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //这是一个函数
+    //构造函数
+    //类
+    function Person(name,age){
+        /*
+            如果用new调用
+            1.生成一个对象 {}
+            2.this->{}
+        */
+
+        this.name = name
+        this.age = age
+
+        /*
+        {
+            name:'Tom',
+            age:18
+        }
+
+         */
+        /*
+            return this
+
+         */
+    }
+ 
+    Person.prototype.sayName = function(){
+        console.log('My name is '+ this.name)
+    }
+
+    Person.prototype.sayAge = function(){
+        console.log('I am '+this.age+' years old')
+    }
+    Person.sayHi = function(){
+        console.log('hello guys')
+    }    
+    /*
+    Person('Tom',18)
+    console.log(window)
+    */    
+    //new Person('Tom',18) 实例化
+    //p1 对象实例
+    var p1 = new Person('Tom',18)
+
+    p1.sayName()
+    p1.sayAge()
+    Person.sayHi()
+
+
+  
+
+    function Student(name,age,major){
+        //属性的继承
+        //调用父类方法,改变父类方法中的this指向,指向自己
+        Person.call(this,name,age)
+        this.major = major
+    }
+    
+
+    Student.prototype = Object.create(Person.prototype)
+    Student.prototype.constructor = Student
+
+    Student.prototype.sayMajor = function(){
+        console.log('I am from '+ this.major)
+    }
+    Student.sayHi = Person.sayHi  
+
+    var s1 = new Student('Leo',88,'Computer')
+    console.log(s1)
+    s1.sayName()
+    s1.sayAge()
+    s1.sayMajor()
+
+
+
+</script>
+</html>
