@@ -41,6 +41,12 @@
 
     fn(11,22)
 */
+    function fn(){
+        console.log('arguments',arguments)
+        console.log('Array.from(arguments)',Array.from(arguments))
+    }
+
+    fn(11,22)
     const arr = [11,22,33,56,89,100]
 
     console.log(arr.find(n=>n>50))
