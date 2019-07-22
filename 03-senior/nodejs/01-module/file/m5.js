@@ -2,9 +2,10 @@
 * @Author: TomChen
 * @Date:   2019-07-22 16:45:48
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-07-22 17:01:21
+* @Last Modified time: 2019-07-22 17:39:04
 */
 //定义模块
+console.log('in m5...')
 const str = 'hello'
 
 const fn = ()=>{
@@ -37,18 +38,20 @@ exports = {
     obj
 }
 */
-/*
+
 module.exports = {
     str,
     fn,
     obj
 }
-*/
+
+/*
 exports.str = str
 module.exports = {
     fn,
     obj
 }
+*/
 
 
 
