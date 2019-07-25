@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-07-25 15:02:03
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-07-25 15:53:52
+* @Last Modified time: 2019-07-25 16:52:57
 */
 const http = require('http')
 const fs = require('fs')
@@ -13,7 +13,7 @@ const mime = require('./mime.json')
 //每一次请求都会执行createServer方法中的函数
 const server = http.createServer((req,res)=>{
     console.log("url::",req.url)
-    //静态资料的处理
+    //静态资源的处理
     const filePath = path.normalize(__dirname+"/static/"+req.url)
     //1.读取文件
     fs.readFile(filePath,(err,data)=>{
