@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-07-25 15:17:42
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-07-26 15:24:17
+* @Last Modified time: 2019-07-26 16:49:07
 */
 ;(function($){
     var $input = $('.todo-input')
@@ -12,7 +12,7 @@
         if(ev.keyCode == 13){
             //1.发送ajax
             $.ajax({
-                url:"/add",
+                url:"/Item/add",
                 type:'post',
                 dataType:'json',
                 data:{
@@ -41,11 +41,8 @@
     $wrap.on('click','li',function(){
         var $this = $(this)
         $.ajax({
-            url:'/del',
+            url:'/Item/del/'+$this.data('id'),
             dataType:'json',
-            data:{
-                id:$this.data('id')
-            },
             success:function(result){
                 //2.根据后台的返回结果做相应的处理
                 //2.1处理成功,移除当前dom节点
