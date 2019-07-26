@@ -1,0 +1,53 @@
+/*
+* @Author: TomChen
+* @Date:   2019-07-25 15:17:25
+* @Last Modified by:   TomChen
+* @Last Modified time: 2019-07-25 16:30:41
+*/
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+body{
+    background-color: #ccc;
+}
+.container{
+    width: 960px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.todo-input{
+    width: 100%;
+    height: 60px;
+    margin: 30px 0;
+    outline: none;
+    font-size: 24px;
+    box-sizing: border-box;
+    padding: 0 5px;
+}
+.todo-item{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    padding: 0 5px;
+    border-left: 2px solid #f21;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.todo-item:hover{
+    background-color: #eee;
+}
+
+
+
+
+
+
+
