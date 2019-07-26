@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-07-25 15:02:03
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-07-26 09:59:31
+* @Last Modified time: 2019-07-26 10:29:25
 */
 const http = require('http')
 const fs = require('fs')
@@ -12,7 +12,7 @@ const querystring = require('querystring')
 
 const swig = require('swig')
 
-const { get } = require('./Model/item.js')
+const { get,add } = require('./Model/item.js')
 const mime = require('./mime.json')
 //每一次请求都会执行createServer方法中的函数
 const server = http.createServer((req,res)=>{
@@ -56,12 +56,23 @@ const server = http.createServer((req,res)=>{
         })
         req.on('end',()=>{
             const query = querystring.parse(body)
-            console.log(query)
             //2.根据参数生成任务对象并且写入到文件中
-            //3.如果写入成功,将新生成的任务对象返回到前端 
-            res.end(JSON.stringify({
-                code:0
-            }))
+            add(query.task)
+            .then(data=>{
+                //3.如果写入成功,将新生成的任务对象返回到前端    
+                res.end(JSON.stringify({
+                    code:0,
+                    message:'添加成功',
+                    data:data
+                }))
+            })
+            .catch(err=>{
+               console.log("add task err::",err)
+               res.end(JSON.stringify({
+                    code:1,
+                    message:'添加失败',
+                }))                
+            })
         })
     }
     //静态资源的处理
