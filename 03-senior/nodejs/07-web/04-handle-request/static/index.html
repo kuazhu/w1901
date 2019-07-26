@@ -13,7 +13,7 @@
         </div>
         <ul class="todo-wrap">
             {% for item in data %}
-            <li class="todo-item">{{ item.task }}</li>
+            <li class="todo-item" data-id={{ item.id }}>{{ item.task }}</li>
             {% endfor %}
             
         </ul>

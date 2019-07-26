@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-07-25 17:40:34
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-07-26 10:32:40
+* @Last Modified time: 2019-07-26 15:07:05
 */
 const fs = require('fs')
 const path = require('path')
@@ -31,13 +31,27 @@ async function add(task){
         task:task
     }
     arr.push(obj)
-    //5.把新数组转换为字符串,把字符串覆盖写入到数据文件
+    //4.把新数组转换为字符串,把字符串覆盖写入到数据文件
     await writeFile(dataPath,JSON.stringify(arr))
-    //6.返回任务对象
+    //5.返回任务对象
     return obj
+}
+
+async function del(id){
+    //1.读取数据文件
+    const data = await readFile(dataPath)
+    //2.将读取文件的字符串转换为数组
+    const arr = JSON.parse(data)
+    //3.根据ID删除数组中对应的数据并且生成新的数组
+    const newArr = arr.filter((item)=>{
+        return item.id != id
+    })
+    //4.把新数组转换为字符串,把字符串覆盖写入到数据文件
+    await writeFile(dataPath,JSON.stringify(newArr))
 }
 
 module.exports = {
     get,
-    add
+    add,
+    del
 }

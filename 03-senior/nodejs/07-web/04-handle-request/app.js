@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-07-25 15:02:03
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-07-26 10:29:25
+* @Last Modified time: 2019-07-26 11:57:20
 */
 const http = require('http')
 const fs = require('fs')
@@ -12,7 +12,7 @@ const querystring = require('querystring')
 
 const swig = require('swig')
 
-const { get,add } = require('./Model/item.js')
+const { get,add,del } = require('./Model/item.js')
 const mime = require('./mime.json')
 //每一次请求都会执行createServer方法中的函数
 const server = http.createServer((req,res)=>{
@@ -74,6 +74,26 @@ const server = http.createServer((req,res)=>{
                 }))                
             })
         })
+    }
+    else if(pathname == "/del"){//get
+        //1.获取参数
+        const id = parsedUrl.query.id
+        //2.根据参数删除任务对象并且更改文件
+        del(id)
+        .then(()=>{
+            //3.返回结果
+            res.end(JSON.stringify({
+                code:0,
+                message:'删除成功'
+            }))            
+        })
+        .catch(err=>{
+            res.end(JSON.stringify({
+                code:1,
+                message:'删除失败'
+            }))                 
+        })
+
     }
     //静态资源的处理
     else{
