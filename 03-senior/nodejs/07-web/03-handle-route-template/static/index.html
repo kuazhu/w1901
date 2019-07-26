@@ -12,9 +12,10 @@
             <input type="text" autocomplete="off" class="todo-input">
         </div>
         <ul class="todo-wrap">
-            <li class="todo-item">吃饭</li>
-            <li class="todo-item">睡觉</li>
-            <li class="todo-item">上网</li>
+            {% for item in data %}
+            <li class="todo-item">{{ item.task }}</li>
+            {% endfor %}
+            
         </ul>
     </div>
 </body>

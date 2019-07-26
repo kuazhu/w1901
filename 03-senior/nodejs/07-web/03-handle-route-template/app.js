@@ -2,12 +2,14 @@
 * @Author: TomChen
 * @Date:   2019-07-25 15:02:03
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-07-25 17:49:47
+* @Last Modified time: 2019-07-26 09:16:14
 */
 const http = require('http')
 const fs = require('fs')
 const path = require('path')
 const url = require('url')
+
+const swig = require('swig')
 
 const { get } = require('./Model/item.js')
 const mime = require('./mime.json')
@@ -28,21 +30,20 @@ const server = http.createServer((req,res)=>{
         get()
         .then(data=>{
             //将数据分配到页面并返回页面
-            console.log(data)
-            //引入模版
             const filePath = path.normalize(__dirname+"/static/index.html")
-            //1.读取文件
-            fs.readFile(filePath,(err,data)=>{
-                //2.返回数据
-                if(err){
-                    res.setHeader('Content-type',"text/html;charset=UTF-8")
-                    res.statusCode = 404
-                    res.end('<h1>请求出错了</h1>')
-                }else{
-                    res.setHeader('Content-type',"text/html;charset=UTF-8")
-                    res.end(data) 
-                }
+            //引入模版
+            const template = swig.compileFile(filePath)
+            
+            const html = template({
+                data:data
             })
+            res.setHeader('Content-type',"text/html;charset=UTF-8")
+            res.end(html) 
+        })
+        .catch(err=>{
+            res.setHeader('Content-type',"text/html;charset=UTF-8")
+            res.statusCode = 404
+            res.end('<h1>请求出错了</h1>')
         })
     }
     //添加路由
