@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-07-29 16:01:56
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-07-29 16:16:51
+* @Last Modified time: 2019-07-29 16:40:58
 */
 const mongoose = require('mongoose')
 
@@ -32,7 +32,8 @@ db.once('open',()=>{
 
     //3.使用模型(CRUD)
     //3.1 新增
-    const user = new UserModel({name:"Tom",age:18,major:"Computer"})
+    /*
+    const user = new UserModel({name:"Amy",age:88,major:"Computer"})
     user.save((err,doc)=>{
         if(err){
             console.log('save user error:',err)
@@ -40,5 +41,36 @@ db.once('open',()=>{
             console.log(doc)
         }
     })
+    */
+   //3.2 查找
+   /*
+   UserModel.find({},(err,docs)=>{
+        if(err){
+            console.log('find user error:',err)
+        }else{
+            console.log(docs)
+        }    
+   })
+   */
+  //3.3 更新
+  /*
+  UserModel.updateOne({name:"Tom"},{$set:{age:10}},(err,result)=>{
+        if(err){
+            console.log('updateOne user error:',err)
+        }else{
+            console.log(result)
+        }       
+  })
+  */
+ //3.4 删除
+ UserModel.deleteOne({name:"Tom"},(err,result)=>{
+        if(err){
+            console.log('deleteOne user error:',err)
+        }else{
+            console.log(result)
+        }       
+  })
+  
+
 
 })
