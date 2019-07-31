@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test route</title>
+</head>
+<body>
+    <h1>Test route</h1>
+    <button id="get">send get</button>
+    <button id="post">send post</button>
+    <button id="put">send put</button>
+    <button id="delete">send delete</button>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        //get request
+        $('#get').on('click',function(){
+            $.ajax({
+                url:"/",
+                type:'get',
+                success:function(result){
+                    console.log(result)
+                }
+            })
+        })
+        //post request
+        $('#post').on('click',function(){
+            $.ajax({
+                url:"/",
+                type:'post',
+                success:function(result){
+                    console.log(result)
+                }
+            })
+        })
+        //put request
+        $('#put').on('click',function(){
+            $.ajax({
+                url:"/",
+                type:'put',
+                success:function(result){
+                    console.log(result)
+                }
+            })
+        })                
+        //delete request
+        $('#delete').on('click',function(){
+            $.ajax({
+                url:"/",
+                type:'delete',
+                success:function(result){
+                    console.log(result)
+                }
+            })
+        }) 
+    })
+</script>
+</html>
