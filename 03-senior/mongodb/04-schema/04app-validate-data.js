@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-07-29 16:01:56
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-07-31 11:36:21
+ * @Last Modified time: 2019-07-31 11:22:25
  */
 const mongoose = require('mongoose')
 
@@ -22,22 +22,11 @@ db.on('error', (err) => {
 
 db.once('open', () => {
     console.log('connection db success')
-/*
     UserModel.insertMany({
-        name:"Tom",
-        age:18
-    })
-    .then(docs=>{
-        console.log('insert users:',docs)
-    })
-    .catch(err=>{
-        console.log('insert users err:',err)
-    })
-*/
-/*
-    UserModel.insertMany({
-        name:"Amy",
-        age:'19'
+        name:"Leo",
+        age:'19',
+        major:"Art",
+        phone:"13212344321"
     })
     .then(docs=>{
         console.log('insert users:',docs)
@@ -45,5 +34,4 @@ db.once('open', () => {
     .catch(err=>{
         console.log('insert users err:',err.message)
     })
-*/    
 })
