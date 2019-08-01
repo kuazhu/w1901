@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-07-31 16:03:32
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-01 15:37:25
+* @Last Modified time: 2019-08-01 15:54:23
 */
 const express = require('express')
 const swig = require('swig')
@@ -27,8 +27,8 @@ db.once('open', () => {
     console.log('connection db success')
 })
 
+//静态资源处理
 app.use(express.static('public'))
-
 
 //开发阶段设置不走缓存
 swig.setDefaults({
