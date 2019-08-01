@@ -2,8 +2,11 @@
 * @Author: TomChen
 * @Date:   2019-03-13 18:10:12
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-03-13 20:26:21
+* @Last Modified time: 2019-07-31 22:15:50
 */
+body{
+	background: #f1f1f1;
+}
 .link{
 	text-decoration: none !important;
 }
@@ -32,6 +35,38 @@
 .main{
 	margin-top: 70px;
 }
+
+/*用户注册登录*/
+.user-panel{
+	background: #fff;
+	padding-top:20px;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+.user-panel .btn{
+	width:100%;
+}
+.user-panel .link{
+	margin-top: 10px;
+	display: block;
+	text-align: right;
+}
+#user-info{
+	padding-left: 20px;
+	box-sizing: border-box;
+	height: 130px;
+}
+#user-info .link{
+	text-align: left;
+}
+.user-panel .err{
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+}
+/*用户注册登录*/
+
 .ad .thumbnail{
 	border: none;
 	height: 200px;
@@ -96,18 +131,6 @@
 footer{
 	text-align: center;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#article-wrap{
+	min-height: 300px;
+}

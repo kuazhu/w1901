@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test route</title>
+</head>
+<body>
+    <h1>Test route</h1>
+    <button id="get1">send get param</button>
+    <button id="get2">send get query</button>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        //get request
+        $('#get1').on('click',function(){
+            $.ajax({
+                url:"/users/34/books/8888",
+                type:'get',
+                success:function(result){
+                    console.log(result)
+                }
+            })
+        })
+        $('#get2').on('click',function(){
+            $.ajax({
+                url:"/?userId=34&bookId=8888",
+                type:'get',
+                success:function(result){
+                    console.log(result)
+                }
+            })
+        })        
+    })
+</script>
+</html>
