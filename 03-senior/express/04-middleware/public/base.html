@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test route</title>
+</head>
+<body>
+    <h1>Test route</h1>
+    <button id="post">send post</button>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        //get request
+        $('#post').on('click',function(){
+            $.ajax({
+                url:"/",
+                type:'post',
+                data:{
+                    username:"tom",
+                    password:"123456"
+                },
+                success:function(result){
+                    console.log(result)
+                }
+            })
+        })
+    })
+</script>
+</html>

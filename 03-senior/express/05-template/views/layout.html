@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <link rel="stylesheet" href="css/common.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav>我是导航</nav>
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        我是底部
+    </footer>
+</body>
+
+{% include "./script.html" %}
+
+{% block end %}{% endblock %}
+</html>
