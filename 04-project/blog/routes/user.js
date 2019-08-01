@@ -2,10 +2,11 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-01 17:33:50
+* @Last Modified time: 2019-08-01 17:50:56
 */
 const express = require('express')
 const UserModel = require('../models/user.js')
+const hmac = require('../util/hmac.js')
 
 
 const router = express.Router()
@@ -29,7 +30,7 @@ router.post('/register', (req, res) => {
             //3.插入数据
             UserModel.insertMany({
                 username:username,
-                password:password
+                password:hmac(password)
             })
             .then(user=>{
                 res.json({
