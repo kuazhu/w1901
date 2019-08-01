@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-07-31 16:03:32
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-01 15:12:19
+* @Last Modified time: 2019-08-01 15:37:25
 */
 const express = require('express')
 const swig = require('swig')
@@ -50,9 +50,7 @@ app.set('views', './views')
 //第二个参数是模板名称,也就是app.engine的第一个参数
 app.set('view engine', 'html')
 
-app.get("/",(req,res)=>{
-    res.render("index")
-})
+app.use("/",require('./routes/index.js'))
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))
 
