@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-01 17:50:56
+* @Last Modified time: 2019-08-02 15:12:03
 */
 const express = require('express')
 const UserModel = require('../models/user.js')
@@ -51,6 +51,40 @@ router.post('/register', (req, res) => {
             message:"服务器端错误,请稍后再试"
         })          
     })
+})
+//登录
+router.post('/login', (req,res)=>{
+    //1.获取参数
+    const { username,password } = req.body
+    //2.验证
+    UserModel.findOne({username:username,password:hmac(password)},"-password -__v")
+    .then(user=>{
+        //验证成功
+        if(user){
+            //生成cookie并且返回给前端
+            req.cookies.set('userInfo',JSON.stringify(user))
+            res.json({
+                status:0,
+                message:"登录成功",
+                data:user
+            }) 
+        }
+        //验证失败
+        else{
+            res.json({
+                status:10,
+                message:"用户名和密码错误"
+            })
+        }
+    })
+    .catch(err=>{
+        console.log("insert user:",err)
+        res.json({
+            status:10,
+            message:"服务器端错误,请稍后再试"
+        })          
+    })        
+
 })
 
 

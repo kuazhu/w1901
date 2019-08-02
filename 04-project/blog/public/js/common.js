@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-03-13 18:10:45
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-02 11:09:04
+* @Last Modified time: 2019-08-02 15:30:44
 */
 //js文件保存在服务器端,但是最终会被请求到客户端,由客户端来解析执行
 ;(function($){
@@ -107,7 +107,16 @@
                 }
             })
             .done(function(result){
-                console.log(result)
+                if(result.status == 0){//成功
+                /*
+                    $login.hide()
+                    $('#user-info span').html(result.data.username)
+                    $('#user-info').show()
+                */
+                    window.location.reload()
+                }else{//失败
+                    $err.html(result.message)
+                }
             })
             .fail(function(err){
                 $err.html("请求失败,请稍后再试")

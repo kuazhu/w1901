@@ -2,12 +2,13 @@
 * @Author: TomChen
 * @Date:   2019-07-31 16:03:32
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-02 10:33:44
+* @Last Modified time: 2019-08-02 15:28:15
 */
 const express = require('express')
 const swig = require('swig')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const Cookies = require('cookies')
 
 //app代表整个应用
 const app = express()
@@ -66,6 +67,21 @@ app.set('views', './views')
 app.set('view engine', 'html')
 //设置后就可以调用res.render()方法渲染模版
 //————————————————————————————模版设置结束----------------------
+
+app.use((req,res,next)=>{
+    //生成cookies对象并且保存到req对象上
+    req.cookies = new Cookies(req,res)
+    
+    let userInfo = {}
+    if(req.cookies.get('userInfo')){
+        userInfo = JSON.parse(req.cookies.get('userInfo'))
+    } 
+
+    req.userInfo = userInfo
+    
+    next()
+})
+
 
 //————————————————————————————路由设置开始----------------------
 //从上向下匹配以指定路径开头的路由
