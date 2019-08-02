@@ -47,7 +47,11 @@
           {% if userInfo._id %}
           <div class="user-panel" id='user-info'>
             欢迎<span>{{ userInfo.username }}</span>
+            {% if userInfo.isAdmin %}
+            <a class="link" href="/admin">进入管理中心</a>
+            {% else %}
             <a class="link" href="/home">进入个人中心</a>
+            {% endif %}
             <a class="link" href="javascript:;" id='logout'>退出</a>
             <div class="form-group">
               <div class="col-sm-12">
@@ -180,6 +184,7 @@
 <script src="lib/jquery/jquery-1.12.4.min.js"></script> 
 <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
+<script src="js/logout.js"></script>
 {% block footer %}{% endblock %}
 </body>
 
