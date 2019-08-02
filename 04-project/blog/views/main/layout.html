@@ -46,7 +46,7 @@
           <!--用户注册登录-->
           {% if userInfo._id %}
           <div class="user-panel" id='user-info'>
-            欢迎<span>Tom</span>
+            欢迎<span>{{ userInfo.username }}</span>
             <a class="link" href="/home">进入个人中心</a>
             <a class="link" href="javascript:;" id='logout'>退出</a>
             <div class="form-group">

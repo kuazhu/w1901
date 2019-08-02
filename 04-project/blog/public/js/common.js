@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-03-13 18:10:45
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-02 15:30:44
+* @Last Modified time: 2019-08-02 15:59:27
 */
 //js文件保存在服务器端,但是最终会被请求到客户端,由客户端来解析执行
 ;(function($){
@@ -122,6 +122,29 @@
                 $err.html("请求失败,请稍后再试")
             })
         }
-    })           
+    })
+    //4.退出
+    $('#logout').on('click',function(){
+        $.ajax({
+            url:'/user/logout'
+        })
+        .done(function(result){
+            window.location.href = "/"
+        })
+        .fail(function(err){
+            $('#user-info .err').html("请求失败,请稍后再试")
+        })
+    })
+
+
+
+
+
+
+
+
+
+
+
 
 })(jQuery);

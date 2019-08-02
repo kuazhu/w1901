@@ -2,13 +2,15 @@
 * @Author: TomChen
 * @Date:   2019-07-31 16:03:32
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-02 15:28:15
+* @Last Modified time: 2019-08-02 16:46:18
 */
 const express = require('express')
 const swig = require('swig')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const Cookies = require('cookies')
+const session = require('express-session')
+const MongoStore = require("connect-mongo")(session)
 
 //app代表整个应用
 const app = express()
@@ -67,7 +69,8 @@ app.set('views', './views')
 app.set('view engine', 'html')
 //设置后就可以调用res.render()方法渲染模版
 //————————————————————————————模版设置结束----------------------
-
+//设置Cookie中间件
+/*
 app.use((req,res,next)=>{
     //生成cookies对象并且保存到req对象上
     req.cookies = new Cookies(req,res)
@@ -78,10 +81,33 @@ app.use((req,res,next)=>{
     } 
 
     req.userInfo = userInfo
-    
+
     next()
 })
+*/
+//设置session中间件
+//s%3ArNUgeUaXLM8sNk97l-XD881F4YD4UzkP.wctPKWf7IHOQzIts6PqnfuirsSlzJsYilPhuzy1n3%2FE
+app.use(session({
+    //设置cookie名称
+    name:'kzid',
+    //用它来对session cookie签名，防止篡改
+    secret:'abc',
+    //强制保存session即使它并没有变化
+    resave: true,
+    //强制将未初始化的session存储
+    saveUninitialized: true, 
+    //如果为true,则每次请求都更新cookie的过期时间
+    rolling:true,
+    //cookie过期时间 1天
+    cookie:{maxAge:1000*60*60*24},
+    //设置session存储在数据库中
+    store:new MongoStore({ mongooseConnection: mongoose.connection })      
+}))
 
+app.use((req,res,next)=>{  
+    req.userInfo = req.session.userInfo || {}
+    next()
+})
 
 //————————————————————————————路由设置开始----------------------
 //从上向下匹配以指定路径开头的路由
