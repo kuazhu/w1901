@@ -2,10 +2,10 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-04 16:11:54
+* @Last Modified time: 2019-08-04 17:03:01
 */
 const express = require('express')
-const UserModel = require('../models/user.js')
+const CategoryModel = require('../models/category.js')
 
 const router = express.Router()
 //权限验证
@@ -32,8 +32,35 @@ router.get('/add', (req, res) => {
 })
 //处理添加分类
 router.post('/add', (req, res) => {
-    
-
+    const { name,order } = req.body
+    CategoryModel.findOne({name:name})
+    .then(category=>{
+        if(category){
+            res.render("admin/err",{
+                message:"分类已经存在",
+                url:'/category'
+            })
+        }else{
+            CategoryModel.insertMany({name:name,order:order})
+            .then(categories=>{
+                res.render("admin/success",{
+                    message:"新增分类成功",
+                })
+            })
+            .catch(err=>{
+                res.render("admin/err",{
+                    message:"分类必须输入",
+                    url:'/category'
+                })
+            })
+        }
+    })
+    .catch(err=>{
+        res.render("admin/err",{
+            message:"数据库操作失败",
+            url:'/category'
+        })
+    })
 
 })
 
