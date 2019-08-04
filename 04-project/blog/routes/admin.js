@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-02 17:46:33
+* @Last Modified time: 2019-08-04 10:11:13
 */
 const express = require('express')
 
@@ -22,7 +22,12 @@ router.get('/', (req, res) => {
         userInfo:req.userInfo
     })
 })
-
+//显示用户列表
+router.get('/users', (req, res) => {
+    res.render("admin/user_list",{
+        userInfo:req.userInfo
+    })
+})
 
 
 module.exports = router
