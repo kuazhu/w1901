@@ -13,12 +13,42 @@
         </tr>
       </thead>
       <tbody>
+        {% for user in users %}
         <tr>
-          <td>1111</td>
-          <td>test1</td>
-          <td>否</td>
+          <td>{{ user._id.toString() }}</td>
+          <td>{{ user.username }}</td>
+          <td>
+                {% if user.isAdmin %}
+                    是
+                {% else %}
+                    否
+                {% endif %}
+
+          </td>
         </tr>
+        {% endfor %}
       </tbody>
     </table>
 </div>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="/admin/users?page={{ page - 1 }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% for i in list %}
+    {% if i == page %}
+    <li class="active"><a href="javascript:;">{{i}}</a></li>
+    {% else %}
+    <li><a href="/admin/users?page={{i}}">{{i}}</a></li>
+    {% endif %}
+    {% endfor %}
+    <li>
+      <a href="/admin/users?page={{ page + 1 }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 {% endblock %}
