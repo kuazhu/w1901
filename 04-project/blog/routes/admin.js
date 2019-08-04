@@ -2,10 +2,11 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-04 11:56:11
+* @Last Modified time: 2019-08-04 17:41:08
 */
 const express = require('express')
 const UserModel = require('../models/user.js')
+const pagination = require('../util/pagination.js')
 
 const router = express.Router()
 //权限验证
@@ -43,7 +44,8 @@ router.get('/users', (req, res) => {
     第 page 页, 跳过 (page-1)*limit 条
 
  */
-    let page = req.query.page
+/*  
+    let page = req.query.page  
     const limit = 2
     page = parseInt(page)
     
@@ -70,7 +72,7 @@ router.get('/users', (req, res) => {
         }
         const skip = (page-1)*limit
 
-        UserModel.find({})
+        UserModel.find({},"-password -__v")
         .sort({_id:-1})
         .skip(skip)
         .limit(limit)
@@ -87,6 +89,29 @@ router.get('/users', (req, res) => {
            console.log('get users err:',err) 
         })
     })
+*/
+    let page = req.query.page
+    const options = {
+        page:req.query.page,
+        model:UserModel,
+        query:{},
+        sort:{_id:-1},
+        projection:"-password -__v"
+    }
+    pagination(options)
+    .then(data=>{
+        res.render("admin/user_list",{
+            userInfo:req.userInfo,
+            users:data.docs,
+            page:data.page,
+            list:data.list,
+            pages:data.pages,
+            url:"/admin/users"
+        })       
+    })
+    .catch(err=>{
+       console.log('get users err:',err) 
+    })        
 })
 
 

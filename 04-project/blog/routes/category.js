@@ -2,10 +2,11 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-04 17:03:01
+* @Last Modified time: 2019-08-04 17:44:10
 */
 const express = require('express')
 const CategoryModel = require('../models/category.js')
+const pagination = require('../util/pagination.js')
 
 const router = express.Router()
 //权限验证
@@ -19,8 +20,27 @@ router.use((req,res,next)=>{
 
 //显示分类管理首页
 router.get('/', (req, res) => {
-    res.render("admin/category_list",{
-        userInfo:req.userInfo
+    let page = req.query.page
+    const options = {
+        page:req.query.page,
+        model:CategoryModel,
+        query:{},
+        sort:{order:-1},
+        projection:"-__v"
+    }
+    pagination(options)
+    .then(data=>{
+        res.render("admin/category_list",{
+            userInfo:req.userInfo,
+            categories:data.docs,
+            page:data.page,
+            list:data.list,
+            pages:data.pages,
+            url:"/category"
+        })       
+    })
+    .catch(err=>{
+       console.log('get categories err:',err) 
     })
 })
 
@@ -48,8 +68,12 @@ router.post('/add', (req, res) => {
                 })
             })
             .catch(err=>{
+                let message = "数据库操作失败"
+                if(err.errors['name'].message){
+                    message = err.errors['name'].message
+                }
                 res.render("admin/err",{
-                    message:"分类必须输入",
+                    message:message,
                     url:'/category'
                 })
             })
