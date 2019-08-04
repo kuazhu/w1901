@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-04 11:30:11
+* @Last Modified time: 2019-08-04 11:56:11
 */
 const express = require('express')
 const UserModel = require('../models/user.js')
@@ -71,6 +71,7 @@ router.get('/users', (req, res) => {
         const skip = (page-1)*limit
 
         UserModel.find({})
+        .sort({_id:-1})
         .skip(skip)
         .limit(limit)
         .then(users=>{
@@ -78,7 +79,8 @@ router.get('/users', (req, res) => {
                 userInfo:req.userInfo,
                 users:users,
                 page:page,
-                list:list
+                list:list,
+                pages:pages
             })
         })
         .catch(err=>{

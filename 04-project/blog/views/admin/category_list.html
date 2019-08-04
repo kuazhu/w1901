@@ -1,0 +1,30 @@
+{% extends './layout.html' %}
+{% block header %}
+分类管理
+{% endblock %}
+{% block content %}
+<a href="/category/add" class="btn btn-primary">新增分类</a>
+<div class="table-responsive content">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>名称</th>
+          <th>排序</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>111</td>
+          <td>HTML</td>
+          <td>0</td>
+          <td>
+            <a href="#">编辑</a>
+            <a href="#">删除</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-07-31 16:03:32
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-02 17:08:39
+* @Last Modified time: 2019-08-04 15:59:01
 */
 const express = require('express')
 const swig = require('swig')
@@ -120,6 +120,7 @@ app.use((req,res,next)=>{
 app.use("/",require('./routes/index.js'))
 app.use("/user",require('./routes/user.js'))
 app.use("/admin",require('./routes/admin.js'))
+app.use("/category",require('./routes/category.js'))
 //————————————————————————————路由设置结束----------------------
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))
