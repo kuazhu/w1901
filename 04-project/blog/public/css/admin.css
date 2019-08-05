@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-02 17:42:53
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-04 16:02:41
+* @Last Modified time: 2019-08-05 15:17:28
 */
 .user-info{
     float: right;
@@ -11,5 +11,8 @@
 }
 .content{
     margin-top: 20px;
+    min-height: 300px;
+}
+.ck-editor__editable{
     min-height: 300px;
 }
