@@ -2,9 +2,13 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-05 11:43:46
+* @Last Modified time: 2019-08-05 15:53:01
 */
 const express = require('express')
+
+const multer  = require('multer')
+const upload = multer({ dest: 'public/uploads/' })
+
 const ArticleModel = require('../models/article.js')
 const CategoryModel = require('../models/category.js')
 const pagination = require('../util/pagination.js')
@@ -79,6 +83,21 @@ router.post('/add', (req, res) => {
         })
     })
 })
+
+//处理文章上传图片
+router.post('/uploadImage',upload.single('upload'),(req,res)=>{
+    const uploadedFilePath = "/uploads/"+req.file.filename
+    res.json({
+        uploaded:true,
+        url:uploadedFilePath        
+    })
+})
+
+
+
+
+
+
 //显示编辑分类的页面
 router.get('/edit/:id', (req, res) => {
     const { id } = req.params
