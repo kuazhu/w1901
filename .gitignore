@@ -6,6 +6,7 @@
 *.webm
 **/node_modules
 **/dist
+**/public/uploads
 **/db
 *.jpg
 *.png
