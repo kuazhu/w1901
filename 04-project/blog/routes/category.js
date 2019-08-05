@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-04 17:44:10
+* @Last Modified time: 2019-08-05 09:14:28
 */
 const express = require('express')
 const CategoryModel = require('../models/category.js')
@@ -52,7 +52,10 @@ router.get('/add', (req, res) => {
 })
 //处理添加分类
 router.post('/add', (req, res) => {
-    const { name,order } = req.body
+    let { name,order } = req.body
+    if(!order){
+        order = 0
+    }
     CategoryModel.findOne({name:name})
     .then(category=>{
         if(category){
@@ -85,7 +88,24 @@ router.post('/add', (req, res) => {
             url:'/category'
         })
     })
+})
 
+//显示编辑分类的页面
+router.get('/edit/:id', (req, res) => {
+    const { id } = req.params
+    CategoryModel.findById(id)
+    .then(category=>{
+        res.render("admin/category_edit",{
+            userInfo:req.userInfo,
+            category
+        })
+    })
+    .catch(err=>{
+        res.render("admin/err",{
+            message:"数据库操作失败",
+            url:'/category'
+        })
+    })    
 })
 
 
