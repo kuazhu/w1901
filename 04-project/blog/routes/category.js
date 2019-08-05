@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-05 09:14:28
+* @Last Modified time: 2019-08-05 10:11:17
 */
 const express = require('express')
 const CategoryModel = require('../models/category.js')
@@ -106,6 +106,53 @@ router.get('/edit/:id', (req, res) => {
             url:'/category'
         })
     })    
+})
+//处理编辑分类
+router.post("/edit",(req,res)=>{
+    let { name,order,id } = req.body
+    if(!order){
+        order = 0
+    }
+    CategoryModel.findById(id)
+    .then(category=>{
+        if(category.name == name && category.order == order){
+            res.render("admin/err",{
+                message:"请更新后再提交",
+            })            
+        }else{
+            CategoryModel.findOne({name:name,_id:{$ne:id}})
+            .then(category=>{
+                if(category){
+                    res.render("admin/err",{
+                        message:"分类名称已经存在",
+                    })  
+                }else{
+                    CategoryModel.updateOne({_id:id},{name,order})
+                    .then(result=>{
+                        res.render("admin/success",{
+                            message:"新增分类成功",
+                            url:'/category'
+                        })                        
+                    })
+                    .catch(err=>{
+                        res.render("admin/err",{
+                            message:"数据库操作失败",
+                        })
+                    })                    
+                }
+            })
+            .catch(err=>{
+                res.render("admin/err",{
+                    message:"数据库操作失败",
+                })
+            })            
+        }
+    })
+    .catch(err=>{
+        res.render("admin/err",{
+            message:"数据库操作失败",
+        })
+    })        
 })
 
 

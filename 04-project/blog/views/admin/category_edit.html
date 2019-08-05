@@ -3,7 +3,7 @@
 编辑分类
 {% endblock %}
 {% block content %}
-<form class="form-horizontal" action="/category/add" method="post">
+<form class="form-horizontal" action="/category/edit" method="post">
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">分类名称</label>
         <div class="col-sm-6">
@@ -17,6 +17,7 @@
         </div>
     </div>
     <div class="form-group">
+        <input type="hidden" name="id" value="{{category._id.toString()}}">
         <div class="col-sm-offset-2 col-sm-6">
             <button type="submit" class="btn btn-primary">提交</button>
         </div>
