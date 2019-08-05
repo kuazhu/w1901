@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-05 10:11:17
+* @Last Modified time: 2019-08-05 10:38:21
 */
 const express = require('express')
 const CategoryModel = require('../models/category.js')
@@ -46,7 +46,7 @@ router.get('/', (req, res) => {
 
 //显示添加分类的页面
 router.get('/add', (req, res) => {
-    res.render("admin/category_add",{
+    res.render("admin/category_add_edit",{
         userInfo:req.userInfo
     })
 })
@@ -89,13 +89,12 @@ router.post('/add', (req, res) => {
         })
     })
 })
-
 //显示编辑分类的页面
 router.get('/edit/:id', (req, res) => {
     const { id } = req.params
     CategoryModel.findById(id)
     .then(category=>{
-        res.render("admin/category_edit",{
+        res.render("admin/category_add_edit",{
             userInfo:req.userInfo,
             category
         })
@@ -153,6 +152,23 @@ router.post("/edit",(req,res)=>{
             message:"数据库操作失败",
         })
     })        
+})
+//处理删除操作
+router.get('/delete/:id', (req, res) => {
+    const { id } = req.params
+    CategoryModel.deleteOne({_id:id})
+    .then(result=>{
+        res.render("admin/success",{
+            message:"删除分类成功",
+            url:'/category'
+        })
+    })
+    .catch(err=>{
+        res.render("admin/err",{
+            message:"数据库操作失败",
+            url:'/category'
+        })
+    })    
 })
 
 
