@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-05 15:53:01
+* @Last Modified time: 2019-08-05 16:31:10
 */
 const express = require('express')
 
@@ -54,7 +54,7 @@ router.get('/add', (req, res) => {
     CategoryModel.find({},"name")
     .sort({order:-1})
     .then(categories=>{
-        res.render("admin/article_add",{
+        res.render("admin/article_add_edit",{
             userInfo:req.userInfo,
             categories
         })        
@@ -94,67 +94,43 @@ router.post('/uploadImage',upload.single('upload'),(req,res)=>{
 })
 
 
-
-
-
-
-//显示编辑分类的页面
+//显示编辑文章的页面
 router.get('/edit/:id', (req, res) => {
     const { id } = req.params
-    ArticleModel.findById(id)
-    .then(category=>{
-        res.render("admin/category_add_edit",{
-            userInfo:req.userInfo,
-            category
+    CategoryModel.find({},"name")
+    .sort({order:-1})
+    .then(categories=>{
+        ArticleModel.findById(id)
+        .then(article=>{
+            res.render("admin/article_add_edit",{
+                userInfo:req.userInfo,
+                article,
+                categories
+            })
         })
+        .catch(err=>{
+            res.render("admin/err",{
+                message:"数据库操作失败",
+                url:'/article'
+            })
+        })       
     })
     .catch(err=>{
         res.render("admin/err",{
             message:"数据库操作失败",
-            url:'/category'
+            url:'/article'
         })
-    })    
+    })         
 })
 //处理编辑分类
 router.post("/edit",(req,res)=>{
-    let { name,order,id } = req.body
-    if(!order){
-        order = 0
-    }
-    ArticleModel.findById(id)
-    .then(category=>{
-        if(category.name == name && category.order == order){
-            res.render("admin/err",{
-                message:"请更新后再提交",
-            })            
-        }else{
-            ArticleModel.findOne({name:name,_id:{$ne:id}})
-            .then(category=>{
-                if(category){
-                    res.render("admin/err",{
-                        message:"分类名称已经存在",
-                    })  
-                }else{
-                    ArticleModel.updateOne({_id:id},{name,order})
-                    .then(result=>{
-                        res.render("admin/success",{
-                            message:"新增分类成功",
-                            url:'/category'
-                        })                        
-                    })
-                    .catch(err=>{
-                        res.render("admin/err",{
-                            message:"数据库操作失败",
-                        })
-                    })                    
-                }
-            })
-            .catch(err=>{
-                res.render("admin/err",{
-                    message:"数据库操作失败",
-                })
-            })            
-        }
+    let { title,category,intro,content,id } = req.body
+    ArticleModel.updateOne({_id:id},{title,category,intro,content})
+    .then(result=>{
+        res.render("admin/success",{
+            message:"编辑文章成功",
+            url:'/article'
+        })                        
     })
     .catch(err=>{
         res.render("admin/err",{
@@ -162,33 +138,24 @@ router.post("/edit",(req,res)=>{
         })
     })        
 })
+
 //处理删除操作
 router.get('/delete/:id', (req, res) => {
     const { id } = req.params
     ArticleModel.deleteOne({_id:id})
     .then(result=>{
         res.render("admin/success",{
-            message:"删除分类成功",
-            url:'/category'
+            message:"删除文章成功",
+            url:'/article'
         })
     })
     .catch(err=>{
         res.render("admin/err",{
             message:"数据库操作失败",
-            url:'/category'
+            url:'/article'
         })
     })    
 })
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router
