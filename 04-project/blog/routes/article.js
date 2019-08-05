@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-05 16:31:10
+* @Last Modified time: 2019-08-05 17:32:11
 */
 const express = require('express')
 
@@ -31,7 +31,8 @@ router.get('/', (req, res) => {
         model:ArticleModel,
         query:{},
         sort:{_id:-1},
-        projection:"-__v"
+        projection:"-__v",
+        populates:[{path: 'user', select: 'username' },{path: 'category', select: 'name'}]
     }
     pagination(options)
     .then(data=>{
@@ -74,12 +75,13 @@ router.post('/add', (req, res) => {
     .then(articles=>{
         res.render("admin/success",{
             message:"新增文章成功",
+            url:'/article'
         })
     })
     .catch(err=>{
         res.render("admin/err",{
             message:"数据库操作失败",
-            url:'/category'
+            url:'/article'
         })
     })
 })

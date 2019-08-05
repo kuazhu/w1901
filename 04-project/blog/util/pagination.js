@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-04 17:21:51
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-04 17:47:21
+* @Last Modified time: 2019-08-05 17:28:33
 */
 
 /**
@@ -13,6 +13,7 @@
  * query:查询条件
  * sort:排序
  * projection:投影
+ * populates:数组,关联的模型
  * 
  * @return {[type]}         [description]
  */
@@ -35,7 +36,7 @@ async function pagination(options){
     第 page 页, 跳过 (page-1)*limit 条
 
  */
-    let { page,model,query,sort,projection } = options
+    let { page,model,query,sort,projection,populates } = options
     const limit = 2
     page = parseInt(page)
     
@@ -68,7 +69,17 @@ async function pagination(options){
     
     const skip = (page-1)*limit
 
-    const docs = await model.find(query,projection).sort(sort).skip(skip).limit(limit)
+    let result = model.find(query,projection)
+
+    //关联处理
+    if(populates){
+        populates.forEach(populate=>{
+            result = result.populate(populate)
+        })
+    }
+
+
+    const docs = await result.sort(sort).skip(skip).limit(limit)
 
     return {
         docs:docs,

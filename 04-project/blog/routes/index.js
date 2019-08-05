@@ -2,19 +2,34 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-02 15:29:07
+* @Last Modified time: 2019-08-05 17:55:53
 */
 const express = require('express')
+const CategoryModel = require('../models/category.js')
 
 const router = express.Router()
+
+async function getCommonData(){
+    const categoriesPromise = CategoryModel.find({},"name").sort({order:-1})
+    const categories = await categoriesPromise
+    return {
+        categories
+    }
+}
+
 
 //显示首页
 router.get('/', (req, res) => {
     //render方法作用: 
     //1.模版中block的替换
     //2.把替换后的html返回给客户端
-    res.render("main/index",{
-        userInfo:req.userInfo
+    getCommonData()
+    .then(data=>{
+        const { categories } = data
+        res.render("main/index",{
+            userInfo:req.userInfo,
+            categories
+        })
     })
 })
 

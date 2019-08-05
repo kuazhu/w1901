@@ -20,9 +20,10 @@
             {% for article in articles %}
             <tr>
                 <td>{{ article.title }}</td>
-                <td>{{ article.category }}</td>
-                <td>{{ article.user }}</td>
+                <td>{{ article.category.name }}</td>
+                <td>{{ article.user.username }}</td>
                 <td>{{ article.createdTime }}</td>
+                <!-- <td>{{ article.createdAt | date('Y年m月d日 H:m:i',-8*60) }}</td> -->
                 <td>{{ article.click }}</td>
                 <td>
                     <a href="/detail/{{article._id.toString()}}">详情</a>
