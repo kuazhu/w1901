@@ -2,10 +2,11 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-05 11:10:18
+* @Last Modified time: 2019-08-05 11:43:46
 */
 const express = require('express')
 const ArticleModel = require('../models/article.js')
+const CategoryModel = require('../models/category.js')
 const pagination = require('../util/pagination.js')
 
 const router = express.Router()
@@ -44,43 +45,32 @@ router.get('/', (req, res) => {
     })
 })
 
-//显示添加分类的页面
+//显示添加文章的页面
 router.get('/add', (req, res) => {
-    res.render("admin/category_add_edit",{
-        userInfo:req.userInfo
+    CategoryModel.find({},"name")
+    .sort({order:-1})
+    .then(categories=>{
+        res.render("admin/article_add",{
+            userInfo:req.userInfo,
+            categories
+        })        
     })
 })
-//处理添加分类
+//处理添加文章
 router.post('/add', (req, res) => {
-    let { name,order } = req.body
-    if(!order){
-        order = 0
-    }
-    ArticleModel.findOne({name:name})
-    .then(category=>{
-        if(category){
-            res.render("admin/err",{
-                message:"分类已经存在",
-                url:'/category'
-            })
-        }else{
-            ArticleModel.insertMany({name:name,order:order})
-            .then(categories=>{
-                res.render("admin/success",{
-                    message:"新增分类成功",
-                })
-            })
-            .catch(err=>{
-                let message = "数据库操作失败"
-                if(err.errors['name'].message){
-                    message = err.errors['name'].message
-                }
-                res.render("admin/err",{
-                    message:message,
-                    url:'/category'
-                })
-            })
-        }
+    const { title,category,intro,content } = req.body
+    
+    ArticleModel.insertMany({
+        title,
+        category,
+        intro,
+        content,
+        user:req.userInfo._id
+    })
+    .then(articles=>{
+        res.render("admin/success",{
+            message:"新增文章成功",
+        })
     })
     .catch(err=>{
         res.render("admin/err",{
