@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 11:22:13
+* @Last Modified time: 2019-08-07 15:36:12
 */
 const express = require('express')
 const CategoryModel = require('../models/category.js')
@@ -32,7 +32,6 @@ router.get('/', (req, res) => {
         const { categories,topArticles } = data
         ArticleModel.getPaginationArticlesData(req)
         .then(data=>{
-            console.log("1::",data)
             res.render("main/index",{
                 userInfo:req.userInfo,
                 categories,
@@ -42,7 +41,6 @@ router.get('/', (req, res) => {
                 page:data.page,
                 list:data.list,
                 pages:data.pages,
-                url:"/"
             })
         })
     })
@@ -51,7 +49,6 @@ router.get('/', (req, res) => {
 router.get('/articles', (req, res) => {
     ArticleModel.getPaginationArticlesData(req)
     .then(data=>{
-        console.log(data)
         res.json({
             status:0,
             message:"获取文章数据成功",
@@ -68,10 +65,25 @@ router.get('/articles', (req, res) => {
 
 
 //显示列表页
-router.get('/list', (req, res) => {  
-    res.render("main/list",{
-        userInfo:req.userInfo
-    })
+router.get('/list/:id', (req, res) => {
+    const id = req.params.id
+    getCommonData()
+    .then(data=>{
+        const { categories,topArticles } = data
+        ArticleModel.getPaginationArticlesData(req,{category:id})
+        .then(data=>{
+            res.render("main/list",{
+                userInfo:req.userInfo,
+                categories,
+                topArticles,
+                //首页文章分页数据
+                articles:data.docs,
+                page:data.page,
+                list:data.list,
+                pages:data.pages,
+            })
+        })
+    })    
 })
 
 

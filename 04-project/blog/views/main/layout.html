@@ -29,7 +29,7 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="index.html">首页<span class="sr-only">(current)</span></a></li>
           {% for category in categories %}
-          <li><a href="list.html">{{ category.name }}</a></li>
+          <li><a href="/list/{{category._id.toString()}}">{{ category.name }}</a></li>
           {% endfor %}
         </ul>
       </div><!-- /.navbar-collapse -->
@@ -121,12 +121,12 @@
 
           <div class="ad">
             <a href="#" class="thumbnail">
-              <img src="img/ad/ad1.jpg" alt="广告1">
+              <img src="/img/ad/ad1.jpg" alt="广告1">
             </a>
           </div>
           <div class="ad">
             <a href="#" class="thumbnail">
-              <img src="img/ad/ad2.jpg" alt="广告2">
+              <img src="/img/ad/ad2.jpg" alt="广告2">
             </a>
           </div>
           <div class="panel panel-default custom-panel">
@@ -137,7 +137,7 @@
               <div class="media">
                 <div class="media-left">
                   <a href="#">
-                    <img class="media-object img-me img-circle" src="img/me.jpg" alt="博主帅照">
+                    <img class="media-object img-me img-circle" src="/img/me.jpg" alt="博主帅照">
                   </a>
                 </div>
                 <div class="media-body">
@@ -164,7 +164,7 @@
               <h3 class="panel-title">关注我</h3>
             </div>
             <div class="panel-body">
-              <img src="img/wechat.jpeg" class="img-responsive" alt="">
+              <img src="/img/wechat.jpeg" class="img-responsive" alt="">
             </div>
           </div>                                         
         </div>

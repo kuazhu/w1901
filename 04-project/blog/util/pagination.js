@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-04 17:21:51
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-05 17:28:33
+* @Last Modified time: 2019-08-07 15:37:07
 */
 
 /**
@@ -49,7 +49,7 @@ async function pagination(options){
         page = 1
     }
 
-    const count = await model.countDocuments()
+    const count = await model.countDocuments(query)
     
     //总页数
     const pages = Math.ceil(count / limit)
