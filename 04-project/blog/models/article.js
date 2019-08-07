@@ -2,9 +2,10 @@
 * @Author: TomChen
 * @Date:   2019-07-31 09:42:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 09:41:51
+* @Last Modified time: 2019-08-07 11:28:35
 */
 const mongoose = require('mongoose')
+const moment = require('moment')
 
 const pagination = require('../util/pagination.js')
 
@@ -40,7 +41,7 @@ const ArticleSchema = new mongoose.Schema({
 })
 
 ArticleSchema.virtual('createdTime').get(function(){
-    return new Date(this.createdAt).toLocaleString()
+    return moment(this.createdAt).format('YYYY-MM-DD HH:mm:ss')
 })
 
 ArticleSchema.statics.getPaginationArticlesData = function(req,query={}){

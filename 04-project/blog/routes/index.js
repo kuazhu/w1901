@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 10:43:19
+* @Last Modified time: 2019-08-07 11:22:13
 */
 const express = require('express')
 const CategoryModel = require('../models/category.js')
@@ -32,6 +32,7 @@ router.get('/', (req, res) => {
         const { categories,topArticles } = data
         ArticleModel.getPaginationArticlesData(req)
         .then(data=>{
+            console.log("1::",data)
             res.render("main/index",{
                 userInfo:req.userInfo,
                 categories,
@@ -50,6 +51,7 @@ router.get('/', (req, res) => {
 router.get('/articles', (req, res) => {
     ArticleModel.getPaginationArticlesData(req)
     .then(data=>{
+        console.log(data)
         res.json({
             status:0,
             message:"获取文章数据成功",

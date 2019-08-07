@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-03-13 18:10:45
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 10:23:09
+* @Last Modified time: 2019-08-07 11:32:17
 */
 //js文件保存在服务器端,但是最终会被请求到客户端,由客户端来解析执行
 ;(function($){
@@ -125,6 +125,40 @@
     })
     //4.处理文章列表分页功能
     var $articlePage = $('#article-page')
+    function buildArticleHtml(articles){
+        var html = ''
+        articles.forEach(function(article){
+            var createdTime = moment(article.createdAt).format('YYYY-MM-DD HH:mm:ss')
+            html += `
+              <div class="panel panel-default content-item">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <a href="/detail/${article._id.toString()}" class="link" target="_blank">${article.title}</a>
+                  </h3>
+                </div>
+                <div class="panel-body">
+                  ${ article.intro }
+                </div>
+                <div class="panel-footer">
+                  <span class="glyphicon glyphicon-user"></span>
+                  <span class="panel-footer-text text-muted">${ article.user.username }</span>
+                  <span class="glyphicon glyphicon-th-list"></span>
+                  <span class="panel-footer-text text-muted">${ article.category.name }</span>
+                  <span class="glyphicon glyphicon-time"></span>
+                  <span class="panel-footer-text text-muted">${ createdTime }</span>
+                  <span class="glyphicon glyphicon-eye-open"></span>
+                  <span class="panel-footer-text text-muted"><em>${ article.click }</em>已阅读</span>
+                </div>
+              </div>
+            `
+        })    
+        return html;
+    }
+    $articlePage.on('get-data',function(ev,data){
+        console.log(data.docs)
+        //构建文章html
+        $('#article-wrap').html(buildArticleHtml(data.docs))
+    })
     $articlePage.pagination({
         url:'/articles'    
     })

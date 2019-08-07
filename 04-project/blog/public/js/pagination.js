@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-03-13 18:10:45
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 10:39:48
+* @Last Modified time: 2019-08-07 11:10:10
 */
 ;(function($){
     $.fn.extend({
@@ -33,7 +33,11 @@
                     dataType:"json"
                 })
                 .done(function(result){
-                    console.log(result)
+                    if(result.status == 0){
+                        $elem.trigger('get-data',result.data)
+                    }else{
+                       alert('请求失败,请稍后再试一试') 
+                    }
                 })
                 .fail(function(err){
                     alert('请求失败,请稍后再试一试')
