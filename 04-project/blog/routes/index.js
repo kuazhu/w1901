@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 16:11:49
+* @Last Modified time: 2019-08-07 16:59:52
 */
 const express = require('express')
 const CategoryModel = require('../models/category.js')
@@ -93,12 +93,41 @@ router.get('/list/:id', (req, res) => {
     })    
 })
 
+async function getDetailData(req){
+    
+    const id = req.params.id
+
+    const commonDataPromise = getCommonData()
+    const articlePromise = ArticleModel.findOneAndUpdate({_id:id},{$inc:{click:1}},{new:true})
+                               .populate({path: 'user', select: 'username' })
+                               .populate({path: 'category', select: 'name'})
+    
+    const commonData = await commonDataPromise
+    const article = await articlePromise
+    
+    const { categories,topArticles } = commonData
+    
+    return {
+        categories,
+        topArticles,
+        article
+    }
+}
 
 //显示详情页
-router.get('/detail', (req, res) => {
-    res.render("main/detail",{
-        userInfo:req.userInfo
+router.get('/detail/:id', (req, res) => {
+    getDetailData(req)
+    .then(data=>{
+        const {categories,topArticles,article } = data
+        res.render("main/detail",{
+            userInfo:req.userInfo,
+            categories,
+            topArticles,
+            article,
+            currentCategoryId:article.category._id
+        })        
     })
+
 })
 
 module.exports = router

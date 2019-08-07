@@ -6,19 +6,19 @@
 {% block content %}
 <div class="panel panel-default custom-panel detail-panel">
   <div class="panel-heading">
-    <h3 class="panel-title">深入了解 Bootstrap 底层结构的关键部分</h3>
+    <h3 class="panel-title">{{article.title}}</h3>
     <p class="sub-title">
-      <span class="text-muted">HTML/CSS</span>
-      <span class="text-muted">2018-06-18</span>
-      <span class="text-muted"><em>1461</em>人已阅读</span>
+      <span class="text-muted">{{article.category.name}}</span>
+      <span class="text-muted">{{article.createdTime}}</span>
+      <span class="text-muted"><em>{{article.click}}</em>人已阅读</span>
     </p>
   </div>
   <div class="panel-body">
     <div class="well">
-      <strong>简介:</strong>深入了解 Bootstrap 底层结构的关键部分，包括我们让 web 开发变得更好、更快、更强壮的最佳实践。HTML5 文档类型 Bootstrap 使用到的某些 HTML 元素和 CSS 属性需要将页面设置为 HTML5 文档类型。在你项目中的每个页面都要参照下面的格式进行设置
+      <strong>简介:</strong>{{article.intro}}
     </div>
     <p>
-      移动设备优先 在 Bootstrap 2 中，我们对框架中的某些关键部分增加了对移动设备友好的样式。而在 Bootstrap 3 中，我们重写了整个框架，使其一开始就是对移动设备友好的。这次不是简单的增加一些可选的针对移动设备的样式，而是直接融合进了框架的内核中。也就是说，Bootstrap 是移动设备优先的。针对移动设备的样式融合进了框架的每个角落，而不是增加一个额外的文件。
+     {{article.content | safe}}
     </p>
   </div>
 </div>                                        
