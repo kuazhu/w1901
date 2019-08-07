@@ -52,8 +52,9 @@
   </div>
 </div>
 {% endfor %}
-
-{% include "./pagination.html" %}
+<nav aria-label="Page navigation" id="article-page">
+  {% include "./pagination.html" %}
+</nav>
                                         
 {% endblock %}
 {% block footer %}

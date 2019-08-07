@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-03-13 18:10:45
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-02 17:51:59
+* @Last Modified time: 2019-08-07 10:23:09
 */
 //js文件保存在服务器端,但是最终会被请求到客户端,由客户端来解析执行
 ;(function($){
@@ -123,4 +123,17 @@
             })
         }
     })
+    //4.处理文章列表分页功能
+    var $articlePage = $('#article-page')
+    $articlePage.pagination({
+        url:'/articles'    
+    })
+
+
+
+
+
+
+
+
 })(jQuery);
