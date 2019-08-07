@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-03-13 18:10:45
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 15:10:23
+* @Last Modified time: 2019-08-07 16:09:10
 */
 //js文件保存在服务器端,但是最终会被请求到客户端,由客户端来解析执行
 ;(function($){
@@ -187,7 +187,6 @@
         return html
     }
     $articlePage.on('get-data',function(ev,data){
-        console.log(data.docs)
         //构建文章html
         $('#article-wrap').html(buildArticleHtml(data.docs))
         //构建分页器html

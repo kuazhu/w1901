@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 15:36:12
+* @Last Modified time: 2019-08-07 16:11:49
 */
 const express = require('express')
 const CategoryModel = require('../models/category.js')
@@ -47,7 +47,12 @@ router.get('/', (req, res) => {
 })
 //处理文章分页数据的ajax请求
 router.get('/articles', (req, res) => {
-    ArticleModel.getPaginationArticlesData(req)
+    const id = req.query.id
+    const query = {}
+    if(id){
+        query.category = id
+    }
+    ArticleModel.getPaginationArticlesData(req,query)
     .then(data=>{
         res.json({
             status:0,
@@ -81,6 +86,8 @@ router.get('/list/:id', (req, res) => {
                 page:data.page,
                 list:data.list,
                 pages:data.pages,
+                //回传分类id
+                currentCategoryId:id
             })
         })
     })    

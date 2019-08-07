@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-03-13 18:10:45
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 11:10:10
+* @Last Modified time: 2019-08-07 16:10:23
 */
 ;(function($){
     $.fn.extend({
@@ -28,8 +28,13 @@
                 if(page == currentPage){
                     return false
                 }
+                var url = options.url+"?page="+page
+                var id = $elem.data('id')
+                if(id){
+                    url = url + "&id="+id
+                }
                 $.ajax({
-                    url:options.url+"?page="+page,
+                    url:url,
                     dataType:"json"
                 })
                 .done(function(result){
