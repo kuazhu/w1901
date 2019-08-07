@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-07-31 16:03:32
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 17:04:26
+* @Last Modified time: 2019-08-07 17:21:28
 */
 const express = require('express')
 const swig = require('swig')
@@ -18,6 +18,8 @@ const port = 3000
 
 //1.连接数据库
 mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true })
+//解决findOneAndUpdate方法的警告
+mongoose.set('useFindAndModify', false)
 //获取db对象
 const db = mongoose.connection
 

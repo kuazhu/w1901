@@ -21,5 +21,23 @@
      {{article.content | safe}}
     </p>
   </div>
-</div>                                        
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    {% if userInfo._id %}
+        <div class="input-group">
+          <textarea class="form-control" rows="3" id="comment-content"></textarea>
+          <span class="input-group-btn">
+            <button class="btn btn-primary btn-sub-comment" type="button" data-id={{ article._id.toString() }}>提交</button>
+          </span>
+        </div>
+        <p class="text-danger err"></p>
+    {% else %}
+      <div class="alert alert-success" role="alert">请登录后提交评论</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+{% block footer %}
+<script src="/js/detail.js"></script>
 {% endblock %}

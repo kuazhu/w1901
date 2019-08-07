@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-03-13 20:33:29
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-03-13 20:35:55
+* @Last Modified time: 2019-08-07 17:26:19
 */
 .detail-panel{
 	min-height: 600px;
@@ -16,4 +16,7 @@
 }
 .detail-panel .panel-body{
 	background: #fff;
+}
+.btn-sub-comment{
+    padding: 26px 20px;
 }
