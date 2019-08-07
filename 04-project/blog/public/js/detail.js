@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-03-13 18:10:45
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 17:42:06
+* @Last Modified time: 2019-08-07 17:58:13
 */
 ;(function($){
     $('.btn-sub-comment').on('click',function(){
@@ -30,7 +30,12 @@
             }
         })
         .done(function(result){
-            console.log(result)
+            if(result.status == 0){
+                $('#comment-content').val('')
+                //todo.... 
+            }else{
+                alert(result.message)
+            }
         })
         .fail(function(err){
             alert('评论失败,请稍后再试一试')
