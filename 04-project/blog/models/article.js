@@ -2,9 +2,11 @@
 * @Author: TomChen
 * @Date:   2019-07-31 09:42:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-05 17:04:08
+* @Last Modified time: 2019-08-07 09:41:51
 */
 const mongoose = require('mongoose')
+
+const pagination = require('../util/pagination.js')
 
 //1.定义Schema
 const ArticleSchema = new mongoose.Schema({
@@ -40,6 +42,19 @@ const ArticleSchema = new mongoose.Schema({
 ArticleSchema.virtual('createdTime').get(function(){
     return new Date(this.createdAt).toLocaleString()
 })
+
+ArticleSchema.statics.getPaginationArticlesData = function(req,query={}){
+    let page = req.query.page
+    const options = {
+        page:req.query.page,
+        model:this,
+        query:query,
+        sort:{_id:-1},
+        projection:"-__v",
+        populates:[{path: 'user', select: 'username' },{path: 'category', select: 'name'}]
+    }
+    return pagination(options)
+}
 
 
 const ArticleModel = mongoose.model('article', ArticleSchema)

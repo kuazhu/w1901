@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-05 17:32:11
+* @Last Modified time: 2019-08-07 09:42:24
 */
 const express = require('express')
 
@@ -25,6 +25,7 @@ router.use((req,res,next)=>{
 
 //显示文章管理首页
 router.get('/', (req, res) => {
+    /*
     let page = req.query.page
     const options = {
         page:req.query.page,
@@ -35,6 +36,8 @@ router.get('/', (req, res) => {
         populates:[{path: 'user', select: 'username' },{path: 'category', select: 'name'}]
     }
     pagination(options)
+    */
+    ArticleModel.getPaginationArticlesData(req)
     .then(data=>{
         res.render("admin/article_list",{
             userInfo:req.userInfo,
