@@ -2,11 +2,12 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 16:59:52
+* @Last Modified time: 2019-08-08 09:15:56
 */
 const express = require('express')
 const CategoryModel = require('../models/category.js')
 const ArticleModel = require('../models/article.js')
+const CommentModel = require('../models/comment.js')
 
 const router = express.Router()
 
@@ -101,16 +102,19 @@ async function getDetailData(req){
     const articlePromise = ArticleModel.findOneAndUpdate({_id:id},{$inc:{click:1}},{new:true})
                                .populate({path: 'user', select: 'username' })
                                .populate({path: 'category', select: 'name'})
+    const commentPageDataPromise = CommentModel.getPaginationCommentsData(req,{article:id})
     
     const commonData = await commonDataPromise
     const article = await articlePromise
+    const commentPageData = await commentPageDataPromise
     
     const { categories,topArticles } = commonData
     
     return {
         categories,
         topArticles,
-        article
+        article,
+        commentPageData
     }
 }
 
@@ -118,12 +122,17 @@ async function getDetailData(req){
 router.get('/detail/:id', (req, res) => {
     getDetailData(req)
     .then(data=>{
-        const {categories,topArticles,article } = data
+        const {categories,topArticles,article,commentPageData } = data
         res.render("main/detail",{
             userInfo:req.userInfo,
             categories,
             topArticles,
             article,
+            //首次的评论数据
+            comments:commentPageData.docs,
+            page:commentPageData.page,
+            list:commentPageData.list,
+            pages:commentPageData.pages,
             currentCategoryId:article.category._id
         })        
     })
