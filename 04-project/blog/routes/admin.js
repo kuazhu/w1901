@@ -2,10 +2,11 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-04 17:41:08
+* @Last Modified time: 2019-08-08 11:08:02
 */
 const express = require('express')
 const UserModel = require('../models/user.js')
+const CommentModel = require('../models/comment.js')
 const pagination = require('../util/pagination.js')
 
 const router = express.Router()
@@ -114,5 +115,40 @@ router.get('/users', (req, res) => {
     })        
 })
 
+//显示后台评论列表
+router.get('/comments', (req, res) => {
+    CommentModel.getPaginationCommentsData(req)
+    .then(data=>{
+        res.render("admin/comment_list",{
+            userInfo:req.userInfo,
+            comments:data.docs,
+            page:data.page,
+            list:data.list,
+            pages:data.pages,
+            url:"/admin/comments"
+        }) 
+    })
+    .catch(err=>{
+        console.log('get comments err:',err)
+    })    
+})
+
+//处理删除操作
+router.get('/comment/delete/:id', (req, res) => {
+    const { id } = req.params
+    CommentModel.deleteOne({_id:id})
+    .then(result=>{
+        res.render("admin/success",{
+            message:"删除评论成功",
+            url:'/admin/comments'
+        })
+    })
+    .catch(err=>{
+        res.render("admin/err",{
+            message:"数据库操作失败",
+            url:'/admin/comments'
+        })
+    })    
+})
 
 module.exports = router
