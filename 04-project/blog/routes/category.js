@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-05 10:38:21
+* @Last Modified time: 2019-08-08 11:23:59
 */
 const express = require('express')
 const CategoryModel = require('../models/category.js')
@@ -60,6 +60,8 @@ router.post('/add', (req, res) => {
     .then(category=>{
         if(category){
             res.render("admin/err",{
+                userInfo:req.userInfo,
+                userInfo:req.userInfo,
                 message:"分类已经存在",
                 url:'/category'
             })
@@ -67,6 +69,7 @@ router.post('/add', (req, res) => {
             CategoryModel.insertMany({name:name,order:order})
             .then(categories=>{
                 res.render("admin/success",{
+                    userInfo:req.userInfo,
                     message:"新增分类成功",
                 })
             })
@@ -76,6 +79,7 @@ router.post('/add', (req, res) => {
                     message = err.errors['name'].message
                 }
                 res.render("admin/err",{
+                    userInfo:req.userInfo,
                     message:message,
                     url:'/category'
                 })
@@ -84,6 +88,7 @@ router.post('/add', (req, res) => {
     })
     .catch(err=>{
         res.render("admin/err",{
+            userInfo:req.userInfo,
             message:"数据库操作失败",
             url:'/category'
         })
@@ -101,6 +106,7 @@ router.get('/edit/:id', (req, res) => {
     })
     .catch(err=>{
         res.render("admin/err",{
+            userInfo:req.userInfo,
             message:"数据库操作失败",
             url:'/category'
         })
@@ -116,6 +122,7 @@ router.post("/edit",(req,res)=>{
     .then(category=>{
         if(category.name == name && category.order == order){
             res.render("admin/err",{
+                userInfo:req.userInfo,
                 message:"请更新后再提交",
             })            
         }else{
@@ -123,18 +130,21 @@ router.post("/edit",(req,res)=>{
             .then(category=>{
                 if(category){
                     res.render("admin/err",{
+                        userInfo:req.userInfo,
                         message:"分类名称已经存在",
                     })  
                 }else{
                     CategoryModel.updateOne({_id:id},{name,order})
                     .then(result=>{
                         res.render("admin/success",{
+                            userInfo:req.userInfo,
                             message:"新增分类成功",
                             url:'/category'
                         })                        
                     })
                     .catch(err=>{
                         res.render("admin/err",{
+                            userInfo:req.userInfo,
                             message:"数据库操作失败",
                         })
                     })                    
@@ -142,6 +152,7 @@ router.post("/edit",(req,res)=>{
             })
             .catch(err=>{
                 res.render("admin/err",{
+                    userInfo:req.userInfo,
                     message:"数据库操作失败",
                 })
             })            
@@ -149,6 +160,7 @@ router.post("/edit",(req,res)=>{
     })
     .catch(err=>{
         res.render("admin/err",{
+            userInfo:req.userInfo,
             message:"数据库操作失败",
         })
     })        
@@ -159,12 +171,14 @@ router.get('/delete/:id', (req, res) => {
     CategoryModel.deleteOne({_id:id})
     .then(result=>{
         res.render("admin/success",{
+            userInfo:req.userInfo,
             message:"删除分类成功",
             url:'/category'
         })
     })
     .catch(err=>{
         res.render("admin/err",{
+            userInfo:req.userInfo,
             message:"数据库操作失败",
             url:'/category'
         })

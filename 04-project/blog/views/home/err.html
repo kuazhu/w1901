@@ -1,0 +1,13 @@
+{% extends './layout.html' %}
+{% block header %}
+操作失败
+{% endblock %}
+{% block content %}
+<div class="alert alert-danger" role="alert">{{ message }}</div>
+
+{% if url %}
+<a href="{{url}}">点击跳转</a>
+{% else %}
+<a href="javascript:window.history.back()">返回</a>
+{% endif %}
+{% endblock %}
