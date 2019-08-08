@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-01 15:30:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 17:55:32
+* @Last Modified time: 2019-08-08 10:21:14
 */
 const express = require('express')
 const CommentModel = require('../models/comment.js')
@@ -25,7 +25,7 @@ router.post("/add",(req,res)=>{
         user:req.userInfo._id
     })
     .then(commnets=>{
-        CommentModel.getPaginationCommentsData(req)
+        CommentModel.getPaginationCommentsData(req,{article:article})
         .then(data=>{
             res.json({
                 status:0,
@@ -47,6 +47,28 @@ router.post("/add",(req,res)=>{
         })
     })    
 
+})
+//处理评论的ajax
+router.get('/list',(req,res)=>{
+    const id = req.query.id
+    const query = {}
+    if(id){
+        query.article = id
+    }
+    CommentModel.getPaginationCommentsData(req,query)
+    .then(data=>{
+        res.json({
+            status:0,
+            message:"获取评论数据成功",
+            data:data
+        })
+    })
+    .catch(err=>{
+        res.json({
+            status:10,
+            message:"获取评论数据失败"
+        })        
+    })    
 })
 
 

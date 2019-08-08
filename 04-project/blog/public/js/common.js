@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-03-13 18:10:45
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-07 16:09:10
+* @Last Modified time: 2019-08-08 10:27:39
 */
 //js文件保存在服务器端,但是最终会被请求到客户端,由客户端来解析执行
 ;(function($){
@@ -186,6 +186,20 @@
                 </li>`
         return html
     }
+    function buildCommentHtml(comments){
+        var html = ''
+        comments.forEach(function(comment){
+            var createdTime = moment(comment.createdAt).format('YYYY-MM-DD HH:mm:ss')
+            html += `<div class="panel panel-default">
+                        <div class="panel-heading">${ comment.user.username } 发表于 ${ createdTime } </div>
+                        <div class="panel-body">
+                          ${ comment.content }
+                        </div>
+                      </div>`
+        })
+
+        return html
+    }
     $articlePage.on('get-data',function(ev,data){
         //构建文章html
         $('#article-wrap').html(buildArticleHtml(data.docs))
@@ -200,8 +214,22 @@
     $articlePage.pagination({
         url:'/articles'    
     })
-
-
+    //5.处理评论列表的分页功能
+    var $commentPage = $('#comment-page')
+    $commentPage.on('get-data',function(ev,data){
+        //构建评论html
+        $('#comment-wrap').html(buildCommentHtml(data.docs))
+        //构建分页器html
+        $pagination = $commentPage.find('.pagination')
+        if(data.pages > 1){
+            $pagination.html(buildPaginationHtml(data.page,data.pages,data.list))
+        }else{
+            $pagination.html('')
+        }
+    })    
+    $commentPage.pagination({
+        url:'/comment/list'    
+    })
 
 
 
