@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-09 10:04:00
+* @Last Modified time: 2019-08-09 10:52:46
 */
 
 const path = require('path')
@@ -19,8 +19,7 @@ module.exports = {
     // entry: {main:'./src/index.js'},
     //多入口
     entry:{
-        common:'./src/page/common/index.js',
-        index:'./src/page/index/index.js',
+        index:'./src/index.js',
     },
     //出口
     output: {
@@ -57,11 +56,10 @@ module.exports = {
     plugins:[
         new CleanWebpackPlugin(),
         new htmlWebpackPlugin({
-            template:'./src/view/index.html',//模板文件
+            template:'./src/index.html',//模板文件
             filename:'index.html',//输出的文件名
             //inject:'head',//脚本写在那个标签里,默认是true(在body结束后)
             hash:true,//给生成的js/css文件添加一个唯一的hash
-            chunks:['common','index']
         })
     ],
     devServer: {
