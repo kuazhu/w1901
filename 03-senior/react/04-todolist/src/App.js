@@ -2,9 +2,11 @@
 * @Author: TomChen
 * @Date:   2019-08-09 15:14:36
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-09 16:52:59
+* @Last Modified time: 2019-08-09 17:48:46
 */
 import React,{ Component } from 'react'
+import Item from './Item.js'
+
 import "./App.css"
 
 class App extends Component{
@@ -15,7 +17,7 @@ class App extends Component{
             task:''
         }
     }
-    handleClick(){
+    handleAdd(){
         /*
         console.log(this)
         console.log('btn click...')
@@ -46,16 +48,35 @@ class App extends Component{
          task:task
       }))
     }
+    handleDel(index){
+        // console.log(index)
+        const list = [...this.state.list]
+        list.splice(index,1)
+        this.setState({
+            list
+        })
+    }
     render(){
         return( 
         <div className="App">
             <input onChange={this.handleChange.bind(this)} value={this.state.task} />
-            <button onClick={this.handleClick.bind(this)}>提交</button>
+            <button onClick={this.handleAdd.bind(this)}>提交</button>
             <ul>
                 {
                     this.state.list.map((item,index)=>{
-                        return(<li key={index}>{item}</li>)
-                    })        
+                        /*
+                        return(
+                            <li 
+                                key={index}
+                                onClick={this.handleDel.bind(this,index)}
+                            >
+                                {item}
+                            </li>
+                        )
+                        */
+                       return <Item key={index} task={item} onClick={this.handleDel.bind(this,index)} />
+                    })
+                   // [<li>111</li>,<li>222</li>]        
                 }
             </ul>
         </div> 
