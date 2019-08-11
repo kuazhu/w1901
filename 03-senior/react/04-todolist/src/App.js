@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-09 15:14:36
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-09 17:48:46
+* @Last Modified time: 2019-08-11 10:39:33
 */
 import React,{ Component } from 'react'
 import Item from './Item.js'
@@ -16,67 +16,41 @@ class App extends Component{
             list:["吃饭","睡觉","敲代码","跑步"],
             task:''
         }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleAdd=this.handleAdd.bind(this)
     }
     handleAdd(){
-        /*
-        console.log(this)
-        console.log('btn click...')
-        console.log(this.state)
-        this.state.list.push(this.state.task)
-        console.log(this.state)
-        */
-        //数据驱动界面
-        this.setState({
-            list:[...this.state.list,this.state.task],
+        this.setState((preState)=>({
+            list:[...preState.list,preState.task],
             task:''
-        })       
+        }))       
     }
     handleChange(ev){
-        /*
-        console.log(ev.target.value)
-        console.log(this.state)
-        this.state.task = ev.target.value
-        console.log(this.state)
-        */
-       /*
-       this.setState({
-            task:ev.target.value
-       })
-       */
       const task = ev.target.value
       this.setState(()=>({
          task:task
       }))
     }
     handleDel(index){
-        // console.log(index)
         const list = [...this.state.list]
         list.splice(index,1)
-        this.setState({
+        this.setState(()=>({
             list
-        })
+        }))
+    }
+    getItems(){
+        return this.state.list.map((item,index)=>{
+          return <Item key={index} task={item} handleDel={this.handleDel.bind(this,index)} />
+        })        
     }
     render(){
         return( 
         <div className="App">
-            <input onChange={this.handleChange.bind(this)} value={this.state.task} />
-            <button onClick={this.handleAdd.bind(this)}>提交</button>
+            <input onChange={this.handleChange} value={this.state.task} />
+            <button onClick={this.handleAdd}>提交</button>
             <ul>
                 {
-                    this.state.list.map((item,index)=>{
-                        /*
-                        return(
-                            <li 
-                                key={index}
-                                onClick={this.handleDel.bind(this,index)}
-                            >
-                                {item}
-                            </li>
-                        )
-                        */
-                       return <Item key={index} task={item} onClick={this.handleDel.bind(this,index)} />
-                    })
-                   // [<li>111</li>,<li>222</li>]        
+                    this.getItems()
                 }
             </ul>
         </div> 
