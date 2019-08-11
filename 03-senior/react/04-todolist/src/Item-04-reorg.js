@@ -2,11 +2,9 @@
 * @Author: TomChen
 * @Date:   2019-08-09 17:42:43
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-11 11:42:39
+* @Last Modified time: 2019-08-11 10:40:37
 */
 import React,{ Component } from 'react'
-
-import PropTypes from 'prop-types'
 
 class Item extends Component{
     constructor(props){
@@ -19,20 +17,5 @@ class Item extends Component{
         )
     }
 }
-
-Item.propTypes = {
-    handleDel:PropTypes.func,
-    task:PropTypes.string.isRequired
-}
-Item.defaultProps = {
-    task:'learn...'
-}
-
-
-
-
-
-
-
 
 export default Item
