@@ -2,14 +2,15 @@
 * @Author: TomChen
 * @Date:   2019-08-09 15:14:36
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-12 09:20:07
+* @Last Modified time: 2019-08-12 10:16:26
 */
 import React,{ Component } from 'react'
+
+import store from './store'
+
 import { Button,Input,Row,Col,List } from 'antd';
-import Item from './Item.js'
 
 import "./App.css"
-// import 'antd/dist/antd.css'
 
 class App extends Component{
     constructor(props){
@@ -20,6 +21,9 @@ class App extends Component{
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleAdd=this.handleAdd.bind(this)
+
+
+        console.log(store)
     }
     handleAdd(){
         this.setState((preState)=>({
