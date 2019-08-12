@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-12 16:19:57
+ * @Last Modified time: 2019-08-12 16:45:48
  */
 import React, { Component } from 'react'
 import axios from 'axios'
@@ -19,7 +19,8 @@ import {
 import {
     getChangeItemAction,
     getAddItemAction,
-    getDelItemAction
+    getDelItemAction,
+    getLoadInitDataAction
 } from './store/actionCreator.js'
 
 
@@ -44,13 +45,17 @@ class App extends Component {
     }
     componentDidMount(){
         //发送ajax请求
+      
         axios.get('http://127.0.0.1:3000')
         .then(result=>{
-            console.log(result)
+            // console.log(result)
+            store.dispatch(getLoadInitDataAction(result.data))
         })
         .catch(err=>{
             console.log(err)
         })
+    
+       //store.dispatch(getLoadInitDataAction())
     }
     handleAdd() {
         /*
