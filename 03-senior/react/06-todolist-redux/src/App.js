@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-12 10:56:06
+ * @Last Modified time: 2019-08-12 11:48:44
  */
 import React, { Component } from 'react'
 
@@ -25,13 +25,19 @@ class App extends Component {
         this.handleAdd = this.handleAdd.bind(this)
 
         this.state = store.getState()
-        store.subscribe(()=>{this.setState(store.getState())})
+        store.subscribe(() => { this.setState(store.getState()) })
     }
     handleAdd() {
+        /*
         this.setState((preState) => ({
             list: [...preState.list, preState.task],
             task: ''
         }))
+        */
+        const action = {
+            type:'add_item'
+        }
+        store.dispatch(action)
     }
     handleChange(ev) {
         const task = ev.target.value
@@ -43,22 +49,24 @@ class App extends Component {
         //派发action
         //action就是一个对象
         const action = {
-            type:"change_item",
-            payload:task
+            type: "change_item",
+            payload: task
         }
         store.dispatch(action)
     }
     handleDel(index) {
+        /*
         const list = [...this.state.list]
         list.splice(index, 1)
         this.setState(() => ({
             list
         }))
-    }
-    getItems() {
-        return this.state.list.map((item, index) => {
-            return <Item key={index} task={item} handleDel={this.handleDel.bind(this,index)} />
-        })
+        */
+       const action = {
+            type: "del_item",
+            payload: index        
+       }
+       store.dispatch(action)
     }
     render() {
         return (
