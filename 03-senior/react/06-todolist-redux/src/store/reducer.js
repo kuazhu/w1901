@@ -2,8 +2,15 @@
 * @Author: TomChen
 * @Date:   2019-08-12 10:29:05
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-12 11:49:57
+* @Last Modified time: 2019-08-12 15:09:20
 */
+
+import {
+    ADD_ITEM,
+    CHANGE_ITEM,
+    DEL_ITEM
+} from './actionTypes.js'
+
 const defaultState = {
     list:["吃饭","睡觉","敲代码"],
     task:''
@@ -17,7 +24,7 @@ const defaultState = {
  */
 export default (state=defaultState,action)=>{
     
-    if(action.type == 'change_item'){
+    if(action.type == CHANGE_ITEM){
         //错误的写法
         //state.task = action.payload
         const newState = JSON.parse(JSON.stringify(state))
@@ -27,13 +34,13 @@ export default (state=defaultState,action)=>{
         // newState.task = action.payload + Math.random()
         return newState
     }
-    if(action.type == 'add_item'){
+    if(action.type == ADD_ITEM){
         const newState = JSON.parse(JSON.stringify(state))
         newState.list.push(state.task)
         newState.task = ''
         return newState
     }
-    if(action.type == 'del_item'){
+    if(action.type == DEL_ITEM){
         const newState = JSON.parse(JSON.stringify(state))
         newState.list.splice(action.payload,1)
         return newState        

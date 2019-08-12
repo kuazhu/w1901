@@ -2,11 +2,24 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-12 11:48:44
+ * @Last Modified time: 2019-08-12 15:17:00
  */
 import React, { Component } from 'react'
 
 import store from './store'
+/*
+import {
+    ADD_ITEM,
+    CHANGE_ITEM,
+    DEL_ITEM
+} from './store/actionTypes.js'
+*/
+
+import {
+    getChangeItemAction,
+    getAddItemAction,
+    getDelItemAction
+} from './store/actionCreator.js'
 
 import { Button, Input, Row, Col, List } from 'antd';
 
@@ -34,10 +47,13 @@ class App extends Component {
             task: ''
         }))
         */
+       /*
         const action = {
-            type:'add_item'
+            type:ADD_ITEM
         }
         store.dispatch(action)
+        */
+        store.dispatch(getAddItemAction())
     }
     handleChange(ev) {
         const task = ev.target.value
@@ -48,11 +64,14 @@ class App extends Component {
         */
         //派发action
         //action就是一个对象
+        /*
         const action = {
-            type: "change_item",
+            type: CHANGE_ITEM,
             payload: task
         }
         store.dispatch(action)
+        */
+       store.dispatch(getChangeItemAction(task))
     }
     handleDel(index) {
         /*
@@ -62,11 +81,14 @@ class App extends Component {
             list
         }))
         */
+       /*
        const action = {
-            type: "del_item",
+            type: DEL_ITEM,
             payload: index        
        }
        store.dispatch(action)
+       */
+       store.dispatch(getDelItemAction(index))
     }
     render() {
         return (
