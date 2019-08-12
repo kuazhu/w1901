@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-09 15:14:36
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-12 10:16:26
+* @Last Modified time: 2019-08-12 10:33:20
 */
 import React,{ Component } from 'react'
 
@@ -15,15 +15,16 @@ import "./App.css"
 class App extends Component{
     constructor(props){
         super(props)
+        /*
         this.state = {
             list:["吃饭","睡觉"],
             task:''
         }
+        */
         this.handleChange = this.handleChange.bind(this)
         this.handleAdd=this.handleAdd.bind(this)
 
-
-        console.log(store)
+        this.state = store.getState()
     }
     handleAdd(){
         this.setState((preState)=>({
