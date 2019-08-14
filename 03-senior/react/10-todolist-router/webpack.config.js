@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-12 17:47:10
+* @Last Modified time: 2019-08-14 16:12:51
 */
 
 const path = require('path')
@@ -26,6 +26,8 @@ module.exports = {
         //「入口分块(entry chunk)」的文件名模板
         // filename: '[name]-[chunkhash]-bundle.js',
         filename: '[name]-[hash]-bundle.js',
+        //指定输出参考根路径
+        publicPath:'/',
         //所有输出文件的目标路径
         path: path.resolve(__dirname, 'dist')
     },
@@ -77,5 +79,6 @@ module.exports = {
     devServer: {
         contentBase: './dist',//内容的目录
         port:8090,//指定服务端口
+        historyApiFallback:true//让h5路由不向后端发送请求
     },                
 }
