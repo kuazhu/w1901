@@ -2,19 +2,14 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-14 10:37:42
+ * @Last Modified time: 2019-08-14 11:00:44
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Input, Row, Col, List } from 'antd';
 
 import "./index.css"
-import {
-    getChangeItemAction,
-    getAddItemAction,
-    getDelItemAction,
-    getRequestInitDataAction
-} from '../../store/actionCreator.js'
+import { actionCreator } from './store'
 
 class TodoList extends Component {
     componentDidMount(){
@@ -59,23 +54,23 @@ class TodoList extends Component {
 
 //映射属性到组件
 const mapStateToProps = (state)=>({
-    task:state.task,
-    list:state.list      
+    task:state.todolist.task,
+    list:state.todolist.list      
 })
 //映射方法到组件
 const mapDispatchToProps = (dispatch)=>({
     handleChange:(ev)=>{
         const task = ev.target.value
-        dispatch(getChangeItemAction(task))
+        dispatch(actionCreator.getChangeItemAction(task))
     },
     handleAdd:()=>{
-        dispatch(getAddItemAction())
+        dispatch(actionCreator.getAddItemAction())
     },
     handleDel:(index)=>{
-        dispatch(getDelItemAction(index))
+        dispatch(actionCreator.getDelItemAction(index))
     },
     handleInit:()=>{
-        dispatch(getRequestInitDataAction())
+        dispatch(actionCreator.getRequestInitDataAction())
     }
 })
 
