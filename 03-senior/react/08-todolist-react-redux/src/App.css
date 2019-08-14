@@ -1,0 +1,47 @@
+/*
+* @Author: TomChen
+* @Date:   2019-08-09 15:59:28
+* @Last Modified by:   TomChen
+* @Last Modified time: 2019-08-11 17:55:54
+*/
+*{
+    margin: 0;
+    padding: 0;
+}
+.App {
+    width: 960px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*
+.App input{
+    width: 900px;
+    height: 40px;
+    outline: none;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+.App button{
+    width: 50px;
+    height: 40px;
+}
+.App ul{
+    margin-top: 20px;
+    list-style: none;
+}
+.App ul li{
+    line-height: 30px;
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border-left:2px solid #f67;
+    cursor: pointer;
+    padding: 0 10px;
+}
+.App ul li:hover{
+    background-color: #eee;
+}
+*/
