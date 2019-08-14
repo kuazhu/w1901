@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-14 16:12:51
+* @Last Modified time: 2019-08-14 17:00:18
 */
 
 const path = require('path')
@@ -60,7 +60,8 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env', 'react'],
+                        // presets: ['env', 'react'],
+                        presets: ['env','es2015','react','stage-3'],
                         plugins: [["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }] ]
                     },
                 }

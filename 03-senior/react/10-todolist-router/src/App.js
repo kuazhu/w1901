@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-14 16:37:16
+ * @Last Modified time: 2019-08-14 17:04:54
  */
 import React, { Component } from 'react'
 import './App.css'
@@ -39,7 +39,21 @@ class Admin extends Component{
     }
 }
 class App extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            isLogin:true
+        }
+    }
     render() {
+        const ProtectRoute = ({component:Component,...rest})=>{
+            return <Route
+                {...rest} 
+                render={(props)=>{
+                    return this.state.isLogin ? <Component {...props} /> : <h2>this is login page</h2>
+                }}
+            />
+        }
         return (
             <Router>
                 <div className="App">
@@ -58,7 +72,7 @@ class App extends Component {
                     <Route path="/todolist" component={TodoList} />
                     <Route path="/about" render={()=><h2>this is about page</h2>} />
                     <Route path="/user/:id" component={User} />
-                    <Route path="/admin" component={Admin} />
+                    <ProtectRoute path="/admin" component={Admin} />
                 </div>
             </Router>
         )          
