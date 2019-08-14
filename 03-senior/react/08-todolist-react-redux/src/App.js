@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-14 09:22:35
+ * @Last Modified time: 2019-08-14 09:56:24
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -17,6 +17,9 @@ import {
 } from './store/actionCreator.js'
 
 class App extends Component {
+    componentDidMount(){
+        this.props.handleInit()
+    }
     render() {
         const { handleChange,task,handleAdd,handleDel,list } = this.props
         return (
@@ -54,13 +57,26 @@ class App extends Component {
     }
 }
 
+//映射属性到组件
+const mapStateToProps = (state)=>({
+    task:state.task,
+    list:state.list      
+})
+//映射方法到组件
+const mapDispatchToProps = (dispatch)=>({
+    handleChange:(ev)=>{
+        const task = ev.target.value
+        dispatch(getChangeItemAction(task))
+    },
+    handleAdd:()=>{
+        dispatch(getAddItemAction())
+    },
+    handleDel:(index)=>{
+        dispatch(getDelItemAction(index))
+    },
+    handleInit:()=>{
+        dispatch(getRequestInitDataAction())
+    }
+})
 
-const mapStateToProps = (state)=>{
-    return {
-      task:state.task,
-      list:state.list  
-    }    
-}
-
-
-export default connect(mapStateToProps,null)(App)
+export default connect(mapStateToProps,mapDispatchToProps)(App)
