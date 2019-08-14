@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-14 11:00:44
+ * @Last Modified time: 2019-08-14 11:53:11
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -54,8 +54,8 @@ class TodoList extends Component {
 
 //映射属性到组件
 const mapStateToProps = (state)=>({
-    task:state.todolist.task,
-    list:state.todolist.list      
+    task:state.get('todolist').get('task'),
+    list:state.get('todolist').get('list')      
 })
 //映射方法到组件
 const mapDispatchToProps = (dispatch)=>({
