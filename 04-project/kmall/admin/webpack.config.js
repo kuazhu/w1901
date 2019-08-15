@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-15 09:46:06
+* @Last Modified time: 2019-08-15 11:52:47
 */
 
 const path = require('path')
@@ -35,6 +35,7 @@ module.exports = {
     resolve:{
         alias:{
             pages:path.resolve(__dirname,'./src/pages'),
+            util:path.resolve(__dirname,'./src/util'),
         }
     },    
     module: {
