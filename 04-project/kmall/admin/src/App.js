@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-15 16:25:42
+ * @Last Modified time: 2019-08-15 17:47:54
  */
 import React, { Component } from 'react'
 import './App.css'
@@ -40,6 +40,7 @@ class App extends Component {
                 <div className="App">
                     <Switch>
                         <ProtectRoute exact path="/" component={Home} />
+                        <ProtectRoute exact path="/user" component={Home}  />
                         <LoginRoute path="/login" component={Login} />
                         <Route component={Err} />
                     </Switch>
