@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-15 10:41:17
+ * @Last Modified time: 2019-08-15 11:05:28
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -20,7 +20,8 @@ class NormalLoginForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                //console.log('Received values of form: ', values);
+                this.props.handleLogin(values)
             }
         });
     };
@@ -74,18 +75,8 @@ const mapStateToProps = (state) => ({
 })
 //映射方法到组件
 const mapDispatchToProps = (dispatch) => ({
-    handleChange: (ev) => {
-        const task = ev.target.value
-        dispatch(actionCreator.getChangeItemAction(task))
-    },
-    handleAdd: () => {
-        dispatch(actionCreator.getAddItemAction())
-    },
-    handleDel: (index) => {
-        dispatch(actionCreator.getDelItemAction(index))
-    },
-    handleInit: () => {
-        dispatch(actionCreator.getRequestInitDataAction())
+    handleLogin: (values) => {
+        dispatch(actionCreator.getLoginAction(values))
     }
 })
 

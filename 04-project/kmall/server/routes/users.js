@@ -1,8 +1,8 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
-* @Last Modified by:   Tom
-* @Last Modified time: 2019-07-08 11:33:49
+* @Last Modified by:   TomChen
+* @Last Modified time: 2019-08-15 11:16:26
 */
 const Router = require('express').Router;
 
@@ -13,6 +13,23 @@ const pagination = require('../util/pagination.js');
 const hmac = require('../util/hmac.js')
 
 const router = Router();
+
+router.get('/init',(req,res)=>{
+	UserModel.insertMany({
+		username:'admin',
+		password:hmac('admin'),
+		isAdmin:true
+	})
+	.then(result=>{
+		res.send('ok')
+	})
+	.catch(err=>{
+		console.log(err)
+		res.send('err')
+	})
+})
+
+
 //检查用户名是否存在
 router.get("/checkUsername",(req,res)=>{
 	const username = req.query.username;

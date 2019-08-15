@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-14 10:59:46
+* @Last Modified time: 2019-08-15 11:10:45
 */
 import axios from 'axios'
 
@@ -28,15 +28,20 @@ const getLoadInitDataAction = (payload)=>({
     payload
 })
 
-export const getRequestInitDataAction = ()=>{
+export const getLoginAction = (values)=>{
     return (dispatch,getState)=>{
-        axios.get('http://127.0.0.1:3000')
+        values.role = 'admin'
+        axios({
+            method: 'post',
+            url:'http://127.0.0.1:3000/sessions/users',
+            data:values
+        })
         .then(result=>{
-            dispatch(getLoadInitDataAction(result.data))
+            console.log(result)
         })
         .catch(err=>{
-            console.log(err)
-        })        
+            console.log('err:',err)
+        })       
     }
 }
 
