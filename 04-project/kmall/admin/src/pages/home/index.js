@@ -2,11 +2,12 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-15 15:41:51
+ * @Last Modified time: 2019-08-15 16:54:18
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+
+import Layout from 'common/layout'
 
 import "./index.css"
 import { actionCreator } from './store'
@@ -18,7 +19,9 @@ class Home extends Component {
     render() {
         return (
         <div className="Home">
-            Home page
+             <Layout>
+                <h1>首页内容</h1>
+             </Layout>
         </div>
         );
     }
