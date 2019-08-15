@@ -2,37 +2,55 @@
 * @Author: TomChen
 * @Date:   2019-08-15 16:55:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-15 16:56:37
+* @Last Modified time: 2019-08-15 17:35:40
 */
-/*
- * @Author: TomChen
- * @Date:   2019-08-09 15:14:36
- * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-15 16:53:41
- */
 import React, { Component } from 'react'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+
+import axios from 'axios'
+
+import { Layout, Menu, Icon, Dropdown } from 'antd'
+const { Header } = Layout;
+
+import { getUsername,removeUsername } from 'util'
 
 import "./index.css"
 
 class AdminHeader extends Component {
+    constructor(props){
+        super(props)
+        this.handleLogout = this.handleLogout.bind(this)
+    }
+    handleLogout(){
+        axios({
+            method: 'delete',
+            url:'http://127.0.0.1:3000/sessions/users',
+        })
+        .then(result=>{
+            if(result.data.code == 0){
+                removeUsername()
+                window.location.href = '/login'
+            }
+        })
+    }
     render() {
+        const menu = (
+          <Menu onClick={this.handleLogout}>
+            <Menu.Item key="1">
+                <Icon type="logout" /> 退出
+            </Menu.Item>
+          </Menu>
+        )     
         return (
             <div className="AdminHeader">
                 <Header className="header">
-                  <div className="logo" />
-                  <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    defaultSelectedKeys={['2']}
-                    style={{ lineHeight: '64px' }}
-                  >
-                    <Menu.Item key="1">nav 1</Menu.Item>
-                    <Menu.Item key="2">nav 2</Menu.Item>
-                    <Menu.Item key="3">nav 3</Menu.Item>
-                  </Menu>
+                  <div className="logo">
+                    KMALL
+                  </div>
+                    <Dropdown overlay={menu} trigger={['click']}>
+                        <a className="ant-dropdown-link" href="#">
+                          {getUsername()} <Icon type="down" />
+                        </a>
+                    </Dropdown>
                 </Header>
             </div>
         );
