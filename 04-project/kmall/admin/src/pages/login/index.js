@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-15 15:08:08
+ * @Last Modified time: 2019-08-15 15:40:55
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -11,7 +11,7 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import "./index.css"
 import { actionCreator } from './store'
 
-class NormalLoginForm extends React.Component {
+class NormalLoginForm extends Component {
     constructor(props){
         super(props)
         this.handleSubmit = this.handleSubmit.bind(this)
