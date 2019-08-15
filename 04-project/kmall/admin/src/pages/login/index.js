@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-15 11:05:28
+ * @Last Modified time: 2019-08-15 15:08:08
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -56,6 +56,7 @@ class NormalLoginForm extends React.Component {
                     type="primary"  
                     className="login-form-button"
                     onClick={this.handleSubmit}
+                    loading={this.props.isFetching}
                 >
                     登录
                 </Button>
@@ -70,8 +71,7 @@ const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLogin
 
 //映射属性到组件
 const mapStateToProps = (state) => ({
-    task: state.get('login').get('task'),
-    list: state.get('login').get('list')
+    isFetching: state.get('login').get('isFetching')
 })
 //映射方法到组件
 const mapDispatchToProps = (dispatch) => ({
