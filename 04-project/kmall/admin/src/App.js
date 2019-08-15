@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-15 15:51:59
+ * @Last Modified time: 2019-08-15 16:25:42
  */
 import React, { Component } from 'react'
 import './App.css'
@@ -17,10 +17,11 @@ import {
 
 import Login from 'pages/login'
 import Home from 'pages/home'
+import Err from 'common/err'
 
 import { getUsername } from 'util'
 
-class App extends Component {
+class App extends Component {    
     render() {
         const ProtectRoute = ({component:Component,...rest})=>(<Route 
             {...rest}
@@ -37,8 +38,11 @@ class App extends Component {
         return (
             <Router>
                 <div className="App">
-                    <ProtectRoute exact path="/" component={Home} />
-                    <LoginRoute path="/login" component={Login} />
+                    <Switch>
+                        <ProtectRoute exact path="/" component={Home} />
+                        <LoginRoute path="/login" component={Login} />
+                        <Route component={Err} />
+                    </Switch>
                 </div>
             </Router>
         )          
