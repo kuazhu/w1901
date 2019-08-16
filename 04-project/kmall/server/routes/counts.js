@@ -1,8 +1,8 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
-* @Last Modified by:   Tom
-* @Last Modified time: 2019-07-05 16:06:06
+* @Last Modified by:   TomChen
+* @Last Modified time: 2019-08-16 16:39:21
 */
 const Router = require('express').Router;
 
@@ -27,7 +27,7 @@ async function getCounts(){
     try{
         //不存在继发关系,同时触发
         const userPromise = UserModel.estimatedDocumentCount()
-        const orderPromise = UserModel.estimatedDocumentCount()
+        const orderPromise = OrderModel.estimatedDocumentCount()
         const productPromise = ProductModel.estimatedDocumentCount()
         
         const usernum = await userPromise
