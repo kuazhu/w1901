@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-16 10:17:38
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-16 16:34:33
+* @Last Modified time: 2019-08-16 17:22:28
 */
 //目标 导出一个对象 对象的属性是方法名,对象的值是方法
 
@@ -50,8 +50,10 @@ const request = (url,method,data)=>{
                 removeUsername()
                 window.location.href = '/login'
                 reject('用户没有权限')
+            }else{
+                resolve(data)
             }
-            resolve(data)
+            
         })
         .catch(err=>{
             reject(err)

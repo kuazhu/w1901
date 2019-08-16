@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-16 16:30:55
+ * @Last Modified time: 2019-08-16 17:14:58
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -51,7 +51,7 @@ class User extends Component {
         this.props.handlePage(1)
     }
     render() {
-        const { list,current,total,pageSize,handlePage } = this.props
+        const { list,current,total,pageSize,handlePage,isFetching } = this.props
         const dataSource = list.map((user)=>{
             return {
                 key:user.get('_id'),
@@ -83,7 +83,13 @@ class User extends Component {
                             (page)=>{
                                 handlePage(page.current)
                             }
-                        } 
+                        }
+                        loading={
+                            {
+                                spinning:isFetching,
+                                tip:'数据正在努力的加载中'
+                            }
+                        }
                     />                                    
                 </div>
              </Layout>
@@ -97,7 +103,8 @@ const mapStateToProps = (state) => ({
     list:state.get('user').get('list'),
     current:state.get('user').get('current'),
     total:state.get('user').get('total'),
-    pageSize:state.get('user').get('pageSize'),  
+    pageSize:state.get('user').get('pageSize'), 
+    isFetching:state.get('user').get('isFetching'),  
 })
 //映射方法到组件
 const mapDispatchToProps = (dispatch) =>({
