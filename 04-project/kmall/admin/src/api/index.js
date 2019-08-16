@@ -2,11 +2,13 @@
 * @Author: TomChen
 * @Date:   2019-08-16 10:17:38
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-16 10:34:42
+* @Last Modified time: 2019-08-16 11:53:17
 */
 //目标 导出一个对象 对象的属性是方法名,对象的值是方法
 
 import axios from 'axios'
+
+import { removeUsername } from 'util'
 
 import { SERVER,API_CONFIG } from './config.js'
 
@@ -36,6 +38,11 @@ const request = (url,method,data)=>{
         })
         .then(result=>{
             const data  = result.data
+            if(data.code == 10){
+                removeUsername()
+                window.location.href = '/login'
+                reject('用户没有权限')
+            }
             resolve(data)
         })
         .catch(err=>{
