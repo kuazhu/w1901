@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-16 15:28:16
+ * @Last Modified time: 2019-08-16 15:55:46
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -46,7 +46,9 @@ class User extends Component {
     constructor(props) {
         super(props)
     }
-    componentDidMount() {}
+    componentDidMount() {
+        this.props.handlePage(1)
+    }
     render() {
         const { list } = this.props
         const dataSource = list.map((user)=>{
@@ -82,7 +84,9 @@ const mapStateToProps = (state) => ({
 })
 //映射方法到组件
 const mapDispatchToProps = (dispatch) =>({
-
+    handlePage:(page)=>{
+        dispatch(actionCreator.getPageAction(page))
+    }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(User)
