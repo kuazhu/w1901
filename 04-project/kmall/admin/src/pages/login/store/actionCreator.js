@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-15 15:15:29
+* @Last Modified time: 2019-08-16 09:38:39
 */
 import axios from 'axios'
 import { message } from 'antd'
@@ -25,7 +25,7 @@ export const getLoginAction = (values)=>{
         axios({
             method: 'post',
             url:'http://127.0.0.1:3000/sessions/users',
-            data:values
+            data:values,
         })
         .then(result=>{
             // console.log(result)
