@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-16 10:20:25
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-18 10:49:12
+* @Last Modified time: 2019-08-18 11:12:14
 */
 
 export const SERVER = 'http://127.0.0.1:3000'
@@ -13,4 +13,5 @@ export const API_CONFIG = {
     getCounts:             ['/counts','get'],
     getUserList:           ['/users/list','get'],
     addCategories:         ['/categories','post'],
+    getlevelCategories:    ['/categories/levelCategories','get'],
 }

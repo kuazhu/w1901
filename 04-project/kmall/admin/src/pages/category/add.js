@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-18 10:45:30
+ * @Last Modified time: 2019-08-18 11:24:05
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -20,6 +20,9 @@ class CategoryAdd extends Component {
         super(props)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
+    componentDidMount(){
+        this.props.getLevelCategories()
+    }
     handleSubmit(e) {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -30,6 +33,7 @@ class CategoryAdd extends Component {
     }    
     render() {
         const { getFieldDecorator } = this.props.form
+        const {categories} = this.props
         return (
             <Layout>
                  <Breadcrumb style={{ margin: '16px 0' }}>
@@ -47,6 +51,11 @@ class CategoryAdd extends Component {
                               placeholder="请选择父级分类"
                             >
                               <Option value="0">根分类</Option>
+                              {
+                                categories.map((category)=>{
+                                    return <Option key={category.get('_id')} value={category.get('_id')}>{category.get('name')}</Option>
+                                })
+                              }
                             </Select>,
                           )}
                         </Form.Item>                    
@@ -76,11 +85,15 @@ const WrappedCategoryAdd = Form.create({ name: 'category' })(CategoryAdd)
 
 //映射属性到组件
 const mapStateToProps = (state) => ({
+    categories:state.get('category').get('categories')
 })
 //映射方法到组件
 const mapDispatchToProps = (dispatch) => ({
     handleAdd:(values)=>{
         dispatch(actionCreator.getAddAction(values))
+    },
+    getLevelCategories:()=>{
+        dispatch(actionCreator.getLevelCategoriesAction())
     }
 })
 
