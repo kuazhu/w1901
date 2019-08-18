@@ -2,11 +2,11 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-18 17:28:30
+ * @Last Modified time: 2019-08-18 17:51:02
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Breadcrumb, Table,Button,Input,InputNumber } from 'antd'
+import { Breadcrumb, Table,Button,Input,InputNumber,Switch } from 'antd'
 import moment from 'moment'
 import { 
     Link, 
@@ -34,7 +34,8 @@ class CategoryList extends Component {
             isFetching,
             handleUpdateName,
             handleUpdateMobileName,
-            handleUpdateOrder 
+            handleUpdateOrder,
+            handleUpdateIsShow 
         } = this.props
         const columns = [{
                 title: '分类名称',
@@ -74,12 +75,22 @@ class CategoryList extends Component {
                 title: '是否显示',
                 dataIndex: 'isShow',
                 key: 'isShow',
+                render:(isShow,record)=><Switch 
+                    checkedChildren="显示" 
+                    unCheckedChildren="隐藏" 
+                    checked={isShow == '0' ? false : true}
+                    onChange={
+                        (checked)=>{
+                            handleUpdateIsShow(record._id,checked ? '1' : '0')
+                        }
+                    } 
+                />
             },
             {
                 title: '排序',
                 dataIndex: 'order',
                 key: 'order',
-               render:(order,record)=><InputNumber 
+                render:(order,record)=><InputNumber 
                     defaultValue={order}
                     onBlur={
                         (ev)=>{
@@ -156,7 +167,10 @@ const mapDispatchToProps = (dispatch) =>({
     },
     handleUpdateOrder:(id,newOrder)=>{
         dispatch(actionCreator.getUpdateOrderAction(id,newOrder))
-    },          
+    },
+    handleUpdateIsShow:(id,newIsShow)=>{
+        dispatch(actionCreator.getUpdateUpdateIsShowAction(id,newIsShow))
+    },               
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryList)
