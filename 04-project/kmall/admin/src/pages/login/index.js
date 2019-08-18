@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-15 15:40:55
+ * @Last Modified time: 2019-08-18 10:20:20
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -23,8 +23,8 @@ class NormalLoginForm extends Component {
                 //console.log('Received values of form: ', values);
                 this.props.handleLogin(values)
             }
-        });
-    };
+        })
+    }
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
