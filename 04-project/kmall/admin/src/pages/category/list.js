@@ -2,11 +2,11 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-18 16:09:33
+ * @Last Modified time: 2019-08-18 16:49:50
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Breadcrumb, Table,Button } from 'antd'
+import { Breadcrumb, Table,Button,Input } from 'antd'
 import moment from 'moment'
 import { 
     Link, 
@@ -15,28 +15,6 @@ import Layout from 'common/layout'
 
 import "./index.css"
 import { actionCreator } from './store'
-
-const columns = [{
-        title: '分类名称',
-        dataIndex: 'name',
-        key: 'name',
-    },
-    {
-        title: '手机分类名称',
-        dataIndex: 'mobileName',
-        key: 'mobileName',
-    },
-    {
-        title: '是否显示',
-        dataIndex: 'isShow',
-        key: 'isShow',
-    },
-    {
-        title: '排序',
-        dataIndex: 'order',
-        key: 'order',
-    },
-];
 
 
 class CategoryList extends Component {
@@ -47,8 +25,49 @@ class CategoryList extends Component {
         this.props.handlePage(1)
     }    
     render() {
-        const { list,current,total,pageSize,handlePage,isFetching } = this.props
-        const dataSource = list.toJS()
+        const { 
+            list,
+            current,
+            total,
+            pageSize,
+            handlePage,
+            isFetching,
+            handleUpdateName 
+        } = this.props
+        const columns = [{
+                title: '分类名称',
+                dataIndex: 'name',
+                width:'40%',
+                key: 'name',
+                render:(name,record)=><Input 
+                    style={{width:'60%'}}
+                    defaultValue={name}
+                    onBlur={
+                        (ev)=>{
+                            if(ev.target.value != name){
+                                handleUpdateName(record._id,ev.target.value)    
+                            }
+                        }
+                    }
+                />
+            },
+            {
+                title: '手机分类名称',
+                dataIndex: 'mobileName',
+                key: 'mobileName',
+            },
+            {
+                title: '是否显示',
+                dataIndex: 'isShow',
+                key: 'isShow',
+            },
+            {
+                title: '排序',
+                dataIndex: 'order',
+                key: 'order',
+            },
+        ]        
+        const dataSource = list.toJS()        
         return (
             <div className="User">
              <Layout>
@@ -104,6 +123,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>({
     handlePage:(page)=>{
         dispatch(actionCreator.getPageAction(page))
+    },
+    handleUpdateName:(id,newName)=>{
+        dispatch(actionCreator.getUpdateNameAction(id,newName))
     }
 })
 
