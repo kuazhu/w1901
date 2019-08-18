@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-16 17:16:40
+* @Last Modified time: 2019-08-18 16:03:52
 */
 import api from 'api'
 import { message } from 'antd'
@@ -33,7 +33,7 @@ export const getPageAction = (page)=>{
             if(result.code == 0){
                 dispatch(getSetPageAction(result.data))
             }else{
-                message.error('获取首页数据失败,请稍后再试')
+                message.error('获取用户数据失败,请稍后再试')
             }
         })
         .catch(err=>{
