@@ -2,11 +2,11 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-18 16:49:50
+ * @Last Modified time: 2019-08-18 17:28:30
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Breadcrumb, Table,Button,Input } from 'antd'
+import { Breadcrumb, Table,Button,Input,InputNumber } from 'antd'
 import moment from 'moment'
 import { 
     Link, 
@@ -32,7 +32,9 @@ class CategoryList extends Component {
             pageSize,
             handlePage,
             isFetching,
-            handleUpdateName 
+            handleUpdateName,
+            handleUpdateMobileName,
+            handleUpdateOrder 
         } = this.props
         const columns = [{
                 title: '分类名称',
@@ -54,7 +56,19 @@ class CategoryList extends Component {
             {
                 title: '手机分类名称',
                 dataIndex: 'mobileName',
+                width:'40%',
                 key: 'mobileName',
+                render:(mobileName,record)=><Input 
+                    style={{width:'60%'}}
+                    defaultValue={mobileName}
+                    onBlur={
+                        (ev)=>{
+                            if(ev.target.value != mobileName){
+                                handleUpdateMobileName(record._id,ev.target.value)    
+                            }
+                        }
+                    }
+                />                
             },
             {
                 title: '是否显示',
@@ -65,6 +79,16 @@ class CategoryList extends Component {
                 title: '排序',
                 dataIndex: 'order',
                 key: 'order',
+               render:(order,record)=><InputNumber 
+                    defaultValue={order}
+                    onBlur={
+                        (ev)=>{
+                            if(ev.target.value != order){
+                                handleUpdateOrder(record._id,ev.target.value)    
+                            }
+                        }
+                    }
+                />                 
             },
         ]        
         const dataSource = list.toJS()        
@@ -126,7 +150,13 @@ const mapDispatchToProps = (dispatch) =>({
     },
     handleUpdateName:(id,newName)=>{
         dispatch(actionCreator.getUpdateNameAction(id,newName))
-    }
+    },
+    handleUpdateMobileName:(id,newMobileName)=>{
+        dispatch(actionCreator.getUpdateMobileNameAction(id,newMobileName))
+    },
+    handleUpdateOrder:(id,newOrder)=>{
+        dispatch(actionCreator.getUpdateOrderAction(id,newOrder))
+    },          
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryList)

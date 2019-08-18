@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-18 16:56:35
+* @Last Modified time: 2019-08-18 17:26:47
 */
 import api from 'api'
 import { message } from 'antd'
@@ -92,6 +92,48 @@ export const getUpdateNameAction = (id,newName)=>{
         .then(result=>{
             if(result.code == 0){
                 message.success('更新分类名称成功')
+                dispatch(getSetPageAction(result.data))
+            }else{
+                message.error(result.message)
+            }
+        })
+        .catch(err=>{
+            message.error('网络错误,请稍后再试')
+        })               
+    }
+}
+export const getUpdateMobileNameAction = (id,newMobileName)=>{
+    return (dispatch,getState)=>{
+        const page = getState().get('category').get('current')
+        api.updateCategoriesMobileName({
+            id:id,
+            mobileName:newMobileName,
+            page:page
+        })
+        .then(result=>{
+            if(result.code == 0){
+                message.success('更新手机分类名称成功')
+                dispatch(getSetPageAction(result.data))
+            }else{
+                message.error(result.message)
+            }
+        })
+        .catch(err=>{
+            message.error('网络错误,请稍后再试')
+        })               
+    }
+}
+export const getUpdateOrderAction = (id,newOrder)=>{
+    return (dispatch,getState)=>{
+        const page = getState().get('category').get('current')
+        api.updateCategoriesOrder({
+            id:id,
+            order:newOrder,
+            page:page
+        })
+        .then(result=>{
+            if(result.code == 0){
+                message.success('更新排序成功')
                 dispatch(getSetPageAction(result.data))
             }else{
                 message.error(result.message)
