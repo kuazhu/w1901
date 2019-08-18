@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-18 10:22:07
+ * @Last Modified time: 2019-08-18 10:45:30
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -24,7 +24,7 @@ class CategoryAdd extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                this.props.handleAdd(values)
             }
         })
     }    
@@ -79,7 +79,9 @@ const mapStateToProps = (state) => ({
 })
 //映射方法到组件
 const mapDispatchToProps = (dispatch) => ({
-
+    handleAdd:(values)=>{
+        dispatch(actionCreator.getAddAction(values))
+    }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WrappedCategoryAdd)
