@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-19 17:12:00
+* @Last Modified time: 2019-08-19 17:31:56
 */
 import api from 'api'
 import { message } from 'antd'
@@ -49,28 +49,39 @@ export const setDetailAction = (payload)=>({
 
 export const getSaveAction = (err,values)=>{
     return (dispatch,getState)=>{
-        console.log('values',values)
         const state = getState().get('product')
         const mainImage = state.get('mainImage')
         const images = state.get('images')
         const detail = state.get('detail')
-
+        
+        let hasErr = false
+        if(err){
+            hasErr = true
+        }
         if(!mainImage){
+            hasErr = true
             dispatch(setMainImageErrorAction())
         }
         if(!images){
+            hasErr = true
             dispatch(setImagesErrorAction())
         }
 
-        console.log('mainImage',mainImage)
-        console.log('images',images)
-        console.log('detail',detail)
-        /*
-        api.addCategories(values)
+        if(hasErr){
+            return
+        }
+
+        api.addProducts({
+            ...values,
+            mainImage,
+            images,
+            detail
+        })
         .then(result=>{
             if(result.code == 0){
-                message.success('添加分类成功')
-                dispatch(setCategoriesAction(result.data))
+                message.success('添加商品成功',()=>{
+                    window.location.href = "/product"
+                })
             }else{
                 message.error(result.message)
             }
@@ -79,7 +90,7 @@ export const getSaveAction = (err,values)=>{
         .catch(err=>{
             message.error('网络错误,请稍后再试')
         })
-        */              
+                    
     }
 }
 export const getLevelCategoriesAction = ()=>{
