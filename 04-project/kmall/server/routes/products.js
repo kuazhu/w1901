@@ -1,8 +1,8 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
-* @Last Modified by:   Tom
-* @Last Modified time: 2019-07-08 15:40:39
+* @Last Modified by:   TomChen
+* @Last Modified time: 2019-08-19 10:26:37
 */
 const Router = require('express').Router;
 const ProductModel = require('../models/product.js');
@@ -112,7 +112,12 @@ router.use((req,res,next)=>{
 //处理商品图片
 router.post("/images",upload.single('file'),(req,res)=>{
 	const filePath = 'http://127.0.0.1:3000/product-images/'+req.file.filename;
-	res.send(filePath);
+	res.send({
+    	"name": req.file.originalname,
+    	"status": "done",
+    	"url": filePath,
+    	"thumbUrl": filePath
+	});
 	
 })
 //处理商品详情图片

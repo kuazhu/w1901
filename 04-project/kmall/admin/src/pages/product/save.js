@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 10:16:46
+ * @Last Modified time: 2019-08-19 10:58:54
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -84,8 +84,13 @@ class CategoryAdd extends Component {
                         </Form.Item>
                         <Form.Item label="封面图片">
                           <UploadImage  
-                            max={1}
+                            max={3}
                             action={UPLOAD_PRODUCT_IMAGE}
+                            getFileList={
+                              (fileList)=>{
+                                console.log('1::',fileList)
+                              }
+                            }
                           />
                         </Form.Item>
                         <Form.Item label="商品图片">

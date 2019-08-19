@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-19 09:58:53
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 10:18:06
+ * @Last Modified time: 2019-08-19 10:59:28
  */
 import React, { Component } from 'react'
 import { Upload, Icon, Modal } from 'antd'
@@ -33,7 +33,13 @@ class UploadImage extends Component {
     }
 
     handleChange({ fileList }){
-        this.setState({ fileList })
+        this.setState({ fileList },()=>{
+            this.props.getFileList(fileList.map(file=>{
+                if(file.response){
+                    return file.response.url
+                }
+            }).join(','))
+        })
     }
 
     render() {
