@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 15:07:36
+ * @Last Modified time: 2019-08-19 15:47:45
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -108,6 +108,11 @@ class CategoryAdd extends Component {
                         <Form.Item label="商品详情">
                           <RichEditor
                             url={UPLOAD_PRODUCT_DETAIL_IMAGES}
+                            getValues={
+                              (values)=>{
+                                console.log(values)
+                              }
+                            }
                           />
                         </Form.Item>                                                                                                                                                        
                         <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
