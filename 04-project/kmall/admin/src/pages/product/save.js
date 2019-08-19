@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 11:32:43
+ * @Last Modified time: 2019-08-19 15:07:36
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -13,7 +13,7 @@ const { Option } = Select
 
 import UploadImage from 'common/upload-image'
 import RichEditor from 'common/rich-editor'
-import { UPLOAD_PRODUCT_IMAGE } from 'api/config.js'
+import { UPLOAD_PRODUCT_IMAGE,UPLOAD_PRODUCT_DETAIL_IMAGES } from 'api/config.js'
 
 import Layout from 'common/layout'
 
@@ -106,7 +106,9 @@ class CategoryAdd extends Component {
                           />
                         </Form.Item>
                         <Form.Item label="商品详情">
-                          <RichEditor />
+                          <RichEditor
+                            url={UPLOAD_PRODUCT_DETAIL_IMAGES}
+                          />
                         </Form.Item>                                                                                                                                                        
                         <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
                           <Button type="primary" onClick={this.handleSubmit}>
