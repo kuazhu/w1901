@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-16 10:20:25
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-19 17:32:37
+* @Last Modified time: 2019-08-19 17:46:46
 */
 
 export const SERVER = 'http://127.0.0.1:3000'
@@ -22,4 +22,5 @@ export const API_CONFIG = {
     updateCategoriesOrder:       ['/categories/order','put'],
     updateCategoriesIsShow:      ['/categories/isShow','put'],
     addProducts:                 ['/products','post'],
+    getProductsList:             ['/products/list','get'],
 }

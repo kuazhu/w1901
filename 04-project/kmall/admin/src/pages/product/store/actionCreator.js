@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-19 17:31:56
+* @Last Modified time: 2019-08-19 17:46:11
 */
 import api from 'api'
 import { message } from 'antd'
@@ -111,14 +111,14 @@ export const getLevelCategoriesAction = ()=>{
 export const getPageAction = (page)=>{
     return (dispatch,getState)=>{
         dispatch(getPageReqestStartAction())
-        api.getCategoriesList({
+        api.getProductsList({
             page:page
         })
         .then(result=>{
             if(result.code == 0){
                 dispatch(getSetPageAction(result.data))
             }else{
-                message.error('获取分类数据失败,请稍后再试')
+                message.error('获取商品数据失败,请稍后再试')
             }
         })
         .catch(err=>{
