@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-09 15:59:28
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-16 16:37:08
+* @Last Modified time: 2019-08-19 11:29:57
 */
 *{
     margin: 0;
@@ -10,4 +10,7 @@
 }
 .ant-table-content{
     min-height: 600px;
+}
+.ant-upload-picture-card-wrapper{
+    display: block !important;
 }

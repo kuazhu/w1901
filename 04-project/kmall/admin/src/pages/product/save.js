@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 10:58:54
+ * @Last Modified time: 2019-08-19 11:32:43
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -12,6 +12,7 @@ import { Breadcrumb,Form, Select, Input, Button,InputNumber } from 'antd'
 const { Option } = Select
 
 import UploadImage from 'common/upload-image'
+import RichEditor from 'common/rich-editor'
 import { UPLOAD_PRODUCT_IMAGE } from 'api/config.js'
 
 import Layout from 'common/layout'
@@ -84,11 +85,11 @@ class CategoryAdd extends Component {
                         </Form.Item>
                         <Form.Item label="封面图片">
                           <UploadImage  
-                            max={3}
+                            max={1}
                             action={UPLOAD_PRODUCT_IMAGE}
                             getFileList={
                               (fileList)=>{
-                                console.log('1::',fileList)
+                                console.log(fileList)
                               }
                             }
                           />
@@ -97,10 +98,15 @@ class CategoryAdd extends Component {
                           <UploadImage 
                             max={3}
                             action={UPLOAD_PRODUCT_IMAGE}
+                            getFileList={
+                              (fileList)=>{
+                                console.log(fileList)
+                              }
+                            }                            
                           />
                         </Form.Item>
                         <Form.Item label="商品详情">
-                          rich editor
+                          <RichEditor />
                         </Form.Item>                                                                                                                                                        
                         <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
                           <Button type="primary" onClick={this.handleSubmit}>
