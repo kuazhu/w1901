@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 09:14:24
+ * @Last Modified time: 2019-08-19 16:05:18
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -112,7 +112,7 @@ class CategoryList extends Component {
                   <Breadcrumb.Item>商品列表</Breadcrumb.Item>
                 </Breadcrumb>
                 <div style={{marginBottom:16,height:40}} className='claerfix'>
-                    <Link to="/product/add" style={{float:'right'}}>
+                    <Link to="/product/save" style={{float:'right'}}>
                         <Button type="primary">
                             添加商品
                         </Button>

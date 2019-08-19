@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-18 17:49:51
+* @Last Modified time: 2019-08-19 16:29:35
 */
 import api from 'api'
 import { message } from 'antd'
@@ -28,8 +28,31 @@ const setCategoriesAction = (payload)=>({
     payload
 })
 
-export const getAddAction = (values)=>{
+export const setMainImageAction = (payload)=>({
+    type:types.SET_MAIN_IMAGE,
+    payload
+})
+export const setImagesAction = (payload)=>({
+    type:types.SET_IMAGES,
+    payload
+})
+export const setDetailAction = (payload)=>({
+    type:types.SET_DETAIL,
+    payload
+})
+
+
+export const getSaveAction = (values)=>{
     return (dispatch,getState)=>{
+        console.log('values',values)
+        const state = getState().get('product')
+        const mainImage = state.get('mainImage')
+        const images = state.get('images')
+        const detail = state.get('detail')
+        console.log('mainImage',mainImage)
+        console.log('images',images)
+        console.log('detail',detail)
+        /*
         api.addCategories(values)
         .then(result=>{
             if(result.code == 0){
@@ -42,7 +65,8 @@ export const getAddAction = (values)=>{
         })
         .catch(err=>{
             message.error('网络错误,请稍后再试')
-        })              
+        })
+        */              
     }
 }
 export const getLevelCategoriesAction = ()=>{

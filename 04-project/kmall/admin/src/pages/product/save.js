@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 15:47:45
+ * @Last Modified time: 2019-08-19 16:26:33
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -19,7 +19,7 @@ import Layout from 'common/layout'
 
 import "./index.css"
 
-class CategoryAdd extends Component {
+class ProductSave extends Component {
 
     constructor(props){
         super(props)
@@ -32,13 +32,20 @@ class CategoryAdd extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.handleAdd(values)
+                //this.props.handleAdd(values)
+                // console.log(values)
+                this.props.handleSave(values)
             }
         })
     }    
     render() {
         const { getFieldDecorator } = this.props.form
-        const {categories} = this.props
+        const {
+          categories,
+          handleMainImage,
+          handleImages,
+          handleDetail
+        } = this.props
         return (
             <Layout>
                  <Breadcrumb style={{ margin: '16px 0' }}>
@@ -53,7 +60,7 @@ class CategoryAdd extends Component {
                             rules: [{ required: true, message: '请选择商品分类' }],
                           })(
                             <Select
-                              placeholder="请选择父级分类"
+                              placeholder="请选择商品分类"
                             >
                               {
                                 categories.map((category)=>{
@@ -76,31 +83,31 @@ class CategoryAdd extends Component {
                         <Form.Item label="商品价格">
                           {getFieldDecorator('price', {
                             rules: [{ required: true, message: '请输入商品价格' }],
-                          })(<InputNumber />)}
+                          })(<InputNumber min={0} />)}
                         </Form.Item>
                         <Form.Item label="商品库存">
                           {getFieldDecorator('stock', {
                             rules: [{ required: true, message: '请输入商品价格' }],
-                          })(<InputNumber />)}
+                          })(<InputNumber min={0} />)}
                         </Form.Item>
-                        <Form.Item label="封面图片">
+                        <Form.Item label="封面图片" required={true}>
                           <UploadImage  
                             max={1}
                             action={UPLOAD_PRODUCT_IMAGE}
                             getFileList={
                               (fileList)=>{
-                                console.log(fileList)
+                                handleMainImage(fileList)
                               }
                             }
                           />
                         </Form.Item>
-                        <Form.Item label="商品图片">
+                        <Form.Item label="商品图片" required={true}>
                           <UploadImage 
                             max={3}
                             action={UPLOAD_PRODUCT_IMAGE}
                             getFileList={
                               (fileList)=>{
-                                console.log(fileList)
+                                handleImages(fileList)
                               }
                             }                            
                           />
@@ -110,7 +117,7 @@ class CategoryAdd extends Component {
                             url={UPLOAD_PRODUCT_DETAIL_IMAGES}
                             getValues={
                               (values)=>{
-                                console.log(values)
+                                handleDetail(values)
                               }
                             }
                           />
@@ -127,20 +134,31 @@ class CategoryAdd extends Component {
     }
 }
 
-const WrappedCategoryAdd = Form.create({ name: 'category' })(CategoryAdd)
+const WrappedProductSave = Form.create({ name: 'product' })(ProductSave)
 
 //映射属性到组件
-const mapStateToProps = (state) => ({
-    categories:state.get('category').get('categories')
-})
+const mapStateToProps = (state) => {
+    return {
+      categories:state.get('product').get('categories')
+    }
+}
 //映射方法到组件
 const mapDispatchToProps = (dispatch) => ({
-    handleAdd:(values)=>{
-        dispatch(actionCreator.getAddAction(values))
+    handleMainImage:(fileList)=>{
+      dispatch(actionCreator.setMainImageAction(fileList))
+    },
+    handleImages:(fileList)=>{
+      dispatch(actionCreator.setImagesAction(fileList))
+    },
+    handleDetail:(values)=>{
+      dispatch(actionCreator.setDetailAction(values))
+    },          
+    handleSave:(values)=>{
+        dispatch(actionCreator.getSaveAction(values))
     },
     getLevelCategories:()=>{
         dispatch(actionCreator.getLevelCategoriesAction())
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(WrappedCategoryAdd)
+export default connect(mapStateToProps, mapDispatchToProps)(WrappedProductSave)

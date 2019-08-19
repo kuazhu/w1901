@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 10:29:05
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-18 11:19:23
+* @Last Modified time: 2019-08-19 16:22:43
 */
 
 import * as types  from './actionTypes.js'
@@ -15,7 +15,11 @@ const defaultState = fromJS({
     list:[],
     current:1,
     total:0,
-    pageSize:0    
+    pageSize:0,
+
+    mainImage:'',
+    images:'',
+    detail:''    
 })
 
 export default (state=defaultState,action)=>{
@@ -35,6 +39,15 @@ export default (state=defaultState,action)=>{
     }
     if(action.type == types.SET_CATEGORIES){
         return state.set('categories',fromJS(action.payload))
-    }     
+    }
+    if(action.type == types.SET_MAIN_IMAGE){
+        return state.set('mainImage',action.payload)
+    }
+    if(action.type == types.SET_IMAGES){
+        return state.set('images',action.payload)
+    }
+    if(action.type == types.SET_DETAIL){
+        return state.set('detail',action.payload)
+    }    
     return state
 }
