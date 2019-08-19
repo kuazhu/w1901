@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 09:36:13
+ * @Last Modified time: 2019-08-19 10:16:46
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -10,6 +10,10 @@ import { actionCreator } from './store'
 
 import { Breadcrumb,Form, Select, Input, Button,InputNumber } from 'antd'
 const { Option } = Select
+
+import UploadImage from 'common/upload-image'
+import { UPLOAD_PRODUCT_IMAGE } from 'api/config.js'
+
 import Layout from 'common/layout'
 
 import "./index.css"
@@ -79,10 +83,16 @@ class CategoryAdd extends Component {
                           })(<InputNumber />)}
                         </Form.Item>
                         <Form.Item label="封面图片">
-                          upload img
+                          <UploadImage  
+                            max={1}
+                            action={UPLOAD_PRODUCT_IMAGE}
+                          />
                         </Form.Item>
                         <Form.Item label="商品图片">
-                          upload img
+                          <UploadImage 
+                            max={3}
+                            action={UPLOAD_PRODUCT_IMAGE}
+                          />
                         </Form.Item>
                         <Form.Item label="商品详情">
                           rich editor
