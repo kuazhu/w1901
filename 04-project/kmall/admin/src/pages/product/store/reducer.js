@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 10:29:05
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-19 16:22:43
+* @Last Modified time: 2019-08-19 17:15:31
 */
 
 import * as types  from './actionTypes.js'
@@ -19,7 +19,11 @@ const defaultState = fromJS({
 
     mainImage:'',
     images:'',
-    detail:''    
+    detail:'',
+    mainImageValidateStatus:'',    
+    mainImageHelp:'', 
+    imagesValidateStatus:'',    
+    imagesHelp:'',         
 })
 
 export default (state=defaultState,action)=>{
@@ -41,13 +45,33 @@ export default (state=defaultState,action)=>{
         return state.set('categories',fromJS(action.payload))
     }
     if(action.type == types.SET_MAIN_IMAGE){
-        return state.set('mainImage',action.payload)
+        return state.merge({
+            'mainImage':action.payload,
+            mainImageValidateStatus:'',    
+            mainImageHelp:'',              
+        })
     }
     if(action.type == types.SET_IMAGES){
-        return state.set('images',action.payload)
+        return state.merge({
+            'images':action.payload,
+            imagesValidateStatus:'',    
+            imagesHelp:'',              
+        })
     }
     if(action.type == types.SET_DETAIL){
         return state.set('detail',action.payload)
-    }    
+    }
+    if(action.type == types.SET_MAIN_IMAGE_ERROR){
+        return state.merge({
+            mainImageValidateStatus:'error',    
+            mainImageHelp:'请上传封面图片',             
+        })
+    }
+    if(action.type == types.SET_IMAGES_ERROR){
+        return state.merge({
+            imagesValidateStatus:'error',    
+            imagesHelp:'请上传商品图片',             
+        })
+    }         
     return state
 }

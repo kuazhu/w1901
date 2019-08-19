@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-19 16:29:35
+* @Last Modified time: 2019-08-19 17:12:00
 */
 import api from 'api'
 import { message } from 'antd'
@@ -27,7 +27,12 @@ const setCategoriesAction = (payload)=>({
     type:types.SET_CATEGORIES,
     payload
 })
-
+const setMainImageErrorAction = ()=>({
+    type:types.SET_MAIN_IMAGE_ERROR,
+})
+const setImagesErrorAction = ()=>({
+    type:types.SET_IMAGES_ERROR,
+})
 export const setMainImageAction = (payload)=>({
     type:types.SET_MAIN_IMAGE,
     payload
@@ -42,13 +47,21 @@ export const setDetailAction = (payload)=>({
 })
 
 
-export const getSaveAction = (values)=>{
+export const getSaveAction = (err,values)=>{
     return (dispatch,getState)=>{
         console.log('values',values)
         const state = getState().get('product')
         const mainImage = state.get('mainImage')
         const images = state.get('images')
         const detail = state.get('detail')
+
+        if(!mainImage){
+            dispatch(setMainImageErrorAction())
+        }
+        if(!images){
+            dispatch(setImagesErrorAction())
+        }
+
         console.log('mainImage',mainImage)
         console.log('images',images)
         console.log('detail',detail)

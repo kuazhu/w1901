@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 16:26:33
+ * @Last Modified time: 2019-08-19 17:13:06
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -31,17 +31,17 @@ class ProductSave extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-            if (!err) {
-                //this.props.handleAdd(values)
-                // console.log(values)
-                this.props.handleSave(values)
-            }
+          this.props.handleSave(err,values)
         })
     }    
     render() {
         const { getFieldDecorator } = this.props.form
         const {
           categories,
+          mainImageValidateStatus,
+          mainImageHelp,
+          imagesValidateStatus,
+          imagesHelp,
           handleMainImage,
           handleImages,
           handleDetail
@@ -90,7 +90,12 @@ class ProductSave extends Component {
                             rules: [{ required: true, message: '请输入商品价格' }],
                           })(<InputNumber min={0} />)}
                         </Form.Item>
-                        <Form.Item label="封面图片" required={true}>
+                        <Form.Item 
+                          label="封面图片" 
+                          required={true}
+                          validateStatus={mainImageValidateStatus}
+                          help={mainImageHelp}
+                        >
                           <UploadImage  
                             max={1}
                             action={UPLOAD_PRODUCT_IMAGE}
@@ -101,7 +106,12 @@ class ProductSave extends Component {
                             }
                           />
                         </Form.Item>
-                        <Form.Item label="商品图片" required={true}>
+                        <Form.Item 
+                          label="商品图片" 
+                          required={true}
+                          validateStatus={imagesValidateStatus}
+                          help={imagesHelp}
+                        >
                           <UploadImage 
                             max={3}
                             action={UPLOAD_PRODUCT_IMAGE}
@@ -139,7 +149,11 @@ const WrappedProductSave = Form.create({ name: 'product' })(ProductSave)
 //映射属性到组件
 const mapStateToProps = (state) => {
     return {
-      categories:state.get('product').get('categories')
+      categories:state.get('product').get('categories'),
+      mainImageValidateStatus:state.get('product').get('mainImageValidateStatus'),    
+      mainImageHelp:state.get('product').get('mainImageHelp'), 
+      imagesValidateStatus:state.get('product').get('imagesValidateStatus'),   
+      imagesHelp:state.get('product').get('imagesHelp'),       
     }
 }
 //映射方法到组件
@@ -153,8 +167,8 @@ const mapDispatchToProps = (dispatch) => ({
     handleDetail:(values)=>{
       dispatch(actionCreator.setDetailAction(values))
     },          
-    handleSave:(values)=>{
-        dispatch(actionCreator.getSaveAction(values))
+    handleSave:(err,values)=>{
+        dispatch(actionCreator.getSaveAction(err,values))
     },
     getLevelCategories:()=>{
         dispatch(actionCreator.getLevelCategoriesAction())
