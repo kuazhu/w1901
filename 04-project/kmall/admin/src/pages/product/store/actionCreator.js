@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-19 09:30:28
+* @Last Modified time: 2019-08-18 17:49:51
 */
 import api from 'api'
 import { message } from 'antd'
@@ -48,7 +48,7 @@ export const getAddAction = (values)=>{
 export const getLevelCategoriesAction = ()=>{
     return (dispatch,getState)=>{
         api.getlevelCategories({
-            level:2
+            level:3
         })
         .then(result=>{
             if(result.code == 0){
