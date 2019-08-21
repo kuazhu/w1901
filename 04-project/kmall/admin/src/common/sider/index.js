@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 09:04:35
+ * @Last Modified time: 2019-08-21 17:14:43
  */
 import React, { Component } from 'react'
 import { NavLink } from "react-router-dom"
@@ -31,7 +31,7 @@ class AdminSider extends Component {
                       <NavLink to="/category"><Icon type="unordered-list" />分类管理</NavLink>
                     </Menu.Item>
                     <Menu.Item key="4">
-                      <NavLink to="/product"><Icon type="unordered-list" />商品管理</NavLink>
+                      <NavLink to="/product"><Icon type="shopping" />商品管理</NavLink>
                     </Menu.Item>                                          
                 </Menu>
               </Sider>

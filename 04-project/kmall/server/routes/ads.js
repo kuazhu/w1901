@@ -1,8 +1,8 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
-* @Last Modified by:   Tom
-* @Last Modified time: 2019-07-11 15:51:16
+* @Last Modified by:   TomChen
+* @Last Modified time: 2019-08-21 17:12:05
 */
 const Router = require('express').Router;
 const AdModel = require('../models/ad.js');
@@ -150,7 +150,7 @@ router.post("/",(req,res)=>{
 	})
 })
 
-//编辑商品
+//编辑广告
 router.put("/",(req,res)=>{
 	const {id,name,link,image,position}  = req.body;
 	const update = {

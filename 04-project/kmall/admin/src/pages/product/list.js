@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-21 16:48:19
+ * @Last Modified time: 2019-08-21 17:10:22
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -43,6 +43,15 @@ class ProductList extends Component {
                 title: '商品名称',
                 dataIndex: 'name',
                 key: 'name',
+                render:(name)=>{
+                    if(keyword){
+                        const reg = new RegExp('('+keyword+')','ig')
+                        const html =  name.replace(reg,'<b style="color:red;">$1</b>')
+                        return <span dangerouslySetInnerHTML={{__html:html}} ></span>
+                    }else{
+                       return name 
+                    } 
+                }
             },
             {
                 title: '是否首页显示',
