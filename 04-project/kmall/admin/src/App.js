@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 09:05:46
+ * @Last Modified time: 2019-08-21 11:15:48
  */
 import React, { Component } from 'react'
 import './App.css'
@@ -39,7 +39,7 @@ class App extends Component {
             }}
         />)
         return (
-            <Router>
+            <Router forceRefresh={true}>
                 <div className="App">
                     <Switch>
                         <ProtectRoute exact path="/" component={Home} />

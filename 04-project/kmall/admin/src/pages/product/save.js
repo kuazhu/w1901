@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-21 10:45:11
+ * @Last Modified time: 2019-08-21 11:26:48
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -60,6 +60,22 @@ class ProductSave extends Component {
           handleImages,
           handleDetail
         } = this.props
+        const mainImageFileList = []
+        let imagesFileList = []
+        if(mainImage){
+          mainImageFileList.push({
+            uid: '0',
+            status: 'done',
+            url: mainImage
+          })
+        }
+        if(images){
+          imagesFileList = images.split(',').map((url,index)=>({
+            uid: index,
+            status: 'done',
+            url: url            
+          }))
+        }
         return (
             <Layout>
                  <Breadcrumb style={{ margin: '16px 0' }}>
@@ -123,6 +139,7 @@ class ProductSave extends Component {
                                 handleMainImage(fileList)
                               }
                             }
+                            fileList={mainImageFileList}
                           />
                         </Form.Item>
                         <Form.Item 
@@ -138,7 +155,8 @@ class ProductSave extends Component {
                               (fileList)=>{
                                 handleImages(fileList)
                               }
-                            }                            
+                            }
+                            fileList={imagesFileList}                            
                           />
                         </Form.Item>
                         <Form.Item label="商品详情">
