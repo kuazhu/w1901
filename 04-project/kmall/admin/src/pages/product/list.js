@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 17:50:44
+ * @Last Modified time: 2019-08-21 09:21:15
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -31,11 +31,11 @@ class CategoryList extends Component {
             total,
             pageSize,
             handlePage,
-            isFetching,
-            handleUpdateName,
-            handleUpdateMobileName,
-            handleUpdateOrder,
-            handleUpdateIsShow 
+            isFetching,            
+            handleUpdateIsShow,
+            handleUpdateStatus,
+            handleUpdateIsHot,
+            handleUpdateOrder, 
         } = this.props
         const columns = [{
                 title: '商品名称',
@@ -47,8 +47,8 @@ class CategoryList extends Component {
                 dataIndex: 'isShow',
                 key: 'isShow',
                 render:(isShow,record)=><Switch 
-                    checkedChildren="显示" 
-                    unCheckedChildren="隐藏" 
+                    checkedChildren="是" 
+                    unCheckedChildren="否" 
                     checked={isShow == '0' ? false : true}
                     onChange={
                         (checked)=>{
@@ -62,12 +62,12 @@ class CategoryList extends Component {
                 dataIndex: 'status',
                 key: 'status',
                 render:(status,record)=><Switch 
-                    checkedChildren="显示" 
-                    unCheckedChildren="隐藏" 
+                    checkedChildren="上架" 
+                    unCheckedChildren="下架" 
                     checked={status == '0' ? false : true}
                     onChange={
                         (checked)=>{
-                            handleUpdateIsShow(record._id,checked ? '1' : '0')
+                            handleUpdateStatus(record._id,checked ? '1' : '0')
                         }
                     } 
                 />
@@ -77,12 +77,12 @@ class CategoryList extends Component {
                 dataIndex: 'isHot',
                 key: 'isHot',
                 render:(isHot,record)=><Switch 
-                    checkedChildren="显示" 
-                    unCheckedChildren="隐藏" 
+                    checkedChildren="是" 
+                    unCheckedChildren="否" 
                     checked={isHot == '0' ? false : true}
                     onChange={
                         (checked)=>{
-                            handleUpdateIsShow(record._id,checked ? '1' : '0')
+                            handleUpdateIsHot(record._id,checked ? '1' : '0')
                         }
                     } 
                 />
@@ -126,6 +126,7 @@ class CategoryList extends Component {
                     <Table 
                         dataSource={dataSource} 
                         columns={columns}
+                        rowKey="_id"
                         pagination={{
                             current:current,
                             total:total,
@@ -163,18 +164,19 @@ const mapDispatchToProps = (dispatch) =>({
     handlePage:(page)=>{
         dispatch(actionCreator.getPageAction(page))
     },
-    handleUpdateName:(id,newName)=>{
-        dispatch(actionCreator.getUpdateNameAction(id,newName))
+    handleUpdateIsShow:(id,newIsShow)=>{
+        dispatch(actionCreator.getUpdateIsShowAction(id,newIsShow))
+    },     
+    handleUpdateStatus:(id,newStatus)=>{
+        dispatch(actionCreator.getUpdateStatusAction(id,newStatus))
     },
-    handleUpdateMobileName:(id,newMobileName)=>{
-        dispatch(actionCreator.getUpdateMobileNameAction(id,newMobileName))
+    handleUpdateIsHot:(id,newIsHot)=>{
+        dispatch(actionCreator.getUpdateIsHotAction(id,newIsHot))
     },
     handleUpdateOrder:(id,newOrder)=>{
         dispatch(actionCreator.getUpdateOrderAction(id,newOrder))
     },
-    handleUpdateIsShow:(id,newIsShow)=>{
-        dispatch(actionCreator.getUpdateUpdateIsShowAction(id,newIsShow))
-    },               
+              
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryList)
