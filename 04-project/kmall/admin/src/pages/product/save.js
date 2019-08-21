@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 17:22:10
+ * @Last Modified time: 2019-08-21 10:08:28
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -24,6 +24,9 @@ class ProductSave extends Component {
     constructor(props){
         super(props)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.state = {
+          productId:this.props.match.params.productId
+        }
     }
     componentDidMount(){
         this.props.getLevelCategories()

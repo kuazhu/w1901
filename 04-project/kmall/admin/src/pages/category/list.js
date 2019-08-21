@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-18 17:51:02
+ * @Last Modified time: 2019-08-21 09:58:48
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -104,7 +104,7 @@ class CategoryList extends Component {
         ]        
         const dataSource = list.toJS()        
         return (
-            <div className="User">
+            <div className="CategoryList">
              <Layout>
                  <Breadcrumb style={{ margin: '16px 0' }}>
                   <Breadcrumb.Item>首页</Breadcrumb.Item>

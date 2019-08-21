@@ -2,11 +2,11 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-21 09:21:15
+ * @Last Modified time: 2019-08-21 10:02:11
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Breadcrumb, Table,Button,Input,InputNumber,Switch } from 'antd'
+import { Breadcrumb, Table,Button,Input,InputNumber,Switch,Divider } from 'antd'
 import moment from 'moment'
 import { 
     Link, 
@@ -17,7 +17,7 @@ import "./index.css"
 import { actionCreator } from './store'
 
 
-class CategoryList extends Component {
+class ProductList extends Component {
     constructor(props) {
         super(props)
     }
@@ -103,12 +103,17 @@ class CategoryList extends Component {
                 />                 
             },
             {
-                title:'操作'
+                title:'操作',
+                render:(text,record)=><span>
+                    <Link to={"/product/save/"+record._id}>修改</Link>
+                    <Divider type="vertical" />
+                    <Link to={"/product/detail/"+record._id}>查看</Link>
+                </span>
             }
         ]        
         const dataSource = list.toJS()        
         return (
-            <div className="User">
+            <div className="ProductList">
              <Layout>
                  <Breadcrumb style={{ margin: '16px 0' }}>
                   <Breadcrumb.Item>首页</Breadcrumb.Item>
@@ -179,4 +184,4 @@ const mapDispatchToProps = (dispatch) =>({
               
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryList)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList)

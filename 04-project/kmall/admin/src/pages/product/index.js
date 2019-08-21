@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-19 16:04:58
+ * @Last Modified time: 2019-08-21 10:05:03
  */
 import React, { Component } from 'react'
 import { 
@@ -22,7 +22,7 @@ class Product extends Component {
     render() {
         return (
            <Switch>
-                <Route path="/product/save" component={ProductSave} />
+                <Route path="/product/save/:productId?" component={ProductSave} />
                 <Route path="/product/" component={ProductList} />
            </Switch> 
         )
