@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-21 10:33:54
+* @Last Modified time: 2019-08-21 15:07:11
 */
 import api from 'api'
 import { message } from 'antd'
@@ -70,8 +70,11 @@ export const getSaveAction = (err,values)=>{
         if(hasErr){
             return
         }
-
-        api.addProducts({
+        let request = api.addProducts
+        if(values.id){
+            request = api.updateProducts
+        }
+        request({
             ...values,
             mainImage,
             images,
@@ -79,7 +82,7 @@ export const getSaveAction = (err,values)=>{
         })
         .then(result=>{
             if(result.code == 0){
-                message.success('添加商品成功',()=>{
+                message.success(result.message,()=>{
                     window.location.href = "/product"
                 })
             }else{

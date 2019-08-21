@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-21 11:51:47
+ * @Last Modified time: 2019-08-21 15:13:27
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -37,6 +37,7 @@ class ProductSave extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
+          values.id = this.state.productId
           this.props.handleSave(err,values)
         })
     }    
@@ -66,14 +67,21 @@ class ProductSave extends Component {
           mainImageFileList.push({
             uid: '0',
             status: 'done',
-            url: mainImage
+            url: mainImage,
+            response:{
+              url:mainImage
+            }
           })
         }
+        console.log('images',images)
         if(images){
           imagesFileList = images.split(',').map((url,index)=>({
             uid: index,
             status: 'done',
-            url: url            
+            url: url, 
+            response:{
+              url:url
+            }                       
           }))
         }
         return (
