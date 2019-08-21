@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-21 09:20:59
+* @Last Modified time: 2019-08-21 10:33:54
 */
 import api from 'api'
 import { message } from 'antd'
@@ -213,6 +213,28 @@ export const getUpdateOrderAction = (id,newOrder)=>{
         .catch(err=>{
             message.error('网络错误,请稍后再试')
         })               
+    }
+}
+
+const setProductDetailAction = (payload)=>({
+    type:types.SET_PRODUCT_DETAIL,
+    payload
+})
+
+export const getProductDetailAction = (productId)=>{
+    return (dispatch,getState)=>{
+        api.getProductDetail({
+            id:productId
+        })
+        .then(result=>{
+            if(result.code == 0){
+                dispatch(setProductDetailAction(result.data))
+            }
+            
+        })
+        .catch(err=>{
+            message.error('网络错误,请稍后再试')
+        })              
     }
 }
 
