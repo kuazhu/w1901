@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-21 17:45:33
+* @Last Modified time: 2019-08-21 17:59:32
 */
 
 const path = require('path')
@@ -18,6 +18,7 @@ module.exports = {
     entry:{
         common:'./src/pages/common/index.js',
         index:'./src/pages/index/index.js',
+        list:'./src/pages/list/index.js',
     },
     //出口
     output: {
@@ -80,8 +81,17 @@ module.exports = {
             template:'./src/views/index.html',//模板文件
             filename:'index.html',//输出的文件名
             hash:true,//给生成的js/css文件添加一个唯一的hash
+            chunks:['common','index']
         }),
-        new MiniCssExtractPlugin({})
+        new htmlWebpackPlugin({
+            template:'./src/views/list.html',//模板文件
+            filename:'list.html',//输出的文件名
+            hash:true,//给生成的js/css文件添加一个唯一的hash
+            chunks:['common','list']
+        }),        
+        new MiniCssExtractPlugin({
+            filename: 'css/[name]-[hash]-bundle.css'
+        })
     ],
     devServer: {
         contentBase: './dist',//内容的目录
