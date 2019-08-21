@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-21 15:13:27
+ * @Last Modified time: 2019-08-21 15:38:20
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -73,7 +73,6 @@ class ProductSave extends Component {
             }
           })
         }
-        console.log('images',images)
         if(images){
           imagesFileList = images.split(',').map((url,index)=>({
             uid: index,
@@ -89,7 +88,9 @@ class ProductSave extends Component {
                  <Breadcrumb style={{ margin: '16px 0' }}>
                   <Breadcrumb.Item>首页</Breadcrumb.Item>
                   <Breadcrumb.Item>商品管理</Breadcrumb.Item>
-                  <Breadcrumb.Item>添加商品</Breadcrumb.Item>
+                  <Breadcrumb.Item>
+                    {this.state.productId ? "修改商品" : "添加商品"}
+                  </Breadcrumb.Item>
                 </Breadcrumb>
                 <div className="content">
                     <Form labelCol={{ span: 5 }} wrapperCol={{ span: 12 }} >

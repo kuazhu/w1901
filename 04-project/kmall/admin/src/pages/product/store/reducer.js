@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 10:29:05
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-21 10:45:52
+* @Last Modified time: 2019-08-21 15:43:45
 */
 
 import * as types  from './actionTypes.js'
@@ -83,6 +83,7 @@ export default (state=defaultState,action)=>{
     if(action.type == types.SET_PRODUCT_DETAIL){
         return state.merge({
             category:action.payload.category._id,
+            categoryName:action.payload.category.name,
             name:action.payload.name,
             description:action.payload.description,
             price:action.payload.price,
