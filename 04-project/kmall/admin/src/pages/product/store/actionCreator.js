@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-12 15:11:47
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-21 15:07:11
+* @Last Modified time: 2019-08-21 16:42:47
 */
 import api from 'api'
 import { message } from 'antd'
@@ -111,12 +111,16 @@ export const getLevelCategoriesAction = ()=>{
         })              
     }
 }
-export const getPageAction = (page)=>{
+export const getPageAction = (page,keyword)=>{
     return (dispatch,getState)=>{
         dispatch(getPageReqestStartAction())
-        api.getProductsList({
+        const options = {
             page:page
-        })
+        }
+        if(keyword){
+            options.keyword = keyword
+        }
+        api.getProductsList(options)
         .then(result=>{
             if(result.code == 0){
                 dispatch(getSetPageAction(result.data))

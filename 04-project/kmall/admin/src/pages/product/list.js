@@ -2,11 +2,12 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-21 10:02:11
+ * @Last Modified time: 2019-08-21 16:48:19
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Breadcrumb, Table,Button,Input,InputNumber,Switch,Divider } from 'antd'
+const { Search } = Input
 import moment from 'moment'
 import { 
     Link, 
@@ -31,7 +32,8 @@ class ProductList extends Component {
             total,
             pageSize,
             handlePage,
-            isFetching,            
+            isFetching,
+            keyword,            
             handleUpdateIsShow,
             handleUpdateStatus,
             handleUpdateIsHot,
@@ -121,6 +123,14 @@ class ProductList extends Component {
                   <Breadcrumb.Item>商品列表</Breadcrumb.Item>
                 </Breadcrumb>
                 <div style={{marginBottom:16,height:40}} className='claerfix'>
+                    <Search 
+                        placeholder="请输入商品名称关键字" 
+                        onSearch={
+                            value => handlePage(1,value)
+                        } 
+                        enterButton 
+                        style={{ width: 300 }}
+                    />
                     <Link to="/product/save" style={{float:'right'}}>
                         <Button type="primary">
                             添加商品
@@ -139,7 +149,7 @@ class ProductList extends Component {
                         }}
                         onChange={
                             (page)=>{
-                                handlePage(page.current)
+                                handlePage(page.current,keyword)
                             }
                         }
                         loading={
@@ -162,12 +172,13 @@ const mapStateToProps = (state) => ({
     current:state.get('product').get('current'),
     total:state.get('product').get('total'),
     pageSize:state.get('product').get('pageSize'), 
-    isFetching:state.get('product').get('isFetching'),  
+    isFetching:state.get('product').get('isFetching'), 
+    keyword: state.get('product').get('keyword'), 
 })
 //映射方法到组件
 const mapDispatchToProps = (dispatch) =>({
-    handlePage:(page)=>{
-        dispatch(actionCreator.getPageAction(page))
+    handlePage:(page,keyword)=>{
+        dispatch(actionCreator.getPageAction(page,keyword))
     },
     handleUpdateIsShow:(id,newIsShow)=>{
         dispatch(actionCreator.getUpdateIsShowAction(id,newIsShow))
