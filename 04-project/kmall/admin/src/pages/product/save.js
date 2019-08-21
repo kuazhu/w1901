@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-21 11:26:48
+ * @Last Modified time: 2019-08-21 11:51:47
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -167,6 +167,7 @@ class ProductSave extends Component {
                                 handleDetail(values)
                               }
                             }
+                            values={detail}
                           />
                         </Form.Item>                                                                                                                                                        
                         <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
