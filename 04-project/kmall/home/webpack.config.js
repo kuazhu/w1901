@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-21 17:59:32
+* @Last Modified time: 2019-08-22 09:52:07
 */
 
 const path = require('path')
@@ -10,6 +10,13 @@ const path = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+
+const getHtmlConfig = (name)=>({
+    template:'./src/views/'+name+'.html',//模板文件
+    filename:name+'.html',//输出的文件名
+    hash:true,//给生成的js/css文件添加一个唯一的hash
+    chunks:['common',name]
+})
 
 module.exports = {
     //指定环境
@@ -34,6 +41,7 @@ module.exports = {
             util:path.resolve(__dirname,'./src/util'),
             common:path.resolve(__dirname,'./src/common'),
             api:path.resolve(__dirname,'./src/api'),
+            node_modules:path.resolve(__dirname,'./node_modules'),
         }
     },    
     module: {
@@ -52,12 +60,13 @@ module.exports = {
           },       
         //处理图片
             {
-                test: /\.(png|jpg|gif)$/i,
+                test: /\.(png|jpg|gif|eot|svg|ttf|woff2|woff)\??.*$/i,
                 use: [
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 400
+                            limit: 400,
+                            name:'resource/[name].[ext]'
                         }
                     }
                 ]
@@ -77,18 +86,8 @@ module.exports = {
     },
     plugins:[
         new CleanWebpackPlugin(),
-        new htmlWebpackPlugin({
-            template:'./src/views/index.html',//模板文件
-            filename:'index.html',//输出的文件名
-            hash:true,//给生成的js/css文件添加一个唯一的hash
-            chunks:['common','index']
-        }),
-        new htmlWebpackPlugin({
-            template:'./src/views/list.html',//模板文件
-            filename:'list.html',//输出的文件名
-            hash:true,//给生成的js/css文件添加一个唯一的hash
-            chunks:['common','list']
-        }),        
+        new htmlWebpackPlugin(getHtmlConfig('index')),
+        new htmlWebpackPlugin(getHtmlConfig('list')),        
         new MiniCssExtractPlugin({
             filename: 'css/[name]-[hash]-bundle.css'
         })
