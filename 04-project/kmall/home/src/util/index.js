@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-22 15:11:38
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-22 17:28:42
+* @Last Modified time: 2019-08-22 17:55:57
 */
 module.exports = {
     validate:function(value,type){
@@ -17,7 +17,14 @@ module.exports = {
         //密码格式验证
         if(type == 'password'){
             return /^\w{3,6}$/.test(value)
-        }        
+        }
+        //电话号码格式验证
+        if(type == 'phone'){
+            return /^1[3589]\d{9}$/.test(value)
+        }
+       if(type == 'email'){
+            return /^\w+@\w+\.\w{2,6}$/.test(value)
+        }                            
     },
     showErrorMsg:function(msg){
         alert(msg)
