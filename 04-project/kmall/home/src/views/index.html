@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>Kmall 电商平台</title>
+    <%= require('html-loader!./common/meta.html') %>
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
 </head>
 <body>
     <i class="fa fa-user"></i>

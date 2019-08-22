@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-22 09:52:07
+* @Last Modified time: 2019-08-22 10:47:42
 */
 
 const path = require('path')
@@ -11,9 +11,10 @@ const htmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
-const getHtmlConfig = (name)=>({
+const getHtmlConfig = (name,title)=>({
     template:'./src/views/'+name+'.html',//模板文件
     filename:name+'.html',//输出的文件名
+    title:title,
     hash:true,//给生成的js/css文件添加一个唯一的hash
     chunks:['common',name]
 })
@@ -86,8 +87,8 @@ module.exports = {
     },
     plugins:[
         new CleanWebpackPlugin(),
-        new htmlWebpackPlugin(getHtmlConfig('index')),
-        new htmlWebpackPlugin(getHtmlConfig('list')),        
+        new htmlWebpackPlugin(getHtmlConfig('index','首页')),
+        new htmlWebpackPlugin(getHtmlConfig('list','列表页')),        
         new MiniCssExtractPlugin({
             filename: 'css/[name]-[hash]-bundle.css'
         })
