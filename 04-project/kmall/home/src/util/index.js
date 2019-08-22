@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-22 15:11:38
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-22 15:17:51
+* @Last Modified time: 2019-08-22 17:28:42
 */
 module.exports = {
     validate:function(value,type){
@@ -18,5 +18,14 @@ module.exports = {
         if(type == 'password'){
             return /^\w{3,6}$/.test(value)
         }        
+    },
+    showErrorMsg:function(msg){
+        alert(msg)
+    },
+    showSuccessMsg:function(msg){
+        alert(msg)
+    },
+    goLogin:function(){
+        window.location.href = '/user-login.html'
     }
 }

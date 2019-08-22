@@ -2,10 +2,10 @@
 * @Author: TomChen
 * @Date:   2019-08-22 16:20:59
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-22 16:38:11
+* @Last Modified time: 2019-08-22 17:29:11
 */
 var { API_CONFIG } = require ('./config.js')
-
+var _util = require('util')
 const getApiObj = (apiConfig)=>{
     const apiObj = {}
 
@@ -42,7 +42,7 @@ const request = (options)=>{
                 options.error && options.error(result.message)
             }
             else if(result.code == 10){
-                window.location.href = '/user-login.html'
+                _util.goLogin()
             }
         },
         error:function(err){
