@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-22 11:25:10
+* @Last Modified time: 2019-08-22 15:45:05
 */
 
 const path = require('path')
@@ -97,7 +97,10 @@ module.exports = {
     ],
     devServer: {
         contentBase: './dist',//内容的目录
-        port:3001,//指定服务端口
-        historyApiFallback:true//让h5路由不向后端发送请求
+        port:3002,//指定服务端口
+        proxy: [{
+          context: ['/sessions'],
+          target: 'http://127.0.0.1:3000',
+        }]
     },                
 }
