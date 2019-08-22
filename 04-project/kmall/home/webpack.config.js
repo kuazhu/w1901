@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-22 10:47:42
+* @Last Modified time: 2019-08-22 11:25:10
 */
 
 const path = require('path')
@@ -24,9 +24,10 @@ module.exports = {
     mode:'development',
     //多入口
     entry:{
-        common:'./src/pages/common/index.js',
-        index:'./src/pages/index/index.js',
-        list:'./src/pages/list/index.js',
+        'common':'./src/pages/common/index.js',
+        'index':'./src/pages/index/index.js',
+        'list':'./src/pages/list/index.js',
+        'user-login':'./src/pages/user-login/index.js',
     },
     //出口
     output: {
@@ -89,6 +90,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new htmlWebpackPlugin(getHtmlConfig('index','首页')),
         new htmlWebpackPlugin(getHtmlConfig('list','列表页')),        
+        new htmlWebpackPlugin(getHtmlConfig('user-login','用户登录')),        
         new MiniCssExtractPlugin({
             filename: 'css/[name]-[hash]-bundle.css'
         })
