@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-09 15:14:36
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-21 11:15:48
+ * @Last Modified time: 2019-08-22 21:54:44
  */
 import React, { Component } from 'react'
 import './App.css'
@@ -20,6 +20,7 @@ import Home from 'pages/home'
 import User from 'pages/user'
 import Category from 'pages/category'
 import Product from 'pages/product'
+import Ad from 'pages/ad'
 import Err from 'common/err'
 
 import { getUsername } from 'util'
@@ -46,6 +47,7 @@ class App extends Component {
                         <ProtectRoute  path="/user" component={User}  />
                         <ProtectRoute  path="/category" component={Category}  />
                         <ProtectRoute  path="/product" component={Product}  />
+                        <ProtectRoute  path="/ad" component={Ad}  />
                         <LoginRoute path="/login" component={Login} />
                         <Route component={Err} />
                     </Switch>
