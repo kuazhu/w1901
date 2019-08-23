@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-23 16:42:58
+* @Last Modified time: 2019-08-23 17:59:04
 */
 import Swiper from 'swiper'
 require('pages/common/nav')
@@ -14,12 +14,15 @@ var _util = require('util')
 
 require('./index.css')
 
-var categoriesTpl = require('./categoriesTpl.tpl')
+var categoriesTpl = require('./categories.tpl')
+var swiperTpl = require('./swiper.tpl')
+var floorTpl = require('./floor.tpl')
 
 var page = {
     init:function(){
         this.loadHomeCategories()
         this.loadSwiper()
+        this.loadFloor()
     },
     loadHomeCategories:function(){
         api.getHomeCategories({
@@ -32,20 +35,41 @@ var page = {
         })
     },
     loadSwiper(){
-        var mySwiper = new Swiper ('.swiper-container', {
-            loop: true, // 循环模式选项
-            autoplay:true,
-            // 如果需要分页器
-            pagination: {
-              el: '.swiper-pagination',
-              clickable:true
+        api.getPositionAds({
+            data:{
+                position:1
             },
-            // 如果需要前进后退按钮
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            },
+            success:function(data){
+                var html = _util.render(swiperTpl,{
+                    slides:data
+                })
+                $('.swiper-container .swiper-wrapper').html(html)
+                var mySwiper = new Swiper ('.swiper-container', {
+                    loop: true, // 循环模式选项
+                    autoplay:true,
+                    // 如果需要分页器
+                    pagination: {
+                      el: '.swiper-pagination',
+                      clickable:true
+                    },
+                    // 如果需要前进后退按钮
+                    navigation: {
+                      nextEl: '.swiper-button-next',
+                      prevEl: '.swiper-button-prev',
+                    },
+                })                
+            }
         }) 
+    },
+    loadFloor(){
+        api.getFloors({
+            success:function(floors){
+                var html = _util.render(floorTpl,{
+                    floors:floors
+                })
+                $('.floor-wrap').html(html)
+            }
+        })
     }
 }
 
