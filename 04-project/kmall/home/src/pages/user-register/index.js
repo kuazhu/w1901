@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-21 17:42:33
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-22 17:49:44
+ * @Last Modified time: 2019-08-23 09:11:24
  */
 require('pages/common/logo')
 require('pages/common/footer')
@@ -33,6 +33,28 @@ var page = {
     },
     bindEvent: function() {
         var _this = this
+        
+        $('[name="username"]').on('blur',function(){
+            var username = $(this).val()
+            if (!_util.validate(username, 'require')) {
+                return;
+            }
+            if (!_util.validate(username, 'username')) {
+                return;
+            }            
+            api.checkUsername({
+                data:{
+                    username:username,
+                },
+                success:function(){
+                    formErr.hide()
+                },
+                error:function(msg){
+                    formErr.show(msg)
+                }                
+            })
+        })
+
         $('#btn-submit').on('click', function() {
             _this.submit()
         })
