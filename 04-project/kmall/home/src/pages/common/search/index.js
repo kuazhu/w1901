@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-21 17:42:33
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-23 10:36:42
+ * @Last Modified time: 2019-08-23 15:47:03
  */
 
 require('./index.css')
@@ -16,7 +16,7 @@ var page = {
         $('#btn-search').on('click', function() {
             _this.submit()
         })
-        $('input').on('keyup', function(ev) {
+        $('#search-input').on('keyup', function(ev) {
             if (ev.keyCode == 13) {
                 _this.submit()
             }
