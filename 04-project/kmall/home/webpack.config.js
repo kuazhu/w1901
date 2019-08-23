@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-23 09:37:51
+* @Last Modified time: 2019-08-23 11:01:25
 */
 
 const path = require('path')
@@ -30,6 +30,7 @@ module.exports = {
         'user-login'         :'./src/pages/user-login/index.js',
         'user-register'      :'./src/pages/user-register/index.js',
         'result'             :'./src/pages/result/index.js',
+        'user-center'        :'./src/pages/user-center/index.js',
     },
     //出口
     output: {
@@ -95,6 +96,7 @@ module.exports = {
         new htmlWebpackPlugin(getHtmlConfig('user-login','用户登录')),        
         new htmlWebpackPlugin(getHtmlConfig('user-register','用户注册')),        
         new htmlWebpackPlugin(getHtmlConfig('result','结果提示页')),        
+        new htmlWebpackPlugin(getHtmlConfig('user-center','用户中心')),        
         new MiniCssExtractPlugin({
             filename: 'css/[name]-[hash]-bundle.css'
         })
