@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-21 17:42:33
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-22 16:40:00
+ * @Last Modified time: 2019-08-23 15:22:54
  */
 require('pages/common/logo')
 require('pages/common/footer')
@@ -75,7 +75,7 @@ var page = {
             api.login({
                 data: formData,
                 success:function(data) {
-                    window.location.href = "/"
+                    window.location.href = _util.getParamFromUrl('redirect') || "/"
                 },
                 error:function(msg){
                     formErr.show(msg) 
