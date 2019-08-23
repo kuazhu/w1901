@@ -1,13 +1,9 @@
 /*
 * @Author: TomChen
-* @Date:   2019-08-21 17:54:02
+* @Date:   2019-08-23 11:11:57
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-23 11:12:46
+* @Last Modified time: 2019-08-23 11:12:55
 */
-.user-page-wrap{
-    margin-bottom: 20px;
-}
-/*
 .side{
     width: 150px;
     min-height: 600px;
@@ -38,20 +34,3 @@
     box-sizing: border-box;
     padding: 20px;
 }
-*/
-
-.form-item{
-    height: 30px;
-    line-height: 30px;
-    font-size: 14px;
-}
-.label-item{
-    display: inline-block;
-    width: 100px;
-    text-align: right;
-}
-.content-item{
-    display: inline-block;
-    width: 400px;
-    padding-left: 40px;
-} 
