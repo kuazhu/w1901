@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-21 17:42:33
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-23 09:42:35
+ * @Last Modified time: 2019-08-23 09:58:18
  */
 require('pages/common/logo')
 require('pages/common/footer')
@@ -82,7 +82,7 @@ var page = {
             api.register({
                 data: formData,
                 success:function(data) {
-                    window.location.href = './result.html'
+                    window.location.href = './result.html?type=register'
                 },
                 error:function(msg){
                     formErr.show(msg) 

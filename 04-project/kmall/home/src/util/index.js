@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-22 15:11:38
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-22 17:55:57
+* @Last Modified time: 2019-08-23 10:10:41
 */
 module.exports = {
     validate:function(value,type){
@@ -22,7 +22,7 @@ module.exports = {
         if(type == 'phone'){
             return /^1[3589]\d{9}$/.test(value)
         }
-       if(type == 'email'){
+        if(type == 'email'){
             return /^\w+@\w+\.\w{2,6}$/.test(value)
         }                            
     },
@@ -34,5 +34,15 @@ module.exports = {
     },
     goLogin:function(){
         window.location.href = '/user-login.html'
+    },
+    getParamFromUrl:function(key){
+        var query = window.location.search.substr(1)
+        //type=register
+        //name=tom&type=register
+        //type=register&age=111
+        //name=tom&type=register&age=111
+        var reg = new RegExp('(^|&)'+key+'='+'([^&]*)(&|$)')
+        var result = query.match(reg)
+        return result ? decodeURIComponent(result[2]) : null
     }
 }
