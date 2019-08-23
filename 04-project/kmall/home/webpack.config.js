@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-23 11:01:25
+* @Last Modified time: 2019-08-23 11:42:00
 */
 
 const path = require('path')
@@ -86,7 +86,14 @@ module.exports = {
                         presets: ['env','es2015','stage-3'],
                     },
                 }
-            },           
+            },
+        //tpl
+            {
+                test:/\.tpl$/,
+                use: {
+                    loader: 'html-loader',
+                }
+            },                        
         ]
     },
     plugins:[

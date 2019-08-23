@@ -2,8 +2,10 @@
 * @Author: TomChen
 * @Date:   2019-08-22 15:11:38
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-23 10:10:41
+* @Last Modified time: 2019-08-23 11:48:28
 */
+var Hogan = require('hogan.js')
+
 module.exports = {
     validate:function(value,type){
         //非空验证
@@ -44,5 +46,10 @@ module.exports = {
         var reg = new RegExp('(^|&)'+key+'='+'([^&]*)(&|$)')
         var result = query.match(reg)
         return result ? decodeURIComponent(result[2]) : null
+    },
+    render:function(tpl,data){
+        var template = Hogan.compile(tpl)
+        var html = template.render(data)
+        return html
     }
 }
