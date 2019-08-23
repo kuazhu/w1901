@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "font-awesome": "^4.7.0",
-    "hogan.js": "^3.0.2"
+    "hogan.js": "^3.0.2",
+    "swiper": "^4.5.0"
   }
 }
