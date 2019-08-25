@@ -1,8 +1,8 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
-* @Last Modified by:   Tom
-* @Last Modified time: 2019-07-11 16:20:41
+* @Last Modified by:   TomChen
+* @Last Modified time: 2019-08-25 10:09:18
 */
 const Router = require('express').Router;
 const CategoryModel = require('../models/category.js');
@@ -14,6 +14,7 @@ const router = Router();
 //获取分类数组数据
 router.get("/homeCategories",(req,res)=>{
 	CategoryModel.find({level:1,isShow:1},"-createdAt -updatedAt -__v -mobileName -pid")
+	.sort({order:-1,_id:-1})
 	.then((categories)=>{
 		res.json({
 			code:0,
