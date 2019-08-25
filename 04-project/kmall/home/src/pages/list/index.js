@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-25 10:59:45
+* @Last Modified time: 2019-08-25 11:28:08
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -21,7 +21,43 @@ var page = {
         orderBy:_util.getParamFromUrl('orderBy') || 'default',
     },    
     init:function(){
+        this.bindEvent()
         this.loadProductList()
+    },
+    bindEvent:function(){
+        var _this = this
+        //处理排序
+        //根据点击的排序按钮来决定排序参数,根据新的排序参数获取数据再重新渲染页面
+        $('.sort-item').on('click',function(){
+            var $this = $(this)
+            //点击默认排序
+            if($this.hasClass('default')){
+                if($this.hasClass('active')){
+                    return
+                }
+                $this.addClass('active')
+                .siblings('.sort-item').removeClass('active')
+
+                _this.productsListPrarms.orderBy = 'default'
+            }
+            //点击按价格排序
+            else if($this.hasClass('price')){
+                $this.addClass('active')
+                .siblings('.sort-item').removeClass('active')
+                
+                if($this.hasClass('asc')){
+                    $this.removeClass('asc')
+                    .addClass('desc')
+                    _this.productsListPrarms.orderBy = 'price_desc'
+                }else if($this.hasClass('desc')){
+                    $this.removeClass('desc')
+                    .addClass('asc')
+                    _this.productsListPrarms.orderBy = 'price_asc'                    
+                }                
+            }
+            _this.productsListPrarms.page = 1
+            _this.loadProductList()            
+        })
     },
     loadProductList:function(){
         api.getProductsList({
