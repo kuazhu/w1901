@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-25 17:24:45
+* @Last Modified time: 2019-08-25 17:38:39
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -34,8 +34,16 @@ var page = {
         var _this = this
         api.getProductsDetail({
             data:this.productsDetailPrarms,
-            success:function(result){
-                console.log(result)
+            success:function(product){
+                if(product){
+                    product.images = product.images.split(',')
+                    product.activeImage = product.images[0]
+                    console.log(product)
+                    var html = _util.render(tpl,product)
+                    $('.detail-box').html(html)
+                }else{
+                    $('.detail-box').html('<p class="empty-message">您找的商品去火星了!</p>')
+                }
             }
         })
     },
