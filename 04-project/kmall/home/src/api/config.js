@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-22 16:20:08
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-25 10:48:19
+* @Last Modified time: 2019-08-25 17:20:55
 */
 var API_CONFIG = {
     login:                       ['/sessions/users','post'],
@@ -18,6 +18,7 @@ var API_CONFIG = {
     getFloors:                   ['/floors','get'],
     
     getProductsList:             ['/products/list','get'],    
+    getProductsDetail:           ['/products/detail','get'],    
 }
 
 module.exports = {
