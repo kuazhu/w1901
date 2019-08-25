@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-25 11:48:02
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-25 16:31:49
+* @Last Modified time: 2019-08-25 16:56:33
 */
 var _util = require('util')
 require('./index.css')
@@ -11,9 +11,20 @@ var tpl = require('./index.tpl')
 ;(function($){
     function Pagination($elem){
         this.$elem = $elem
+        this.bindEvent()
     }
     Pagination.prototype = {
         constructor:Pagination,
+        bindEvent:function(){
+            var _this = this
+            this.$elem.on('click','.page-item',function(){
+                var $this = $(this)
+                if($this.hasClass('disabled') || $this.hasClass('active')){
+                    return
+                }
+                _this.$elem.trigger('page-change',$this.data('value'))
+            })
+        },
         render:function(options){
             //console.log(options)
             //1.计算总页数

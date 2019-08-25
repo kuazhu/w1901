@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:54:02
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-23 16:06:35
+* @Last Modified time: 2019-08-25 16:44:28
 */
 .focus{
     margin-bottom: 40px;
@@ -62,6 +62,9 @@
     color: #69A88F;
     border-bottom: 1px solid #69A88F;
 }
+.floor-item:nth-child(5n){
+    margin-right: 0
+}
 .floor-item{
     float: left;
     width: 208px;
@@ -71,6 +74,7 @@
     text-align: center;
     box-sizing: border-box;
     padding-top: 10px;
+    margin-bottom: 10px;
 }
 .floor-item:hover{
     box-shadow: 0px 1px 7px rgba(0,0,0,0.5);

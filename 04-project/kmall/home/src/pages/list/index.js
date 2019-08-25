@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-25 16:10:12
+* @Last Modified time: 2019-08-25 16:58:38
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -27,7 +27,12 @@ var page = {
         this.loadProductList()
     },
     initPagination:function(){
+        var _this = this
         this.$pagination = $('.pagination-box')
+        this.$pagination.on('page-change',function(ev,page){
+            _this.productsListPrarms.page = page
+            _this.loadProductList()
+        })
         //初始化分页组件
         this.$pagination.pagination()
     },
