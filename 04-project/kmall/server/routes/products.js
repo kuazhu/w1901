@@ -2,10 +2,12 @@
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-19 10:26:37
+* @Last Modified time: 2019-08-25 15:27:54
 */
 const Router = require('express').Router;
 const ProductModel = require('../models/product.js');
+const CategoryModel = require('../models/category.js');
+const {unlimitedForLevel,getChildsId} = require('../util/unlimitedCategory.js');
 
 const path = require('path');
 const fs = require('fs');
@@ -24,8 +26,42 @@ const upload = multer({ storage: storage })
 
 const router = Router();
 
+async function getPaginationProducts(req){
+	const {page,status,category,keyword,orderBy} = req.query
+	let query = {};
+	
+	//如果是普通用户,只能获取上架的商品
+	if(!req.userInfo.isAdmin){
+		query.status = 1
+	}	
+	if(category){
+		//获取所有显示的子分类id
+		const showCategories = await CategoryModel.find({isShow:1},"-createdAt -updatedAt -__v")
+		const ids = getChildsId(showCategories,category)
+		ids.push(category)
+		query.category = {$in:ids};
+	}
+	else if(keyword){
+		query.name = {$regex:new RegExp(keyword,'i')}
+	}
+
+	let projection = 'name _id price status order isShow isHot mainImage';
+
+	let sort={order:-1,_id:-1};
+
+	if(orderBy == 'price_asc'){
+		sort = {price:1}
+	}else if(orderBy == 'price_desc'){
+		sort = {price:-1}
+	}
+	const result = await ProductModel.getPaginationProducts(page,query,projection,sort)
+	result.keyword = keyword
+	return result
+}
+
 //获取商品列表
 router.get('/list',(req,res)=>{
+	/*
 	const {page,status,category,keyword,orderBy} = req.query
 	
 	let query = {};
@@ -52,6 +88,8 @@ router.get('/list',(req,res)=>{
 	}
 
 	ProductModel.getPaginationProducts(page,query,projection,sort)
+	*/
+	getPaginationProducts(req)
 	.then(result=>{
 		res.json({
 			code:0,
@@ -60,7 +98,7 @@ router.get('/list',(req,res)=>{
 				total:result.total,
 				pageSize:result.pageSize,
 				list:result.list,
-				keyword:keyword					
+				keyword:result.keyword					
 			}
 		})		
 	})
