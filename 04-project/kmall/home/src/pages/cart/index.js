@@ -2,9 +2,9 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 11:46:43
+* @Last Modified time: 2019-08-26 15:18:28
 */
-require('pages/common/nav')
+var _nav = require('pages/common/nav')
 require('pages/common/search')
 require('pages/common/footer')
 
@@ -41,6 +41,8 @@ var page = {
         })
     },
     renderCart:function(cart){
+        //重新加载购物车数量
+        _nav.loadCartsCount()
         if(cart.cartList.length > 0){
             var html = _util.render(tpl,cart)
             this.$elem.html(html)
@@ -151,6 +153,43 @@ var page = {
                     }
                 })
             }
+        })
+        //5.处理商品数量
+        this.$elem.on('click','.count-btn',function(){
+            var $this = $(this)
+            var productId = $this.parents('.product-item').data('product-id')
+            var $input = $this.siblings('.count-input')
+            var current = parseInt($input.val())
+            var stock = $input.data('stock')
+            var count = current
+            //减少
+            if($this.hasClass('minus')){
+                if(current == 1){
+                    _util.showErrorMsg("商品最少选择一件")
+                    return
+                }
+                count = current - 1
+            }
+            //增加
+            else if($this.hasClass('plus')){
+                if(current == stock){
+                    _util.showErrorMsg("商品已经达到上限了")
+                    return                    
+                }
+                count = current + 1
+            }
+            api.updateCartsCounts({
+                data:{
+                    productId:productId,
+                    count:count,
+                },
+                success:function(cart){
+                    _this.renderCart(cart)
+                },
+                error:function(){
+                    _this.showErrorPage()
+                }                
+            })
         }) 
     },
 }
