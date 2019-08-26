@@ -2,7 +2,7 @@
  * @Author: TomChen
  * @Date:   2019-08-21 17:42:33
  * @Last Modified by:   TomChen
- * @Last Modified time: 2019-08-23 15:45:34
+ * @Last Modified time: 2019-08-26 09:40:06
  */
 require('pages/common/nav')
 require('pages/common/search')
@@ -64,7 +64,8 @@ var page = {
             api.updateUsers({
                 data: formData,
                 success:function(data) {
-                    window.location.href = './result.html?type=updatePassword'
+                    //window.location.href = './result.html?type=updatePassword'
+                    _util.goResult('updatePassword')
                 },
                 error:function(msg){
                     formErr.show(msg) 

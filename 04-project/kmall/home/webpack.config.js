@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-25 17:22:24
+* @Last Modified time: 2019-08-26 09:42:31
 */
 
 const path = require('path')
@@ -116,8 +116,16 @@ module.exports = {
         contentBase: './dist',//内容的目录
         port:3002,//指定服务端口
         proxy: [{
-          context: ['/sessions','/users','/categories','/ads','/floors','/products'],
-          target: 'http://127.0.0.1:3000',
+            context: [
+                '/sessions',
+                '/users',
+                '/categories',
+                '/ads',
+                '/floors',
+                '/products',
+                '/carts'
+            ],
+            target: 'http://127.0.0.1:3000',
         }]
     },                
 }
