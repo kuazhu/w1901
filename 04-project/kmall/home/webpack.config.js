@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 16:30:31
+* @Last Modified time: 2019-08-26 17:50:28
 */
 
 const path = require('path')
@@ -128,7 +128,8 @@ module.exports = {
                 '/floors',
                 '/products',
                 '/carts',
-                '/orders'
+                '/orders',
+                '/shippings'
             ],
             target: 'http://127.0.0.1:3000',
         }]
