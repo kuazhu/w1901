@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-22 15:11:38
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 09:39:46
+* @Last Modified time: 2019-08-26 11:43:38
 */
 var Hogan = require('hogan.js')
 
@@ -33,6 +33,9 @@ module.exports = {
     },
     showSuccessMsg:function(msg){
         alert(msg)
+    },
+    showConfirm:function(msg){
+        return window.confirm(msg)
     },
     goLogin:function(){
         window.location.href = '/user-login.html?redirect='+encodeURIComponent(window.location.href)

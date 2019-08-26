@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 11:19:53
+* @Last Modified time: 2019-08-26 11:46:43
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -88,7 +88,70 @@ var page = {
                 })
             }
         })
- 
+        //2.处理选择全部
+        this.$elem.on('click','.select-all',function(){
+            var $this = $(this)
+            //选中
+            if($this.is(':checked')){
+                api.updateCartsChoices({
+                    data:{
+                        checked:true,
+                    },
+                    success:function(cart){
+                        _this.renderCart(cart)
+                    },
+                    error:function(){
+                        _this.showErrorPage()
+                    }
+                })
+            }
+            //取消
+            else{
+                api.updateCartsChoices({
+                    data:{
+                        checked:false,
+                    },
+                    success:function(cart){
+                        _this.renderCart(cart)
+                    },
+                    error:function(){
+                        _this.showErrorPage()
+                    }
+                })
+            }
+        })
+        //3.处理删除单个
+        this.$elem.on('click','.delete-one',function(){
+            var $this = $(this)
+            var productId = $this.parents('.product-item').data('product-id')
+            //选中
+            if(_util.showConfirm("您确定要删除该条商品吗?")){
+                api.deleteCarts({
+                    data:{
+                        productId:productId,
+                    },
+                    success:function(cart){
+                        _this.renderCart(cart)
+                    },
+                    error:function(){
+                        _this.showErrorPage()
+                    }
+                })
+            }
+        })                
+        //4.处理删除选中
+        this.$elem.on('click','.delete-selected',function(){
+            if(_util.showConfirm("您确定要删除选中的商品吗?")){
+                api.deleteCarts({
+                    success:function(cart){
+                        _this.renderCart(cart)
+                    },
+                    error:function(){
+                        _this.showErrorPage()
+                    }
+                })
+            }
+        }) 
     },
 }
 
