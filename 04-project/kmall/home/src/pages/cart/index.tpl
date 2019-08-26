@@ -1,45 +1,79 @@
-<div class="product-intro clearfix">
-    <div class="product-img">
-        <div class="product-main-img">
-            <img src="{{activeImage}}"  alt="" />
-        </div>
-        <ul class="product-small-img-list clearfix">
-            {{#images}}
-            <li class="product-small-img-item">
-                <img src="{{.}}" alt="" />
-            </li>
-            {{/images}}
-        </ul>
-    </div>
-    <div class="product-info">
-        <h2 class="product-name">{{name}}</h2>
-        <p class="product-description">{{description}}</p>
-        <div class="product-info-item product-price">
-            <span class="label">价格:</span>
-            <span class="info">￥{{price}}</span>
-        </div>
-        <div class="product-info-item">
-            <span class="label">库存:</span>
-            <span class="info">{{stock}}</span>
-        </div>
-        <div class="product-info-item product-count">
-            <span class="label">数量:</span>
-            <input type="text" value="1" class="count-input" readonly />
-            <span class="count-btn plus">+</span>
-            <span class="count-btn minus">-</span>
-        </div>
-        <div class="add-cart">
-            <a href="javascript:;" class="btn add-cart-btn">添加购物车</a>
-        </div>                                                  
-    </div>
-</div>
-<div class="product-detail">
-    <div class="tab">
-        <ul class="tab-list clearfix">
-            <li class="tab-item active">商品详情</li>
-        </ul>
-        <div class="tab-content">
-            {{{detail}}}
-        </div>
-    </div>
-</div>
+<ul class="product-title clearfix">
+    <li class="product-select">
+        {{#allChecked}}
+        <input type="checkbox" class="select-all" checked />
+        {{/allChecked}}
+        {{^allChecked}}
+        <input type="checkbox" class="select-all" />
+        {{/allChecked}}        
+        <span>全选</span>
+    </li>
+    <li class="product-info">
+        商品
+    </li>
+    <li class="product-price">
+        单价
+    </li>
+    <li class="product-count">
+        数量
+    </li>
+    <li class="product-totalPrice">
+        小计
+    </li>
+    <li class="product-opreation">
+        操作
+    </li>
+</ul>
+{{#cartList}}
+<ul class="product-item" data-product-id="{{product._id}}">
+    <li class="product-select">
+        {{#checked}}
+        <input type="checkbox" class="select-one" checked />
+        {{/checked}}
+        {{^checked}}
+        <input type="checkbox" class="select-one" />
+        {{/checked}}        
+    </li>
+    <li class="product-info text-ellipsis">
+        <a href="./detail.html?productId={{product._id}}" class="link" target="_blank">
+            <img src="{{product.mainImage}}" alt="">
+            <span>{{product.name}}</span>
+        </a>
+    </li>
+    <li class="product-price">
+        ￥{{product.price}}
+    </li>
+    <li class="product-count">
+        <span class="count-btn minus">-</span><input type="text" value="{{count}}" data-stock="{{product.stock}}" class="count-input" /><span class="count-btn plus">+</span>
+    </li>
+    <li class="product-totalPrice">
+        ￥{{totalPrice}}
+    </li>
+    <li class="product-opreation">
+        <span class="delete-one link">
+            <i class="fa fa-trash-o"></i> 删除
+        </span>
+    </li>   
+</ul>
+{{/cartList}}
+<ul class="product-footer">
+    <li class="product-select">
+        {{#allChecked}}
+        <input type="checkbox" class="select-all" checked />
+        {{/allChecked}}
+        {{^allChecked}}
+        <input type="checkbox" class="select-all" />
+        {{/allChecked}} 
+        <span>全选</span>
+    </li>
+    <li class="product-opreation">
+        <span class="delete-selected link">
+            <i class="fa fa-trash-o"></i> 删除选中
+        </span>
+    </li>   
+    <li class="product-submit">
+        <span class="total-price-text">总价:</span>
+        <span class="total-price">￥{{totalCartPrice}}</span>
+        <a href="javascript:;" class="btn btn-submit">去结算</a>
+    </li>
+</ul>
