@@ -15,44 +15,29 @@
                 小计
             </li>
         </ul>
-        <ul class="product-item" data-product-id="1234">
+        {{#cartList}}
+        <ul class="product-item">
             <li class="product-info text-ellipsis">
-                <a href="./detail.html?productId=1234" class="link" target="_blank">
-                    <img src="" alt="">
-                    <span>手机</span>
+                <a href="./detail.html?productId={{product._id}}" class="link" target="_blank">
+                    <img src="{{product.mainImage}}" alt="{{product.name}}">
+                    <span>{{product.name}}</span>
                 </a>
             </li>
             <li class="product-price">
-                ￥12
+                ￥{{product.price}}
             </li>
             <li class="product-count">
-                2
+                {{count}}
             </li>
             <li class="product-totalPrice">
-                ￥12
+                ￥{{totalPrice}}
             </li>   
         </ul>
-        <ul class="product-item" data-product-id="1234">
-            <li class="product-info text-ellipsis">
-                <a href="./detail.html?productId=1234" class="link" target="_blank">
-                    <img src="" alt="">
-                    <span>手机</span>
-                </a>
-            </li>
-            <li class="product-price">
-                ￥12
-            </li>
-            <li class="product-count">
-                2
-            </li>
-            <li class="product-totalPrice">
-                ￥12
-            </li>   
-        </ul>                       
+        {{/cartList}}                     
         <ul class="product-footer">
             <li class="product-submit">
                 <span class="total-price-text">总价:</span>
-                <span class="total-price">￥88</span>
+                <span class="total-price">￥{{totalCartPrice}}</span>
                 <a href="javascript:;" class="btn btn-submit">去支付</a>
             </li>
         </ul>       
