@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 15:18:28
+* @Last Modified time: 2019-08-26 15:27:18
 */
 var _nav = require('pages/common/nav')
 require('pages/common/search')
@@ -44,6 +44,8 @@ var page = {
         //重新加载购物车数量
         _nav.loadCartsCount()
         if(cart.cartList.length > 0){
+            //缓存总价用来提交时验证
+            this.totalCartPrice = cart.totalCartPrice
             var html = _util.render(tpl,cart)
             this.$elem.html(html)
         }else{
@@ -190,6 +192,14 @@ var page = {
                     _this.showErrorPage()
                 }                
             })
+        })
+        //6.处理结算跳转
+        this.$elem.on('click','.btn-submit',function(){
+            if(_this.totalCartPrice > 0){
+                window.location.href = "./order-confirm.html"
+            }else{
+                _util.showErrorMsg("请最少选择一件商品")
+            }
         }) 
     },
 }
