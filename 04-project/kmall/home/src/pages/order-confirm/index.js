@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 16:54:55
+* @Last Modified time: 2019-08-26 17:22:21
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -33,7 +33,6 @@ var page = {
         var _this = this
         api.getOrdersProducts({
             success:function(result){
-                console.log(result)
                 if(result.cartList.length > 0){
                     var html = _util.render(productTpl,result)
                     _this.$productBox.html(html) 
