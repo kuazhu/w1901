@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 16:34:06
+* @Last Modified time: 2019-08-26 16:54:55
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -10,6 +10,7 @@ require('pages/common/footer')
 
 var api = require('api')
 var _util = require('util')
+var _modal = require('./modal.js')
 
 var shippingTpl = require('./shipping.tpl')
 var productTpl = require('./product.tpl')
@@ -22,6 +23,7 @@ var page = {
         this.$productBox = $('.product-box')
         this.loadShippingList()
         this.loadProductList()
+        this.bindEvent()
     },
     loadShippingList:function(){
         var html = _util.render(shippingTpl)
@@ -43,6 +45,12 @@ var page = {
             error:function(){
                _this.$productBox.html('<p class="empty-message">获取商品列表好像出错了,请稍后再试!</p>') 
             }
+        })
+    },
+    bindEvent:function(){
+        //1.弹出添加地址面板
+        this.$shippingBox.on('click','.shipping-add',function(){
+            _modal.show()
         })
     }
 }
