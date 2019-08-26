@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-25 17:55:31
+* @Last Modified time: 2019-08-26 09:13:33
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -36,6 +36,20 @@ var page = {
             var imgSrc = $this.find('img').attr('src')
             $('.product-main-img img').attr('src',imgSrc)
         })
+        //处理购买数量
+        this.$elem.on('click','.count-btn',function(){
+            var $this = $(this)
+            var $input = $('.count-input')
+            var current = parseInt($input.val())
+            //增加
+            if($this.hasClass('plus')){
+                $input.val(current == _this.stock ? _this.stock : current+1)
+            }
+            //减少
+            else if($this.hasClass('minus')){
+                $input.val(current == 1 ? 1 : current-1)
+            }
+        })
  
     },
     productsDetail:function(){
@@ -47,6 +61,8 @@ var page = {
             data:this.productsDetailPrarms,
             success:function(product){
                 if(product){
+                    //缓存库存,为了增加数量时验证
+                    _this.stock = product.stock
                     product.images = product.images.split(',')
                     product.activeImage = product.images[0]
                     var html = _util.render(tpl,product)
