@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 10:44:26
+* @Last Modified time: 2019-08-26 11:19:53
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -25,21 +25,69 @@ var page = {
         var _this = this
         api.getCarts({
             success:function(cart){
-                console.log(cart)
+                /*
                 if(cart.cartList.length > 0){
                     var html = _util.render(tpl,cart)
                     _this.$elem.html(html)
                 }else{
                     _this.$elem.html('<p class="empty-message">您的购物车空空如也!</p>') 
                 }
+                */
+                _this.renderCart(cart)
             },
             error:function(){
-
+                _this.showErrorPage()
             }
         })
     },
+    renderCart:function(cart){
+        if(cart.cartList.length > 0){
+            var html = _util.render(tpl,cart)
+            this.$elem.html(html)
+        }else{
+            this.$elem.html('<p class="empty-message">您的购物车空空如也!</p>') 
+        }
+    },
+    showErrorPage:function(){
+        this.$elem.html('<p class="empty-message">好像出错了,请稍后再试!</p>') 
+    },
     bindEvent:function(){
         var _this = this
+        //1.处理选择单个
+        this.$elem.on('click','.select-one',function(){
+            var $this = $(this)
+            var productId = $this.parents('.product-item').data('product-id')
+            //选中
+            if($this.is(':checked')){
+                api.updateCartsChoices({
+                    data:{
+                        productId:productId,
+                        checked:true,
+                    },
+                    success:function(cart){
+                        _this.renderCart(cart)
+                    },
+                    error:function(){
+                        _this.showErrorPage()
+                    }
+                })
+            }
+            //取消
+            else{
+                api.updateCartsChoices({
+                    data:{
+                        productId:productId,
+                        checked:false,
+                    },
+                    success:function(cart){
+                        _this.renderCart(cart)
+                    },
+                    error:function(){
+                        _this.showErrorPage()
+                    }
+                })
+            }
+        })
  
     },
 }

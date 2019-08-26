@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-22 16:20:08
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 10:39:16
+* @Last Modified time: 2019-08-26 11:13:26
 */
 var API_CONFIG = {
     login:                       ['/sessions/users','post'],
@@ -23,6 +23,7 @@ var API_CONFIG = {
     addCarts:                    ['/carts','post'],    
     getCartsCount:               ['/carts/count','get'],    
     getCarts:                    ['/carts','get'],    
+    updateCartsChoices:          ['/carts/choices','put'],    
 }
 
 module.exports = {
