@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-28 16:31:40
+* @Last Modified time: 2019-08-28 16:50:28
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -23,6 +23,7 @@ var page = {
         this.$elem = $('.order-box')
         this.renderSide()
         this.loadOrderDetail()
+        this.bindEvent()
     },
     renderSide:function(){
         _side.render('order-list')
@@ -46,6 +47,26 @@ var page = {
         }else{
             this.$elem.html('<p class="empty-message">您找的订单去火星了!</p>')
         }
+    },
+    bindEvent:function(){
+        var _this = this
+        this.$elem.on('click','.btn-cancel',function(){
+            if(_util.showConfirm('您确定要取消该订单吗?')){
+                var $this = $(this)
+                api.updateOrdersStatus({
+                    data:{
+                        orderNo:$this.data('order-no'),
+                        status:20,
+                    },
+                    success:function(order){
+                        _this.renderOrder(order)
+                    },
+                    error:function(msg){
+                        _util.showErrorMsg(msg)
+                    }
+                })
+            }
+        })
     }
 }
 

@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-22 16:20:08
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-28 16:15:29
+* @Last Modified time: 2019-08-28 16:48:56
 */
 var API_CONFIG = {
     login:                       ['/sessions/users','post'],
@@ -31,6 +31,7 @@ var API_CONFIG = {
     addOrders:                   ['/orders','post'],
     getOrdersList:               ['/orders/list','get'],
     getOrdersDetail:             ['/orders/detail','get'],
+    updateOrdersStatus:          ['/orders/status','put'],
 
     addShippings:                ['/shippings','post'],      
     getShippingsList:            ['/shippings/list','get'],      

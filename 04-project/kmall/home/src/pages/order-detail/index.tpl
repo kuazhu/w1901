@@ -35,7 +35,7 @@
                 <a href="./payment.html?orderNo={{orderNo}}" class="btn">去支付</a>
                 {{/canPay}}
                 {{#canCancel}}
-                <a href="javascript:;" class="btn btn-cancel">取消</a>
+                <a href="javascript:;" data-order-no="{{orderNo}}" class="btn btn-cancel">取消</a>
                 {{/canCancel}}
             </li>                                               
         </ul>
