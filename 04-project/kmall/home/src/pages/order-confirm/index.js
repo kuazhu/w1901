@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-28 09:53:43
+* @Last Modified time: 2019-08-28 10:22:46
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -83,9 +83,25 @@ var page = {
                     },
                     success:function(shippings){
                         _this.renderShipping(shippings)
+                    },
+                    error:function(msg){
+                        _util.showErrorMsg(msg)
                     }
                 })
             }
+        })
+        //3.编辑地址
+        this.$shippingBox.on('click','.shipping-edit',function(){
+            var $this = $(this)
+            var shippingId = $this.parents('.shipping-item').data('shipping-id')
+            api.getShippingsDetail({
+                data:{
+                    id:shippingId
+                },
+                success:function(shipping){
+                    _modal.show(shipping)
+                },                
+            })
         })
     }
 }

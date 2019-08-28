@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-22 16:20:08
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-28 09:50:42
+* @Last Modified time: 2019-08-28 10:31:40
 */
 var API_CONFIG = {
     login:                       ['/sessions/users','post'],
@@ -32,6 +32,8 @@ var API_CONFIG = {
     addShippings:                ['/shippings','post'],      
     getShippingsList:            ['/shippings/list','get'],      
     deleteShippings:             ['/shippings','delete'],      
+    getShippingsDetail:          ['/shippings/detail','get'],      
+    updateShippings:             ['/shippings','put'],      
 }
 
 module.exports = {
