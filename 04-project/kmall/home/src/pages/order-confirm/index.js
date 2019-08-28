@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-28 09:31:34
+* @Last Modified time: 2019-08-28 09:53:43
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -71,6 +71,21 @@ var page = {
         //1.弹出添加地址面板
         this.$shippingBox.on('click','.shipping-add',function(){
             _modal.show()
+        })
+        //2.处理删除地址
+        this.$shippingBox.on('click','.shipping-delete',function(){
+            if(_util.showConfirm('您确定要删除该条地址吗?')){
+                var $this = $(this)
+                var shippingId = $this.parents('.shipping-item').data('shipping-id')
+                api.deleteShippings({
+                    data:{
+                        id:shippingId
+                    },
+                    success:function(shippings){
+                        _this.renderShipping(shippings)
+                    }
+                })
+            }
         })
     }
 }
