@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 17:50:28
+* @Last Modified time: 2019-08-28 11:42:53
 */
 
 const path = require('path')
@@ -30,6 +30,7 @@ module.exports = {
         'detail'                :'./src/pages/detail/index.js',
         'cart'                  :'./src/pages/cart/index.js',
         'order-confirm'         :'./src/pages/order-confirm/index.js',
+        'payment'               :'./src/pages/payment/index.js',
         'user-login'            :'./src/pages/user-login/index.js',
         'user-register'         :'./src/pages/user-register/index.js',
         'result'                :'./src/pages/result/index.js',
@@ -107,6 +108,7 @@ module.exports = {
         new htmlWebpackPlugin(getHtmlConfig('detail','商品详情页')),        
         new htmlWebpackPlugin(getHtmlConfig('cart','购物车')),        
         new htmlWebpackPlugin(getHtmlConfig('order-confirm','订单确认')),        
+        new htmlWebpackPlugin(getHtmlConfig('payment','订单支付')),        
         new htmlWebpackPlugin(getHtmlConfig('user-login','用户登录')),        
         new htmlWebpackPlugin(getHtmlConfig('user-register','用户注册')),        
         new htmlWebpackPlugin(getHtmlConfig('result','结果提示页')),        
