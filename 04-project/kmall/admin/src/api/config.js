@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-16 10:20:25
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-22 22:05:20
+* @Last Modified time: 2019-08-28 17:03:48
 */
 
 export const SERVER = 'http://127.0.0.1:3000'
@@ -35,5 +35,8 @@ export const API_CONFIG = {
     addAds:                      ["/ads","post"],
     updateAds:                   ["/ads","put"],
     updateAdsOrder:              ["/ads/order","put"],
-    updateAdsIsShow:             ["/ads/isShow","put"],      
+    updateAdsIsShow:             ["/ads/isShow","put"],
+    getOrdersList:               ["/orders/list","get"],
+    getOrdersDetail:             ["/orders/detail","get"],
+    updateOrdersStatus:          ["/orders/status","put"],           
 }
