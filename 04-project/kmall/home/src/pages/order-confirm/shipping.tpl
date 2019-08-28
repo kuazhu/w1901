@@ -2,7 +2,12 @@
     <h2 class="panel-header">送货地址</h2>
     <div class="pandel-body">
         {{#shippings}}
-        <div class="shipping-item" data-shipping-id="{{_id}}">                       
+        {{#active}}
+        <div class="shipping-item active" data-shipping-id="{{_id}}">
+        {{/active}}
+        {{^active}}
+        <div class="shipping-item" data-shipping-id="{{_id}}">
+        {{/active}}                                  
             <h3 class="shipping-title">{{province}} {{city}}({{name}})</h3>
             <p class="shipping-detail">
                 {{province}} {{city}} {{address}} {{phone}}
