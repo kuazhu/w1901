@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-28 15:50:38
+* @Last Modified time: 2019-08-28 16:14:07
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -43,7 +43,6 @@ var page = {
         api.getOrdersList({
             data:this.ordersListPrarms,
             success:function(result){
-                console.log(result)
                 if(result.list.length > 0){
                     result.list.forEach(function(order){
                         order.createdTime = new Date(order.createdAt).toLocaleString()

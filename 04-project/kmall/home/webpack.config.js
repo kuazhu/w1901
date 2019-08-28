@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-08 16:30:19
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-28 15:42:15
+* @Last Modified time: 2019-08-28 16:18:13
 */
 
 const path = require('path')
@@ -37,6 +37,7 @@ module.exports = {
         'user-center'           :'./src/pages/user-center/index.js',
         'user-update-password'  :'./src/pages/user-update-password/index.js',
         'order-list'            :'./src/pages/order-list/index.js',
+        'order-detail'          :'./src/pages/order-detail/index.js',
     },
     //出口
     output: {
@@ -116,6 +117,7 @@ module.exports = {
         new htmlWebpackPlugin(getHtmlConfig('user-center','用户中心')),        
         new htmlWebpackPlugin(getHtmlConfig('user-update-password','修改密码')),        
         new htmlWebpackPlugin(getHtmlConfig('order-list','订单列表')),        
+        new htmlWebpackPlugin(getHtmlConfig('order-detail','订单详情')),        
         new MiniCssExtractPlugin({
             filename: 'css/[name]-[hash]-bundle.css'
         })
