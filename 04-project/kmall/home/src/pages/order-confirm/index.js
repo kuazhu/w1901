@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 17:22:21
+* @Last Modified time: 2019-08-28 09:09:10
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -26,8 +26,15 @@ var page = {
         this.bindEvent()
     },
     loadShippingList:function(){
-        var html = _util.render(shippingTpl)
-        this.$shippingBox.html(html)
+        var _this = this
+        api.getShippingsList({
+            success:function(shippings){
+                var html = _util.render(shippingTpl,{
+                    shippings:shippings
+                })
+                _this.$shippingBox.html(html)
+            }
+        })
     },
     loadProductList:function(){
         var _this = this
