@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-21 17:42:33
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-28 11:06:41
+* @Last Modified time: 2019-08-28 11:29:02
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -123,6 +123,25 @@ var page = {
 
             //保存选中的地址id,为了页面重新渲染时可以知道当前选中的是那个地址
             _this.selectedShippingId = $this.data('shipping-id')
+        })
+        //5.去支付(生成订单)
+        this.$productBox.on('click','.btn-submit',function(){
+            if(_this.selectedShippingId){
+                api.addOrders({
+                    data:{
+                        shippingId:_this.selectedShippingId
+                    },
+                    success:function(order){
+                        window.location.href = "./payment.html?orderNo="+order.orderNo
+                    },
+                    error:function(msg){
+                        _util.showErrorMsg(msg)
+                    }
+                })
+            }
+            else{
+                _util.showErrorMsg('请选择地址后再提交!')
+            }
         })
     }
 }
