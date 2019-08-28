@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2019-08-26 16:53:39
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-26 17:49:53
+* @Last Modified time: 2019-08-28 09:29:43
 */
 var api = require('api')
 var _util = require('util')
@@ -85,6 +85,7 @@ module.exports = {
         })       
     },
     submit: function() {
+        var _this = this
         //1.获取数据
         var formData = {
             name: $.trim($('[name="name"]').val()),
@@ -103,7 +104,9 @@ module.exports = {
             api.addShippings({
                 data:formData,
                 success:function(shippings){
-                    console.log(shippings)
+                    $('.shipping-box').trigger('get-shippings',[shippings])
+                    _util.showSuccessMsg('新增地址成功')
+                    _this.hideModal()
                 },
                 error:function(){
                     _util.showErrorMsg('添加地址失败,请稍后再试')
