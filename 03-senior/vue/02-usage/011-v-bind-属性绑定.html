@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>011-v-bind-属性绑定.html</title>
+</head>
+<body>
+    <div id="app">
+        <a href="https://www.taobao.com">淘宝</a>
+        <!-- <a href="{{taobaoUrl}}">淘宝</a> -->
+        <a v-bind:href="taobaoUrl">淘宝</a>
+        <a :href="taobaoUrl">淘宝</a>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            taobaoUrl:'https://www.taobao.com'
+        }
+    })
+</script>
+</html>
