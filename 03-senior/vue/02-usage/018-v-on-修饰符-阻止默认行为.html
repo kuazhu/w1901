@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>018-v-on-修饰符-阻止默认行为.html</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+       <a @click.prevent="goShopping()" href="https://www.taobao.com">淘宝</a>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+var vm = new Vue({
+    el: '#app',
+    data: {
+    
+    },
+    methods:{
+        goShopping(){
+            console.log('go shopping...')
+        }      
+    }
+})
+</script>
+
+</html>

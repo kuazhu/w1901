@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>017-v-on-修饰符-阻止事件冒泡.html</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .large-box{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            background-color: gray;
+            margin: 50px auto;
+        }
+        .big-box{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            background-color: blue;
+            margin: 50px auto;
+        }
+        .small-box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            background-color: yellow;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="large-box" @click="clickLargeBox()">
+            <div class="big-box" @click="clickBigBox()">
+                <div class="small-box" @click.stop="clickSmallBox()">
+                    
+                </div>
+            </div>
+        </div>        
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+var vm = new Vue({
+    el: '#app',
+    data: {
+    
+    },
+    methods:{
+        clickLargeBox(){
+            console.log('clickLargeBox...')
+        },
+        clickBigBox(){
+            console.log('clickBigBox...')
+        },
+        clickSmallBox(){
+            console.log('clickSmallBox...')
+        }                
+    }
+})
+</script>
+
+</html>
