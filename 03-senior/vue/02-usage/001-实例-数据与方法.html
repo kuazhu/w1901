@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>001-实例-数据与方法.html</title>
+</head>
+<body>
+    <div id="app">
+        <p ref="p1">{{message}}</p>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    //vm就是一个Vue的实例
+    //vm是(ViewModel) 的缩写
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:'hello'
+        }
+    })
+    console.log(vm)
+    
+    console.log(vm.$el)
+    console.log(vm.$el == document.getElementById('app'))
+    
+    console.log(vm.$refs.p1)
+
+    console.log(vm.$data)
+
+    vm.$watch('message',function(){
+        console.log('message has been changed')
+    })
+
+    vm.$destroy()
+   
+
+</script>
+</html>
