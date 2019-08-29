@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>013-v-bind-属性绑定.html</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>我是文字</p>
+        <p style="background-color: yellow;color: red">style="background-color: yellow;color: red"</p>
+        <p :style="{backgroundColor:'yellow',color:'red'}">:style="{backgroundColor:'yellow',color:'red'}"</p>
+        <p :style="{backgroundColor:bg,color:clr}">:style="{backgroundColor:bg,color:clr}"</p>
+        <p :style="[{backgroundColor:bg},{color:clr}]">:style="{backgroundColor:bg,color:clr}"</p>
+        <p :style="objStyle">:style="objStyle"</p>        
+        <p :style="arrStyle">:style="arrStyle"</p>        
+        
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+var vm = new Vue({
+    el: '#app',
+    data: {
+        bg:'yellow',
+        clr:'red',
+        objStyle:{
+          backgroundColor:'yellow',
+          color:'red'  
+        },
+        arrStyle:[
+            {
+                backgroundColor:'yellow' 
+            },
+            {
+                color:'red'
+            }
+        ]
+    }
+})
+</script>
+
+</html>
