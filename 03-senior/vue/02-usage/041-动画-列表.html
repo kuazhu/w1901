@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>041-动画-列表.html</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            width: 600px;
+            margin: 100px auto;
+        }
+        input{
+            width: 60%;
+            height: 40px;
+        }
+        button{
+            height: 40px;
+            width: 60px;
+        }
+        li{
+            list-style: none;
+            line-height: 40px;
+            border: 1px dashed #ccc;
+            margin-top: 10px;
+        }
+        .list-enter-active, .list-leave-active {
+          transition: all .5s;
+        }
+        .list-enter, .list-leave-to {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="wrap">
+            <input type="text" v-model="task">
+            <button @click="add()">增加</button>
+            <transition-group name="list" tag="ul" appear> 
+                <li 
+                    v-for="(item,index) in items"
+                    @click="del(index)"
+                    :key="''+index"
+                >
+                   {{item}} 
+                </li>
+            </transition-group> 
+        </div>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+var vm = new Vue({
+    el: '#app',
+    data: {
+        items:['吃饭','睡觉'],
+        task:''
+    },
+    methods:{
+        add(){
+            this.items.push(this.task)
+            this.task = ''
+        },
+        del(index){
+            this.items.splice(index,1)
+        }
+    }
+})
+</script>
+
+</html>
