@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>039-组件-动态组件-保持状态.html</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        button{
+            width: 80px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        li{
+            list-style: none;
+        }
+        .articles-wrap{
+            display: flex;
+            flex-direction: row;
+        }
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button
+            v-for="tab in tabs"
+            @click="currentTab = tab"
+        >
+            {{tab}}
+        </button>
+        <keep-alive>
+            <component :is="currentComponent"></component>
+        </keep-alive>
+    </div>
+    <template id="tab-home">
+        <div>
+            home
+        </div>
+    </template>
+    <template id="tab-articles">
+        <div class="articles-wrap">
+            <ul>
+                <li
+                    v-for="article in articles"
+                    @click="selectedArticle = article"
+                    :class="{active:selectedArticle == article}"
+                >
+                    {{article.title}}
+                </li>
+            </ul>
+            <div>
+                <div v-if="selectedArticle">
+                    {{selectedArticle.content}}
+                </div>
+            </div>
+        </div>
+    </template>          
+</body>
+<script src="js/vue.js"></script>
+<script>
+
+    Vue.component('tab-home',{
+        template:'#tab-home',
+    })
+    Vue.component('tab-articles',{
+        template:'#tab-articles',
+        data(){
+            return {
+                articles:[
+                    {
+                        title:'vue介绍',
+                        content:'vue是一个视图层的框架'
+                    },
+                    {
+                        title:'react介绍',
+                        content:'react也是一个视图层的框架'
+                    },                    
+                ],
+                selectedArticle:null
+            }
+        }
+    })
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            currentTab:'home',
+            tabs:['home','articles']
+        },
+        computed:{
+            currentComponent(){
+                return 'tab-'+this.currentTab
+            }
+        }
+    })   
+</script>
+
+</html>
