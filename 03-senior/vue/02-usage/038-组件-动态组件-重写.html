@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>038-组件-动态组件-重写.html</title>
+</head>
+
+<body>
+    <div id="app">
+        <button
+            v-for="tab in tabs"
+            @click="currentTab = tab"
+        >
+            {{tab}}
+        </button>
+        <component :is="currentComponent"></component>
+    </div>
+    <template id="tab-home">
+        <div>
+            home
+        </div>
+    </template>
+    <template id="tab-articles">
+        <div>
+            articles
+        </div>
+    </template>          
+</body>
+<script src="js/vue.js"></script>
+<script>
+
+    Vue.component('tab-home',{
+        template:'#tab-home',
+    })
+    Vue.component('tab-articles',{
+        template:'#tab-articles',
+    })
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            currentTab:'home',
+            tabs:['home','articles']
+        },
+        computed:{
+            currentComponent(){
+                return 'tab-'+this.currentTab
+            }
+        }
+    })   
+</script>
+
+</html>
