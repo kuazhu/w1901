@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>044-自定义指令-局部.html</title>
+</head>
+
+<body>
+    <div id="app1">
+        <input v-focus type="text" />
+    </div>
+    <!--
+    <div id="app2">
+        <input v-focus type="text" />
+    </div>    
+    -->
+</body>
+<script src="js/vue.js"></script>
+<script>
+
+    var vm1 = new Vue({
+        el: '#app1',
+        data: {},
+        directives:{
+            'focus':{
+                inserted:function(el){
+                    el.focus()
+                }
+            }
+        }
+    })
+    /*
+    var vm2 = new Vue({
+        el: '#app2',
+        data: {},
+    })
+    */    
+</script>
+
+</html>
