@@ -2,7 +2,7 @@
 <template>
     <div id="app">
         <!--3.使用组件-->
-        <Header />
+        <Header :addTodo="addTodo" />
         <List :todos="todos" />
         <Footer />
     </div>
@@ -32,8 +32,13 @@
                     {
                         task:'睡觉',
                         done:false
-                    }                    
+                    },                    
                 ]
+            }
+        },
+        methods:{
+            addTodo(todo){
+                this.todos.unshift(todo)
             }
         }
     }
