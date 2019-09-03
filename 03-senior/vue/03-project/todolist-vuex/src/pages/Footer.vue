@@ -7,6 +7,7 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     export default {
         name:'Footer',
         props:{
@@ -15,6 +16,7 @@
             delAllDone:Function,
         },         
         computed:{
+            /*
             total(){
                 return this.todos.length
             },
@@ -26,6 +28,17 @@
                     return total
                 },0)
             },
+            */
+            ...mapGetters([
+              'total',
+              'totalDone',
+            ]),
+            
+           /*
+           total(){
+                return this.$store.getters.total
+           },
+           */                      
             allDone:{
                 get(){
                     return (this.total == this.totalDone) && (this.total != 0)
