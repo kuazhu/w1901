@@ -8,6 +8,7 @@
 
 <script>
     import { mapGetters } from 'vuex'
+     import { SELECT_ALL_TODO } from '../store/types.js'
     export default {
         name:'Footer',
         props:{
@@ -32,19 +33,14 @@
             ...mapGetters([
               'total',
               'totalDone',
-            ]),
-            
-           /*
-           total(){
-                return this.$store.getters.total
-           },
-           */                      
+            ]),                    
             allDone:{
                 get(){
-                    return (this.total == this.totalDone) && (this.total != 0)
+                    return this.$store.getters.allDone
                 },
                 set(value){
-                    this.selectAllTodo(value)
+                    // this.selectAllTodo(value)
+                    this.$store.dispatch(SELECT_ALL_TODO,value)
                 }
             }
         },
