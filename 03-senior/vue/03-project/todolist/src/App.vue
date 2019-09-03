@@ -4,7 +4,7 @@
         <!--3.使用组件-->
         <Header :addTodo="addTodo" />
         <List :todos="todos" :delTodo="delTodo" />
-        <Footer :todos="todos" />
+        <Footer :todos="todos" :selectAllTodo="selectAllTodo" />
     </div>
 </template>
 
@@ -42,6 +42,11 @@
             },
             delTodo(index){
                 this.todos.splice(index,1)
+            },
+            selectAllTodo(value){
+                this.todos.forEach((item)=>{
+                    item.done = value
+                })
             }
         }
     }
