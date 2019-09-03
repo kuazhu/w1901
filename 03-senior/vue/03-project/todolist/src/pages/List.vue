@@ -3,7 +3,9 @@
         <Item 
             v-for="(todo,index) in todos"
             :todo="todo"
-
+            :index="index"
+            :key="index"
+            :delTodo="delTodo"
         />
     </div>
 </template>
@@ -12,12 +14,13 @@
     import Item from './Item.vue'
     export default {
         name:'List',
+        props:{
+            todos:Array,
+            delTodo:Function
+        },        
         components:{
             Item
         },
-        props:{
-            todos:Array
-        }
     }
 </script>
 

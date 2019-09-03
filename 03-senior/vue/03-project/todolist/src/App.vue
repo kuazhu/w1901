@@ -3,7 +3,7 @@
     <div id="app">
         <!--3.使用组件-->
         <Header :addTodo="addTodo" />
-        <List :todos="todos" />
+        <List :todos="todos" :delTodo="delTodo" />
         <Footer />
     </div>
 </template>
@@ -39,6 +39,9 @@
         methods:{
             addTodo(todo){
                 this.todos.unshift(todo)
+            },
+            delTodo(index){
+                this.todos.splice(index,1)
             }
         }
     }
