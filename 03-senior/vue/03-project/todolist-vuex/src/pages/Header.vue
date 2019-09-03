@@ -35,7 +35,8 @@
                     done:false
                 }
                 //3.将任务对象插入到任务数组
-                this.addTodo(todo)
+                //this.addTodo(todo)
+                this.$store.dispatch('addTodo',todo)
                 //4.清空输入框
                 this.task = ''
             }
