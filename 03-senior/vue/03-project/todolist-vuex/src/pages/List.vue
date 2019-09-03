@@ -5,7 +5,6 @@
             :todo="todo"
             :index="index"
             :key="index"
-            :delTodo="delTodo"
         />
     </div>
 </template>
@@ -13,11 +12,7 @@
 <script>
     import Item from './Item.vue'
     export default {
-        name:'List',
-        props:{
-            todos:Array,
-            delTodo:Function
-        },        
+        name:'List',       
         components:{
             Item
         },

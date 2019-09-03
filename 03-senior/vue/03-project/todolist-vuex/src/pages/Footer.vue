@@ -8,28 +8,10 @@
 
 <script>
     import { mapGetters } from 'vuex'
-     import { SELECT_ALL_TODO } from '../store/types.js'
+    import { SELECT_ALL_TODO,DEL_ALL_DONE } from '../store/types.js'
     export default {
-        name:'Footer',
-        props:{
-            todos:Array,
-            selectAllTodo:Function,
-            delAllDone:Function,
-        },         
+        name:'Footer',       
         computed:{
-            /*
-            total(){
-                return this.todos.length
-            },
-            totalDone(){
-                return this.todos.reduce((total,item)=>{
-                    if(item.done){
-                        total = total + 1
-                    }
-                    return total
-                },0)
-            },
-            */
             ...mapGetters([
               'total',
               'totalDone',
@@ -39,7 +21,6 @@
                     return this.$store.getters.allDone
                 },
                 set(value){
-                    // this.selectAllTodo(value)
                     this.$store.dispatch(SELECT_ALL_TODO,value)
                 }
             }
@@ -47,7 +28,7 @@
         methods:{
             handleDelAllDone(){
                if(window.confirm('您确定要删除所有选中的任务吗?')){
-                    this.delAllDone()
+                    this.$store.dispatch(DEL_ALL_DONE)
                 }                
             }
         }

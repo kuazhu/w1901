@@ -14,9 +14,6 @@
     import { ADD_TODO } from '../store/types.js'
     export default {
         name:'Header',
-        props:{
-            addTodo:Function
-        },
         data(){
             return {
                 task:''
@@ -36,7 +33,6 @@
                     done:false
                 }
                 //3.将任务对象插入到任务数组
-                //this.addTodo(todo)
                 this.$store.dispatch(ADD_TODO,todo)
                 //4.清空输入框
                 this.task = ''

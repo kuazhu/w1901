@@ -18,7 +18,6 @@
         props:{
             todo:Object,
             index:Number,
-            delTodo:Function
         },
         data(){
             return {
@@ -33,8 +32,6 @@
             },
             handleDel(){
                 if(window.confirm('您确定要删除'+this.todo.task+'吗?')){
-                    //console.log(this.index)
-                    //this.delTodo(this.index)
                     this.$store.dispatch(DEL_TODO,this.index)
                 }
             }
