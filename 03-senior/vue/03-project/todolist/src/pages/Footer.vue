@@ -2,7 +2,7 @@
     <div class="Footer">
         <input type="checkbox" v-model="allDone">
         <span>{{totalDone}}/{{total}}</span>
-        <button>删除选中</button>
+        <button @click="handleDelAllDone()">删除选中</button>
     </div>
 </template>
 
@@ -12,6 +12,7 @@
         props:{
             todos:Array,
             selectAllTodo:Function,
+            delAllDone:Function,
         },         
         computed:{
             total(){
@@ -32,6 +33,13 @@
                 set(value){
                     this.selectAllTodo(value)
                 }
+            }
+        },
+        methods:{
+            handleDelAllDone(){
+               if(window.confirm('您确定要删除所有选中的任务吗?')){
+                    this.delAllDone()
+                }                
             }
         }
     }

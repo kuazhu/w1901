@@ -4,7 +4,11 @@
         <!--3.使用组件-->
         <Header :addTodo="addTodo" />
         <List :todos="todos" :delTodo="delTodo" />
-        <Footer :todos="todos" :selectAllTodo="selectAllTodo" />
+        <Footer 
+            :todos="todos" 
+            :selectAllTodo="selectAllTodo" 
+            :delAllDone="delAllDone"
+        />
     </div>
 </template>
 
@@ -47,6 +51,9 @@
                 this.todos.forEach((item)=>{
                     item.done = value
                 })
+            },
+            delAllDone(){
+                this.todos = this.todos.filter(item=>!item.done)
             }
         }
     }
