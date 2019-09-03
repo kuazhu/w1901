@@ -2,12 +2,16 @@
 * @Author: TomChen
 * @Date:   2019-09-03 19:19:12
 * @Last Modified by:   TomChen
-* @Last Modified time: 2019-09-03 19:49:30
+* @Last Modified time: 2019-09-03 20:05:06
 */
 //唯一更改state的方法
 //mutation必须是同步函数
+import {ADD_TODO,DEL_TODO} from './types.js'
 export default {
-    addTodo(state,todo){
+    [ADD_TODO](state,todo){
         state.todos.unshift(todo)
-    }
+    },
+    [DEL_TODO](state,index){
+        state.todos.splice(index,1)
+    }    
 }
