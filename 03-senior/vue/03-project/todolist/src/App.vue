@@ -4,7 +4,7 @@
         <!--3.使用组件-->
         <Header :addTodo="addTodo" />
         <List :todos="todos" :delTodo="delTodo" />
-        <Footer />
+        <Footer :todos="todos" />
     </div>
 </template>
 
