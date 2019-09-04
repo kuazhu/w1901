@@ -15,12 +15,12 @@
         <ul class="product-wrap" v-if="homeFloors.length > 1">
             <li class="product-floor" v-for="(floor,floorIndex) in homeFloors" :key="floorIndex">
                 <h3 class="floor-title">{{floor.title}}</h3>
-                <ul class="product-list" v-for="(product,productIndex) in floor.products" :key="productIndex">
-                    <li class="product-item">
+                <ul class="product-list">
+                    <li class="product-item" v-for="(product,productIndex) in floor.products" :key="productIndex">
                         <img class="product-image" :src="product.mainImage" alt="">
                         <div class="product-content">
                             <h4 class="product-name">{{product.name}}</h4>
-                            <p class="product-price">{{product.price}}</p>
+                            <p class="product-price">{{product.price | formatPrice}}</p>
                             <span class="btn-buy">购买</span>
                         </div>
                     </li>                                                       
@@ -52,7 +52,6 @@
                 })                
             })
             this.$store.dispatch(GET_FLOORS)
-
         },
         computed:{
             ...mapGetters([

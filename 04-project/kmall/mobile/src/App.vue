@@ -21,10 +21,5 @@
 
 <!--样式-->
 <style lang="less">
-    #app{
-        p{
-            color:red;
-            .rem(padding,10px);
-        }
-    }
+
 </style>

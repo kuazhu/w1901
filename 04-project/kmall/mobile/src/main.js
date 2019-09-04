@@ -12,6 +12,11 @@ import store from './store'
 //引入路由对象
 import router from './router'
 
+//引入过滤器
+import filters from './filters/'
+
+Object.keys(filters).forEach(key=>Vue.filter(key,filters[key]))
+
 Vue.config.productionTip = false
 
 new Vue({
