@@ -10,7 +10,8 @@ module.exports = {
     }
   },    
   devServer:{
-    port:3003
+    port:3003,
+    proxy: 'http://127.0.0.1:3000',
   },
   chainWebpack:config =>{
     config.resolve.alias
