@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
+//引入公共css
+
+import './assets/css/common.css'
 
 //引入store
 import store from './store'
