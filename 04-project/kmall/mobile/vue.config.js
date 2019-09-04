@@ -11,5 +11,10 @@ module.exports = {
   },    
   devServer:{
     port:3003
-  }
+  },
+  chainWebpack:config =>{
+    config.resolve.alias
+    .set('pages',path.resolve(__dirname,'./src/pages'))
+    .set('api',path.resolve(__dirname,'./src/api'))
+  }   
 }

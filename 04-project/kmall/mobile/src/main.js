@@ -6,10 +6,13 @@ import './assets/css/common.css'
 
 //引入store
 import store from './store'
+//引入路由对象
+import router from './router'
 
 Vue.config.productionTip = false
 
 new Vue({
     store,
+    router,
     render: h => h(App),
 }).$mount('#app')
