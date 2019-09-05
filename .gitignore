@@ -11,3 +11,4 @@
 *.jpg
 *.png
 *.jpeg
+!**/miniprogram/images
