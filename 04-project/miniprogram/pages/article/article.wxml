@@ -1,2 +1,48 @@
 <!--pages/article/article.wxml-->
-<text>pages/article/article.wxml</text>
+<view>
+  <swiper indicator-dots="true"
+    autoplay="true" interval="5000" duration="500">
+      <swiper-item>
+        <image src="/images/swiper/s1.jpg" class="slide-image"/>
+      </swiper-item>
+      <swiper-item>
+        <image src="/images/swiper/s2.jpg" class="slide-image"/>
+      </swiper-item>
+      <swiper-item>
+        <image src="/images/swiper/s3.jpg" class="slide-image"/>
+      </swiper-item>        
+  </swiper>
+  <view class='article-wrap'>
+    <view class='article-item'>
+      <view class='article-head'>
+        <image class='article-head-avatar' src='/images/avatar/u1.jpg'></image>
+        <text class='article-head-date'>2019-05-06</text>
+      </view>
+      <text class='article-title'>我是文章标题{{title}}</text>
+      <image class='article-img' src='/images/article/a1.jpg'></image>
+      <text class='article-desc'>我是描述</text>
+      <view class='article-footer'>
+        <image class='article-footer-icon' src='/images/icon/star.png'></image>
+        <text class='article-footer-text'>20</text>
+        <image class='article-footer-icon' src='/images/icon/view.png'></image>
+        <text class='article-footer-text'>33</text> 
+      </view>
+    </view>
+    <view class='article-item'>
+      <view class='article-head'>
+        <image class='article-head-avatar' src='/images/avatar/u1.jpg'></image>
+        <text class='article-head-date'>2019-05-06</text>
+      </view>
+      <text class='article-title'>我是文章标题</text>
+      <image class='article-img' src='/images/article/a1.jpg'></image>
+      <text class='article-desc'>我是描述</text>
+      <view class='article-footer'>
+        <image class='article-footer-icon' src='/images/icon/star.png'></image>
+        <text class='article-footer-text'>20</text>
+        <image class='article-footer-icon' src='/images/icon/view.png'></image>
+        <text class='article-footer-text'>33</text>        
+      </view>
+    </view>
+ 
+  </view>  
+</view>
