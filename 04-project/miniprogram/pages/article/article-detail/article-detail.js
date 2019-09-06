@@ -16,7 +16,29 @@ Page({
     var articleId = options.articleId
     var article = articles[articleId]
     //处理收藏
-    var isCollected = true
+    var isCollected = false
+    //获取storage中的收藏对象
+    var articles_collection = wx.getStorageSync('articles_collection')
+    if (articles_collection){
+      isCollected = !!articles_collection[articleId]
+    }
+    //没有收藏对象,初始化
+    else{
+      /**
+       * articleId:false
+       * {
+       *  '0':false,
+       *  '1':true
+       * }
+       */
+      var data = {
+
+      }
+      data[articleId] = false
+      wx.setStorageSync('articles_collection', data)
+    }
+
+
     this.setData({ ...article, isCollected:isCollected})
   },
 
@@ -75,5 +97,12 @@ Page({
     //wx.setStorageSync('key1',{name:'Tom'})
     //var data = wx.getStorageSync('key1')
     //console.log(data)
+    //获取storage中的收藏对象
+    var articles_collection = wx.getStorageSync('articles_collection')
+    var currentIsCollected = articles_collection[this.data.articleId]
+    articles_collection[this.data.articleId] = !currentIsCollected
+    wx.setStorageSync('articles_collection', articles_collection)
+    this.setData({ isCollected: !currentIsCollected})
+
   }
 })
