@@ -1,4 +1,4 @@
-<!--pages/article/article.wxml-->
+<import src="./article-item-template/article-item-template.wxml"/>
 <view>
   <swiper indicator-dots="true"
     autoplay="true" interval="5000" duration="500">
@@ -67,6 +67,7 @@
   -->
   <view class='article-wrap'>
     <block wx:for="{{articles}}" wx:for-index="idx" wx:for-item="article" wx:key="idx">
+      <!--
       <view class='article-item'>
         <view class='article-head'>
           <image class='article-head-avatar' src='{{article.avatar}}'></image>
@@ -81,6 +82,10 @@
           <image class='article-footer-icon' src='/images/icon/view.png'></image>
           <text class='article-footer-text'>{{article.view}}</text> 
         </view>
+      </view>
+      -->
+      <view catchtap='tapArticleItem' data-article-id='{{article.articleId}}'>
+      <template is="articleItem" data="{{...article}}"/>
       </view>
     </block>
   </view>      

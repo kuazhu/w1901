@@ -1,5 +1,6 @@
 var articles = [
   {
+    articleId:'0',
     avatar: '/images/avatar/u1.jpg',
     date: '2019-10-10',
     title: '我是文章标题1',
@@ -9,6 +10,7 @@ var articles = [
     view: 20
   },
   {
+    articleId: '1',
     avatar: '/images/avatar/u2.jpg',
     date: '2019-10-10',
     title: '我是文章标题2',
