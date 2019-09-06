@@ -2,7 +2,6 @@
   "pages": [
     "pages/article/article",
     "pages/index/index",
-    
     "pages/logs/logs"
    
   ],
@@ -10,7 +9,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ccc",
     "navigationBarTitleText": "跨猪",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json"
 }
