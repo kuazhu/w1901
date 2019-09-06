@@ -1,4 +1,5 @@
-// pages/article/article.js
+var { articles } = require('../../data/db.js')
+
 Page({
 
   /**
@@ -8,6 +9,7 @@ Page({
     /*
     text:'abc',
     */
+    /*
     articles:[
       {
         avatar:'/images/avatar/u1.jpg',
@@ -28,6 +30,8 @@ Page({
         view: 20
       },      
     ]
+    */
+    articles:[]
   },
 
   /**
@@ -35,6 +39,37 @@ Page({
    */
   onLoad: function (options) {
     //console.log('articel onLoad')
+    /*
+    var articles = [
+      {
+        avatar: '/images/avatar/u1.jpg',
+        date: '2019-10-10',
+        title: '我是文章标题1',
+        img: '/images/article/a1.jpg',
+        desc: '我是描述1',
+        star: 30,
+        view: 20
+      },
+      {
+        avatar: '/images/avatar/u2.jpg',
+        date: '2019-10-10',
+        title: '我是文章标题2',
+        img: '/images/article/a2.jpg',
+        desc: '我是描述2',
+        star: 30,
+        view: 20
+      },
+    ]
+    */
+    // console.log(this.data.articles)
+    // this.data.articles = articles
+    /*
+    this.setData({articles:articles},function(){
+      console.log('2:::', this.data.articles)
+    }.bind(this))
+    console.log('1::',this.data.articles)
+    */
+    this.setData({ articles: articles })
   },
 
   /**
