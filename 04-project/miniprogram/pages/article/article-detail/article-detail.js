@@ -15,7 +15,9 @@ Page({
   onLoad: function (options) {
     var articleId = options.articleId
     var article = articles[articleId]
-    this.setData({ ...article})
+    //处理收藏
+    var isCollected = true
+    this.setData({ ...article, isCollected:isCollected})
   },
 
   /**
@@ -65,5 +67,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /**
+   * 处理收藏
+   */
+  tapCollection:function(){
+    //wx.setStorageSync('key1',{name:'Tom'})
+    //var data = wx.getStorageSync('key1')
+    //console.log(data)
   }
 })
