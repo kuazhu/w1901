@@ -1,4 +1,5 @@
-// pages/article/article-detail/article-detail.js
+var { articles } = require('../../../data/db.js')
+
 Page({
 
   /**
@@ -13,7 +14,8 @@ Page({
    */
   onLoad: function (options) {
     var articleId = options.articleId
-    console.log(articleId)
+    var article = articles[articleId]
+    this.setData({ ...article})
   },
 
   /**
