@@ -6,9 +6,9 @@
       <text bindtap='tapMore' class='more'>更多></text>
     </view>
     <view class='list'>
-      <template is="movieItem" />
-      <template is="movieItem" />
-      <template is="movieItem" />            
+      <block wx:for="{{movies}}" wx:key="index">
+        <template is="movieItem" data="{{...item}}" />          
+      </block>
     </view>
   </view>
 </template>  
