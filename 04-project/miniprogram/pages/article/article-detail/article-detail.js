@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isPlaying:false
   },
 
   /**
@@ -122,5 +122,20 @@ Page({
         })
       }
     })
+  },
+  /** 
+   * 处理播放音乐
+   */
+  tapMusic:function(){
+    var backgroundAudioManager  = wx.getBackgroundAudioManager()
+    if(this.data.isPlaying){//暂停播放
+      backgroundAudioManager.pause()
+      this.setData({ isPlaying: false })
+    }
+    else{//播放音乐
+      backgroundAudioManager.src = this.data.music.src
+      backgroundAudioManager.title = this.data.music.title
+      this.setData({ isPlaying:true})
+    }
   }
 })
