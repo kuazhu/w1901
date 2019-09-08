@@ -63,3 +63,16 @@ module.exports = {
 封面：http://oxoxtpvtn.bkt.clouddn.com/%E5%90%AC%E6%B5%B7.jpg
 歌曲：http://oxoxtpvtn.bkt.clouddn.com/%E5%BC%A0%E6%83%A0%E5%A6%B9%20-%20%E5%90%AC%E6%B5%B7%20%28Live%29.mp3
 */
+/*
+豆瓣api:
+
+正在热映
+http://t.yushu.im/v2/movie/in_theaters?start=0&count=3
+
+即将上映
+http://t.yushu.im/v2/movie/coming_soon?start=0&count=3
+
+豆瓣Top250
+http://t.yushu.im/v2/movie/top250?start=0&count=3
+
+*/

@@ -1,0 +1,47 @@
+.movie-list-wrap{
+  padding: 10px 15px 0 15px;
+  margin-bottom: 20px;
+}
+.movie-list-wrap .head{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 10px;
+}
+.movie-list-wrap .list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+.movie-item-wrap{
+  display: flex;
+  flex-direction: column;
+}
+.movie-item-wrap .cover-img{
+  width: 220rpx;
+  height: 270rpx;
+}
+.movie-item-wrap .title{
+  font-size: 32rpx;
+  font-weight: 600;
+  width: 220rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.star-wrap image{
+  width: 22rpx;
+  height: 22rpx;
+  margin-right: 2px;
+}
+.star-wrap .score{
+  font-size: 32rpx;
+  color: #333;
+  margin-left: 8px;
+}
