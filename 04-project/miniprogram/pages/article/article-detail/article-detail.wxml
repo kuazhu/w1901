@@ -23,7 +23,12 @@
       class='operation-collection'
       src='/images/icon/collection-none.png'>
     </image>    
-    <image bindtap='tapShare' class='operation-share' src='/images/icon/share.png'></image>
+    <image 
+      catchtap='tapShare' 
+      class='operation-share' 
+      src='/images/icon/share.png'
+    >
+    </image>
     <view class='operation-line'></view>    
   </view>
   <text class='content'>{{content}}</text>

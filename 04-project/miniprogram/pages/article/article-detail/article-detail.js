@@ -102,7 +102,25 @@ Page({
     var currentIsCollected = articles_collection[this.data.articleId]
     articles_collection[this.data.articleId] = !currentIsCollected
     wx.setStorageSync('articles_collection', articles_collection)
-    this.setData({ isCollected: !currentIsCollected})
-
+    this.setData({ isCollected: !currentIsCollected},function(){
+      wx.showToast({
+        title: currentIsCollected ? "取消成功" : "收藏成功",
+        duration: 2000
+      })
+    })
+  },
+  /**
+   * 处理分享
+   */
+  tapShare:function(){
+    var itemList = ['分享到QQ', '分享到朋友圈', '分享到微博']
+    wx.showActionSheet({
+      itemList: itemList,
+      success:function(res) {
+        wx.showToast({
+          title: itemList[res.tapIndex]+"成功"
+        })
+      }
+    })
   }
 })
