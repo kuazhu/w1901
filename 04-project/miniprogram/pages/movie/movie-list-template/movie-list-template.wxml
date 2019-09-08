@@ -3,7 +3,11 @@
   <view class='movie-list-wrap'>
     <view class='head'>
       <text class='tag'>{{tag}}</text>
-      <text bindtap='tapMore' class='more'>更多></text>
+      <text 
+        catchtap='tapMore' 
+        class='more'
+        data-type="{{type}}"
+      >更多></text>
     </view>
     <view class='list'>
       <block wx:for="{{movies}}" wx:key="index">

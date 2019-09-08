@@ -14,7 +14,7 @@ Page({
    */
   onLoad: function (options) {
     var _this = this
-    var baseUrl = app.GOLBAL_DATA.baseUrl
+    var baseUrl = app.GLOBAL_DATA.baseUrl
     var inTheatersUrl = baseUrl+'in_theaters?start=0&count=3'
     var comingSoonUrl = baseUrl +'coming_soon?start=0&count=3'
     var top250Url = baseUrl + 'top250?start=0&count=3'    
@@ -118,5 +118,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /** 
+   * 更多处理
+   */
+  tapMore:function(ev){
+    var type = ev.currentTarget.dataset.type
+    wx.navigateTo({
+      url: '/pages/movie/movie-more/movie-more?type='+type,
+    })
   }
 })
