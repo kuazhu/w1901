@@ -12,7 +12,8 @@ var articles = [
     content:'我是文章标题1的内容',
     music:{
       src: 'http://oxoxtpvtn.bkt.clouddn.com/%E9%87%91%E5%BF%97%E6%96%87%20-%20%E4%B8%BA%E7%88%B1%E7%97%B4%E7%8B%82.mp3',
-      title: '为爱痴狂'
+      title: '为爱痴狂',
+      coverImgUrl: 'http://oxoxtpvtn.bkt.clouddn.com/%E4%B8%BA%E7%88%B1%E7%97%B4%E7%8B%82.jpg'
     }
   },
   {
@@ -28,7 +29,8 @@ var articles = [
     content: '我是文章标题2的内容',
     music: {
       src: 'http://oxoxtpvtn.bkt.clouddn.com/%E6%9D%8E%E5%81%A5%E3%80%81%E5%AD%99%E4%BF%AA%20-%20%E9%A3%8E%E5%90%B9%E9%BA%A6%E6%B5%AA%20%28Live%29.mp3',
-      title: '风吹麦浪'
+      title: '风吹麦浪',
+      coverImgUrl:'http://oxoxtpvtn.bkt.clouddn.com/%E9%A3%8E%E5%90%B9%E9%BA%A6%E6%B5%AA.jpg'
     }    
   },
 ]

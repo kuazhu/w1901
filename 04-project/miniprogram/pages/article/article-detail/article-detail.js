@@ -37,8 +37,14 @@ Page({
       data[articleId] = false
       wx.setStorageSync('articles_collection', data)
     }
-
-
+    //处理音乐
+    var backgroundAudioManager = wx.getBackgroundAudioManager()
+    backgroundAudioManager.onPlay(function(){
+      this.setData({isPlaying:true})
+    }.bind(this))
+    backgroundAudioManager.onPause(function () {
+      this.setData({ isPlaying: false })
+    }.bind(this))    
     this.setData({ ...article, isCollected:isCollected})
   },
 
@@ -130,12 +136,13 @@ Page({
     var backgroundAudioManager  = wx.getBackgroundAudioManager()
     if(this.data.isPlaying){//暂停播放
       backgroundAudioManager.pause()
-      this.setData({ isPlaying: false })
+      // this.setData({ isPlaying: false })
     }
     else{//播放音乐
       backgroundAudioManager.src = this.data.music.src
       backgroundAudioManager.title = this.data.music.title
-      this.setData({ isPlaying:true})
+      backgroundAudioManager.coverImgUrl = this.data.music.coverImgUrl
+      // this.setData({ isPlaying:true})
     }
   }
 })
