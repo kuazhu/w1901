@@ -17,19 +17,31 @@ Page({
     var _this = this
     var baseUrl = app.GLOBAL_DATA.baseUrl
     var requestUrl = ''
+    var navigationBarTitleText = ''
     switch(type){
       case 'inTheaters':
         requestUrl = baseUrl + 'in_theaters'
+        navigationBarTitleText = '正在热映'
         break
       case 'comingSoon':
         requestUrl = baseUrl + 'coming_soon'
+        navigationBarTitleText = '即将上映'
         break
       case 'top250':
         requestUrl = baseUrl + 'top250'
+        navigationBarTitleText = 'top250'
         break               
     }
+    //设置标题
+    wx.setNavigationBarTitle({ title: navigationBarTitleText})
+    //在当前页面显示导航条加载动画
+    wx.showNavigationBarLoading()
+
     getMoiveList(requestUrl, function (data) {
-      _this.setData({ movies: data })
+      _this.setData({ movies: data },function(){
+        //在当前页面隐藏导航条加载动画
+        wx.hideNavigationBarLoading()
+      })
     })  
 
   },

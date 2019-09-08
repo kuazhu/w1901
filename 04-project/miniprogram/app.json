@@ -8,9 +8,8 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ccc",
-    "navigationBarTitleText": "跨猪",
-    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
   },
   "tabBar": {
