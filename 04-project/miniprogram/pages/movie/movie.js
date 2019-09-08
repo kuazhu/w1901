@@ -1,4 +1,4 @@
-// pages/movie/movie.js
+var { getMoiveList} = require('../../utils/util.js')
 Page({
 
   /**
@@ -13,6 +13,10 @@ Page({
    */
   onLoad: function (options) {
     var _this = this
+    var inTheatersUrl = 'http://t.yushu.im/v2/movie/in_theaters?start=0&count=3'
+    var comingSoonUrl = 'http://t.yushu.im/v2/movie/coming_soon?start=0&count=3'
+    var top250Url = 'http://t.yushu.im/v2/movie/top250?start=0&count=3'
+    /*
     wx.request({
       url:"http://t.yushu.im/v2/movie/in_theaters?start=0&count=3",
       success:function(res){
@@ -25,10 +29,39 @@ Page({
           }
         })
         console.log(data)
-        _this.setData({movies:data})
+        _this.setData({inTheatersMovies:data})
+
+      }
+    }),
+    wx.request({
+      url: "http://t.yushu.im/v2/movie/coming_soon?start=0&count=3",
+      success: function (res) {
+        var data = res.data.subjects.map(function (item) {
+          return {
+            coverImg: item.images.large,
+            title: item.title,
+            score: item.rating.average,
+            stars: item.rating.stars
+          }
+        })
+        console.log(data)
+        _this.setData({ comingSoonMovies: data })
 
       }
     })
+    */
+    getMoiveList(inTheatersUrl,function(data){
+      _this.setData({ inTheatersMovies: data })
+    })
+    getMoiveList(comingSoonUrl,function(data){
+      _this.setData({ comingSoonMovies: data })
+    })
+    getMoiveList(comingSoonUrl, function (data) {
+      _this.setData({ comingSoonMovies: data })
+    })
+    getMoiveList(top250Url, function (data) {
+      _this.setData({ top250Movies: data })
+    })               
   },
 
   /**

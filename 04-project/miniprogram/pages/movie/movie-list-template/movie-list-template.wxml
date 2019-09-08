@@ -2,7 +2,7 @@
 <template name="movieList">   
   <view class='movie-list-wrap'>
     <view class='head'>
-      <text class='tag'>热门</text>
+      <text class='tag'>{{tag}}</text>
       <text bindtap='tapMore' class='more'>更多></text>
     </view>
     <view class='list'>

@@ -1,19 +1,23 @@
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
-
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+function getMoiveList(url,success){
+  wx.request({
+    url: url,
+    success: function (res) {
+      success(formatMovieData(res.data.subjects))
+    }
+  })
 }
 
-const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+function formatMovieData(data){
+  return data.map(function (item) {
+    return {
+      coverImg: item.images.large,
+      title: item.title,
+      score: item.rating.average,
+      stars: item.rating.stars
+    }
+  })
 }
 
 module.exports = {
-  formatTime: formatTime
+  getMoiveList: getMoiveList
 }
