@@ -1,0 +1,8 @@
+<import src="../star-template/star-template.wxml"/>
+<template name="movieItem">       
+  <view class='movie-item-wrap'>
+    <image class='cover-img' src='/images/article/a1.jpg'></image>
+    <text class='title'>哪吒</text>
+    <template is="star" />
+  </view>
+</template>      

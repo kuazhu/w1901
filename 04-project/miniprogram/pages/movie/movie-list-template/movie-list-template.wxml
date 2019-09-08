@@ -1,0 +1,14 @@
+<import src="../movie-item-template/movie-item-template.wxml"/>
+<template name="movieList">   
+  <view class='movie-list-wrap'>
+    <view class='head'>
+      <text class='tag'>热门</text>
+      <text bindtap='tapMore' class='more'>更多></text>
+    </view>
+    <view class='list'>
+      <template is="movieItem" />
+      <template is="movieItem" />
+      <template is="movieItem" />            
+    </view>
+  </view>
+</template>  
