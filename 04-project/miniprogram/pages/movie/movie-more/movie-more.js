@@ -1,4 +1,5 @@
-// pages/movie/movie-more/movie-more.js
+var { getMoiveList } = require('../../../utils/util.js')
+var app = getApp()
 Page({
 
   /**
@@ -13,7 +14,24 @@ Page({
    */
   onLoad: function (options) {
     var type = options.type
-    
+    var _this = this
+    var baseUrl = app.GLOBAL_DATA.baseUrl
+    var requestUrl = ''
+    switch(type){
+      case 'inTheaters':
+        requestUrl = baseUrl + 'in_theaters'
+        break
+      case 'comingSoon':
+        requestUrl = baseUrl + 'coming_soon'
+        break
+      case 'top250':
+        requestUrl = baseUrl + 'top250'
+        break               
+    }
+    getMoiveList(requestUrl, function (data) {
+      _this.setData({ movies: data })
+    })  
+
   },
 
   /**
