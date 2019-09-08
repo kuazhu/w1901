@@ -15,4 +15,7 @@ App({
   onError(msg) {
     //console.log(msg)
   },
+  GOLBAL_DATA:{
+    baseUrl:'http://t.yushu.im/v2/movie/'
+  }
 })

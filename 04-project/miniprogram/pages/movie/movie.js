@@ -1,4 +1,5 @@
 var { getMoiveList} = require('../../utils/util.js')
+var app = getApp()
 Page({
 
   /**
@@ -13,9 +14,15 @@ Page({
    */
   onLoad: function (options) {
     var _this = this
+    var baseUrl = app.GOLBAL_DATA.baseUrl
+    var inTheatersUrl = baseUrl+'in_theaters?start=0&count=3'
+    var comingSoonUrl = baseUrl +'coming_soon?start=0&count=3'
+    var top250Url = baseUrl + 'top250?start=0&count=3'    
+    /*
     var inTheatersUrl = 'http://t.yushu.im/v2/movie/in_theaters?start=0&count=3'
     var comingSoonUrl = 'http://t.yushu.im/v2/movie/coming_soon?start=0&count=3'
     var top250Url = 'http://t.yushu.im/v2/movie/top250?start=0&count=3'
+    */
     /*
     wx.request({
       url:"http://t.yushu.im/v2/movie/in_theaters?start=0&count=3",
