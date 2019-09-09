@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to 钱多多</p>
+    <button id="login">登录</button>
+    <button id="logout">退出</button>
+    <a href="/users/forward" id="forward" >转账</a>
+  </body>
+  <script src="/javascripts/jquery-1.12.4.js"></script>
+  <script>
+      $(function(){
+        $('#login').on('click',function(){
+            $.ajax({
+                url:'/login',
+                success:function(res){
+                    console.log(res)
+                    $('#forward').attr('href',$('#forward').attr('href')+"?token="+res.token)
+                }
+            })
+        })
+        $('#logout').on('click',function(){
+            $.ajax({
+                url:'/logout',
+                success:function(res){
+                    console.log(res)
+                }
+            })
+        })        
+      })
+  </script>
+</html>
