@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Express web site</h1>
+    <%- xss %>
+    <p>评论</p>
+    <textarea  id="txt" cols="30" rows="10"></textarea>
+    <button id="add">添加评论</button>
+    <button id="get">获取评论</button>
+    <p>显示获取的评论</p>
+    <div id="box"></div>
+  </body>
+  <script src="/javascripts/jquery-1.12.4.js"></script>
+  <script src="/javascripts/htmlparser.js"></script>
+  <script>
+    function parese(str) {
+        var results = "";
+        HTMLParser(str, {
+            start: function(tag, attrs, unary) {
+                results += "<" + tag;
+                for (var i = 0; i < attrs.length; i++) {
+                    if(attrs[i].name == 'onerror'){
+                        continue
+                    }
+                    results += " " + attrs[i].name + '="' + attrs[i].escaped + '"';
+                }
+                results += ">";
+            },
+            end: function(tag) {
+                results += "</" + tag + ">";
+            },
+            chars: function(text) {
+                results += text;
+            },
+            comment: function(text) {
+                results += "<!--" + text + "-->";
+            }
+        });
+        return results;
+    }    
+      $(function(){
+        $('#add').on('click',function(){
+            $.ajax({
+                url:"/add",
+                data:{
+                    val:$('#txt').val()
+                },
+                success:function(res){
+                    console.log(res)
+                }
+            })
+        })
+        $('#get').on('click',function(){
+            $.ajax({
+                url:'/get',
+                success:function(res){
+                    var html = parese(res.data)
+                    $('#box').html(html)
+                }
+            })
+        })
+      })
+  </script>
+</html>
