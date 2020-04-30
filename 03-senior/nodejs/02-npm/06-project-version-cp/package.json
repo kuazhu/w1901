@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^1.12.1"
+    "jquery": "^3.5.0"
   }
 }
